@@ -46,8 +46,8 @@ public class PermissionService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<PermissionModel> criteria = builder.createQuery(PermissionModel.class);
-        Root<PermissionModel> EdgeEntities = criteria.from(PermissionModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<PermissionModel> PermissionModels = criteria.from(PermissionModel.class);
+        criteria.where(builder.equal(PermissionModels.get("id"), id));
         try {
             PermissionModel permissionModel = session.createQuery(criteria).getSingleResult();
             return new PermissionEntity(permissionModel);
@@ -58,22 +58,22 @@ public class PermissionService {
         }
     }
 
-    public PermissionEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            PermissionEntity permissionEntity = new PermissionEntity(edgeId, startX, startY, endX, endY, shapeId);
-            PermissionModel permissionModel = permissionEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(permissionModel)));
-            tx.commit();
-            PermissionEntity result = new PermissionEntity(permissionModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public PermissionEntity create(int permissionId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            PermissionEntity permissionEntity = new PermissionEntity(permissionId, startX, startY, endX, endY, shapeId);
+//            PermissionModel permissionModel = permissionEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(permissionModel)));
+//            tx.commit();
+//            PermissionEntity result = new PermissionEntity(permissionModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public PermissionEntity create(PermissionEntity permissionEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class PermissionService {
         return null;
     }
 
-    public PermissionEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            PermissionEntity permissionEntity = new PermissionEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(permissionEntity.toModel());
-            tx.commit();
-            PermissionEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public PermissionEntity update(int permissionId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            PermissionEntity permissionEntity = new PermissionEntity(permissionId, startX, startY, endX, endY, shapeId);
+//            session.update(permissionEntity.toModel());
+//            tx.commit();
+//            PermissionEntity result = get(permissionId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public PermissionEntity update(int edgeId, PermissionEntity permissionEntity) {
+    public PermissionEntity update(int permissionId, PermissionEntity permissionEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(permissionEntity.toModel());
             tx.commit();
-            PermissionEntity result = get(edgeId);
+            PermissionEntity result = get(permissionId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -127,7 +127,7 @@ public class PermissionService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             PermissionModel permissionModel = new PermissionModel();
-            permissionModel.setEdgeId(id);
+            permissionModel.setId(id);
             session.delete(permissionModel);
             tx.commit();
             return true;
@@ -142,10 +142,10 @@ public class PermissionService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<PermissionModel> criteria = builder.createQuery(PermissionModel.class);
-        Root<PermissionModel> EdgeEntities = criteria.from(PermissionModel.class);
+        Root<PermissionModel> PermissionModels = criteria.from(PermissionModel.class);
         try {
-            List<PermissionModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<PermissionModel> permissionList = session.createQuery(criteria).getResultList();
+            return permissionList.stream()
                     .map(s -> new PermissionEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

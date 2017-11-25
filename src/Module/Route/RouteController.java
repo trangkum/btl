@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/routes")
 public class RouteController {
     @Inject
     private RouteService routeService;
@@ -31,9 +31,9 @@ public class RouteController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public RouteEntity getId(@PathParam("edgeId") int edgeId) {
-        return routeService.get(edgeId);
+    @Path("{routeId}")
+    public RouteEntity getId(@PathParam("routeId") int routeId) {
+        return routeService.get(routeId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class RouteController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public RouteEntity update(@PathParam("edgeId") int edgeId, RouteEntity routeEntity) {
-        return routeService.update(edgeId, routeEntity);
+    @Path("{routeId}")
+    public RouteEntity update(@PathParam("routeId") int routeId, RouteEntity routeEntity) {
+        return routeService.update(routeId, routeEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        routeService.delete(edgeId);
+    @Path("{routeId}")
+    public void delete(@PathParam("routeId") int routeId) {
+        routeService.delete(routeId);
     }
 
 }

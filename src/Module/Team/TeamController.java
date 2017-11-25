@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/teams")
 public class TeamController {
     @Inject
     private TeamService teamService;
@@ -31,9 +31,9 @@ public class TeamController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public TeamEntity getId(@PathParam("edgeId") int edgeId) {
-        return teamService.get(edgeId);
+    @Path("{teamId}")
+    public TeamEntity getId(@PathParam("teamId") int teamId) {
+        return teamService.get(teamId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class TeamController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public TeamEntity update(@PathParam("edgeId") int edgeId, TeamEntity teamEntity) {
-        return teamService.update(edgeId, teamEntity);
+    @Path("{teamId}")
+    public TeamEntity update(@PathParam("teamId") int teamId, TeamEntity teamEntity) {
+        return teamService.update(teamId, teamEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        teamService.delete(edgeId);
+    @Path("{teamId}")
+    public void delete(@PathParam("teamId") int teamId) {
+        teamService.delete(teamId);
     }
 
 }

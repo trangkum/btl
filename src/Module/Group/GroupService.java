@@ -46,8 +46,8 @@ public class GroupService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<GroupModel> criteria = builder.createQuery(GroupModel.class);
-        Root<GroupModel> EdgeEntities = criteria.from(GroupModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<GroupModel> GroupModels = criteria.from(GroupModel.class);
+        criteria.where(builder.equal(GroupModels.get("id"), id));
         try {
             GroupModel groupModel = session.createQuery(criteria).getSingleResult();
             return new GroupEntity(groupModel);
@@ -58,22 +58,22 @@ public class GroupService {
         }
     }
 
-    public GroupEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            GroupEntity groupEntity = new GroupEntity(edgeId, startX, startY, endX, endY, shapeId);
-            GroupModel groupModel = groupEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(groupModel)));
-            tx.commit();
-            GroupEntity result = new GroupEntity(groupModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public GroupEntity create(int groupId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            GroupEntity groupEntity = new GroupEntity(groupId, startX, startY, endX, endY, shapeId);
+//            GroupModel groupModel = groupEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(groupModel)));
+//            tx.commit();
+//            GroupEntity result = new GroupEntity(groupModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public GroupEntity create(GroupEntity groupEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class GroupService {
         return null;
     }
 
-    public GroupEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            GroupEntity groupEntity = new GroupEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(groupEntity.toModel());
-            tx.commit();
-            GroupEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public GroupEntity update(int groupId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            GroupEntity groupEntity = new GroupEntity(groupId, startX, startY, endX, endY, shapeId);
+//            session.update(groupEntity.toModel());
+//            tx.commit();
+//            GroupEntity result = get(groupId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public GroupEntity update(int edgeId, GroupEntity groupEntity) {
+    public GroupEntity update(int groupId, GroupEntity groupEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(groupEntity.toModel());
             tx.commit();
-            GroupEntity result = get(edgeId);
+            GroupEntity result = get(groupId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -127,7 +127,7 @@ public class GroupService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             GroupModel groupModel = new GroupModel();
-            groupModel.setEdgeId(id);
+            groupModel.setId(id);
             session.delete(groupModel);
             tx.commit();
             return true;
@@ -142,10 +142,10 @@ public class GroupService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<GroupModel> criteria = builder.createQuery(GroupModel.class);
-        Root<GroupModel> EdgeEntities = criteria.from(GroupModel.class);
+        Root<GroupModel> GroupModels = criteria.from(GroupModel.class);
         try {
-            List<GroupModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<GroupModel> groupList = session.createQuery(criteria).getResultList();
+            return groupList.stream()
                     .map(s -> new GroupEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

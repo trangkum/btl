@@ -5,6 +5,9 @@ import Manager.Interface.IDatabaseControllService;
 import Manager.Interface.IDatabaseService;
 import Manager.Service.DatabaseControllService;
 import Manager.Service.DatabaseService;
+import Module.Ticket.SearchTicketModel;
+import Module.Ticket.TicketEntity;
+import Module.Ticket.TicketModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,12 +48,12 @@ public class TicketService {
     public TicketEntity get(int id) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<TicketattributeModel> criteria = builder.createQuery(TicketattributeModel.class);
-        Root<TicketattributeModel> EdgeEntities = criteria.from(TicketattributeModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        CriteriaQuery<TicketModel> criteria = builder.createQuery(TicketModel.class);
+        Root<TicketModel> TicketModels = criteria.from(TicketModel.class);
+        criteria.where(builder.equal(TicketModels.get("id"), id));
         try {
-            TicketattributeModel ticketattributeModel = session.createQuery(criteria).getSingleResult();
-            return new TicketEntity(ticketattributeModel);
+            TicketModel ticketModel = session.createQuery(criteria).getSingleResult();
+            return new TicketEntity(ticketModel);
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -58,31 +61,31 @@ public class TicketService {
         }
     }
 
-    public TicketEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            TicketEntity ticketEntity = new TicketEntity(edgeId, startX, startY, endX, endY, shapeId);
-            TicketattributeModel ticketattributeModel = ticketEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
-            tx.commit();
-            TicketEntity result = new TicketEntity(ticketattributeModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public TicketEntity create(int ticketId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            TicketEntity ticketEntity = new TicketEntity(ticketId, startX, startY, endX, endY, shapeId);
+//            TicketModel ticketModel = ticketEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(ticketModel)));
+//            tx.commit();
+//            TicketEntity result = new TicketEntity(ticketModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public TicketEntity create(TicketEntity ticketEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            TicketattributeModel ticketattributeModel = ticketEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
+            TicketModel ticketModel = ticketEntity.toModel();
+            Integer.valueOf(String.valueOf(session.save(ticketModel)));
             tx.commit();
-            TicketEntity result = new TicketEntity(ticketattributeModel);
+            TicketEntity result = new TicketEntity(ticketModel);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -91,29 +94,29 @@ public class TicketService {
         return null;
     }
 
-    public TicketEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            TicketEntity ticketEntity = new TicketEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(ticketEntity.toModel());
-            tx.commit();
-            TicketEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public TicketEntity update(int ticketId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            TicketEntity ticketEntity = new TicketEntity(ticketId, startX, startY, endX, endY, shapeId);
+//            session.update(ticketEntity.toModel());
+//            tx.commit();
+//            TicketEntity result = get(ticketId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public TicketEntity update(int edgeId, TicketEntity ticketEntity) {
+    public TicketEntity update(int ticketId, TicketEntity ticketEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(ticketEntity.toModel());
             tx.commit();
-            TicketEntity result = get(edgeId);
+            TicketEntity result = get(ticketId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -126,9 +129,9 @@ public class TicketService {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            TicketattributeModel ticketattributeModel = new TicketattributeModel();
-            ticketattributeModel.setEdgeId(id);
-            session.delete(ticketattributeModel);
+            TicketModel ticketModel = new TicketModel();
+            ticketModel.setId(id);
+            session.delete(ticketModel);
             tx.commit();
             return true;
         } catch (HibernateException e) {
@@ -141,11 +144,11 @@ public class TicketService {
     public List<TicketEntity> get(SearchTicketModel searchTicketModel) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<TicketattributeModel> criteria = builder.createQuery(TicketattributeModel.class);
-        Root<TicketattributeModel> EdgeEntities = criteria.from(TicketattributeModel.class);
+        CriteriaQuery<TicketModel> criteria = builder.createQuery(TicketModel.class);
+        Root<TicketModel> TicketModels = criteria.from(TicketModel.class);
         try {
-            List<TicketattributeModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<TicketModel> ticketList = session.createQuery(criteria).getResultList();
+            return ticketList.stream()
                     .map(s -> new TicketEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

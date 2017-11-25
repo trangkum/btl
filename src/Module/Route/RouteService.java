@@ -46,8 +46,8 @@ public class RouteService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RouteModel> criteria = builder.createQuery(RouteModel.class);
-        Root<RouteModel> EdgeEntities = criteria.from(RouteModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<RouteModel> RouteModels = criteria.from(RouteModel.class);
+        criteria.where(builder.equal(RouteModels.get("id"), id));
         try {
             RouteModel routeModel = session.createQuery(criteria).getSingleResult();
             return new RouteEntity(routeModel);
@@ -57,23 +57,23 @@ public class RouteService {
             session.close();
         }
     }
-
-    public RouteEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            RouteEntity routeEntity = new RouteEntity(edgeId, startX, startY, endX, endY, shapeId);
-            RouteModel routeModel = routeEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(routeModel)));
-            tx.commit();
-            RouteEntity result = new RouteEntity(routeModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//
+//    public RouteEntity create(int routeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            RouteEntity routeEntity = new RouteEntity(routeId, startX, startY, endX, endY, shapeId);
+//            RouteModel routeModel = routeEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(routeModel)));
+//            tx.commit();
+//            RouteEntity result = new RouteEntity(routeModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public RouteEntity create(RouteEntity routeEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class RouteService {
         return null;
     }
 
-    public RouteEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            RouteEntity routeEntity = new RouteEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(routeEntity.toModel());
-            tx.commit();
-            RouteEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public RouteEntity update(int routeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            RouteEntity routeEntity = new RouteEntity(routeId, startX, startY, endX, endY, shapeId);
+//            session.update(routeEntity.toModel());
+//            tx.commit();
+//            RouteEntity result = get(routeId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public RouteEntity update(int edgeId, RouteEntity routeEntity) {
+    public RouteEntity update(int routeId, RouteEntity routeEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(routeEntity.toModel());
             tx.commit();
-            RouteEntity result = get(edgeId);
+            RouteEntity result = get(routeId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -127,7 +127,7 @@ public class RouteService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             RouteModel routeModel = new RouteModel();
-            routeModel.setEdgeId(id);
+            routeModel.setId(id);
             session.delete(routeModel);
             tx.commit();
             return true;
@@ -142,10 +142,10 @@ public class RouteService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RouteModel> criteria = builder.createQuery(RouteModel.class);
-        Root<RouteModel> EdgeEntities = criteria.from(RouteModel.class);
+        Root<RouteModel> RouteModels = criteria.from(RouteModel.class);
         try {
-            List<RouteModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<RouteModel> routeList = session.createQuery(criteria).getResultList();
+            return routeList.stream()
                     .map(s -> new RouteEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

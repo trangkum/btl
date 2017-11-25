@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.ws.rs.QueryParam;
 
-@Entity
-@Table(name = "edge", schema = "intelligent", catalog = "")
 public class SearchGroupModel {
     @QueryParam("edgeId")private int edgeId;
     @QueryParam("startX") private Double startX;

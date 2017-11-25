@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/files")
 public class FileController {
     @Inject
     private FileService fileService;
@@ -31,9 +31,9 @@ public class FileController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public FileEntity getId(@PathParam("edgeId") int edgeId) {
-        return fileService.get(edgeId);
+    @Path("{fileId}")
+    public FileEntity getId(@PathParam("fileId") int fileId) {
+        return fileService.get(fileId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class FileController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public FileEntity update(@PathParam("edgeId") int edgeId, FileEntity fileEntity) {
-        return fileService.update(edgeId, fileEntity);
+    @Path("{fileId}")
+    public FileEntity update(@PathParam("fileId") int fileId, FileEntity fileEntity) {
+        return fileService.update(fileId, fileEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        fileService.delete(edgeId);
+    @Path("{fileId}")
+    public void delete(@PathParam("fileId") int fileId) {
+        fileService.delete(fileId);
     }
 
 }

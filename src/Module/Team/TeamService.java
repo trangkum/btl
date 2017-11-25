@@ -46,8 +46,8 @@ public class TeamService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TeamModel> criteria = builder.createQuery(TeamModel.class);
-        Root<TeamModel> EdgeEntities = criteria.from(TeamModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<TeamModel> TeamModels = criteria.from(TeamModel.class);
+        criteria.where(builder.equal(TeamModels.get("id"), id));
         try {
             TeamModel teamModel = session.createQuery(criteria).getSingleResult();
             return new TeamEntity(teamModel);
@@ -58,22 +58,22 @@ public class TeamService {
         }
     }
 
-    public TeamEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            TeamEntity teamEntity = new TeamEntity(edgeId, startX, startY, endX, endY, shapeId);
-            TeamModel teamModel = teamEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(teamModel)));
-            tx.commit();
-            TeamEntity result = new TeamEntity(teamModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public TeamEntity create(int teamId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            TeamEntity teamEntity = new TeamEntity(teamId, startX, startY, endX, endY, shapeId);
+//            TeamModel teamModel = teamEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(teamModel)));
+//            tx.commit();
+//            TeamEntity result = new TeamEntity(teamModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public TeamEntity create(TeamEntity teamEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class TeamService {
         return null;
     }
 
-    public TeamEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            TeamEntity teamEntity = new TeamEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(teamEntity.toModel());
-            tx.commit();
-            TeamEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public TeamEntity update(int teamId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            TeamEntity teamEntity = new TeamEntity(teamId, startX, startY, endX, endY, shapeId);
+//            session.update(teamEntity.toModel());
+//            tx.commit();
+//            TeamEntity result = get(teamId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public TeamEntity update(int edgeId, TeamEntity teamEntity) {
+    public TeamEntity update(int teamId, TeamEntity teamEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(teamEntity.toModel());
             tx.commit();
-            TeamEntity result = get(edgeId);
+            TeamEntity result = get(teamId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -127,7 +127,7 @@ public class TeamService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             TeamModel teamModel = new TeamModel();
-            teamModel.setEdgeId(id);
+            teamModel.setId(id);
             session.delete(teamModel);
             tx.commit();
             return true;
@@ -142,10 +142,10 @@ public class TeamService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TeamModel> criteria = builder.createQuery(TeamModel.class);
-        Root<TeamModel> EdgeEntities = criteria.from(TeamModel.class);
+        Root<TeamModel> TeamModels = criteria.from(TeamModel.class);
         try {
-            List<TeamModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<TeamModel> teamList = session.createQuery(criteria).getResultList();
+            return teamList.stream()
                     .map(s -> new TeamEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

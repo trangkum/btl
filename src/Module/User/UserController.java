@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/users")
 public class UserController {
     @Inject
     private UserService userService;
@@ -31,9 +31,9 @@ public class UserController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public UserEntity getId(@PathParam("edgeId") int edgeId) {
-        return userService.get(edgeId);
+    @Path("{userName}")
+    public UserEntity getId(@PathParam("userName") String userName) {
+        return userService.get(userName);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class UserController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public UserEntity update(@PathParam("edgeId") int edgeId, UserEntity userEntity) {
-        return userService.update(edgeId, userEntity);
+    @Path("{userName}")
+    public UserEntity update(@PathParam("userName") String userName, UserEntity userEntity) {
+        return userService.update(userName, userEntity);
     }
 
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        userService.delete(edgeId);
-    }
+//    @DELETE
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("{userId}")
+//    public void delete(@PathParam("userId") int userId) {
+//        userService.delete(userId);
+//    }
 
 }

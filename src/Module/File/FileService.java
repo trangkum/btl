@@ -46,8 +46,8 @@ public class FileService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FileModel> criteria = builder.createQuery(FileModel.class);
-        Root<FileModel> EdgeEntities = criteria.from(FileModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<FileModel> FileModels = criteria.from(FileModel.class);
+        criteria.where(builder.equal(FileModels.get("id"), id));
         try {
             FileModel fileModel = session.createQuery(criteria).getSingleResult();
             return new FileEntity(fileModel);
@@ -58,22 +58,22 @@ public class FileService {
         }
     }
 
-    public FileEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            FileEntity fileEntity = new FileEntity(edgeId, startX, startY, endX, endY, shapeId);
-            FileModel fileModel = fileEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(fileModel)));
-            tx.commit();
-            FileEntity result = new FileEntity(fileModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public FileEntity create(int fileId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            FileEntity fileEntity = new FileEntity(fileId, startX, startY, endX, endY, shapeId);
+//            FileModel fileModel = fileEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(fileModel)));
+//            tx.commit();
+//            FileEntity result = new FileEntity(fileModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public FileEntity create(FileEntity fileEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class FileService {
         return null;
     }
 
-    public FileEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            FileEntity fileEntity = new FileEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(fileEntity.toModel());
-            tx.commit();
-            FileEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public FileEntity update(int fileId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            FileEntity fileEntity = new FileEntity(fileId, startX, startY, endX, endY, shapeId);
+//            session.update(fileEntity.toModel());
+//            tx.commit();
+//            FileEntity result = get(fileId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public FileEntity update(int edgeId, FileEntity fileEntity) {
+    public FileEntity update(int fileId, FileEntity fileEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(fileEntity.toModel());
             tx.commit();
-            FileEntity result = get(edgeId);
+            FileEntity result = get(fileId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -127,7 +127,7 @@ public class FileService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             FileModel fileModel = new FileModel();
-            fileModel.setEdgeId(id);
+            fileModel.setId(id);
             session.delete(fileModel);
             tx.commit();
             return true;
@@ -142,10 +142,10 @@ public class FileService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<FileModel> criteria = builder.createQuery(FileModel.class);
-        Root<FileModel> EdgeEntities = criteria.from(FileModel.class);
+        Root<FileModel> FileModels = criteria.from(FileModel.class);
         try {
-            List<FileModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<FileModel> fileList = session.createQuery(criteria).getResultList();
+            return fileList.stream()
                     .map(s -> new FileEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/groups")
 public class GroupController {
     @Inject
     private GroupService groupService;
@@ -31,9 +31,9 @@ public class GroupController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public GroupEntity getId(@PathParam("edgeId") int edgeId) {
-        return groupService.get(edgeId);
+    @Path("{groupId}")
+    public GroupEntity getId(@PathParam("groupId") int groupId) {
+        return groupService.get(groupId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class GroupController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public GroupEntity update(@PathParam("edgeId") int edgeId, GroupEntity groupEntity) {
-        return groupService.update(edgeId, groupEntity);
+    @Path("{groupId}")
+    public GroupEntity update(@PathParam("groupId") int groupId, GroupEntity groupEntity) {
+        return groupService.update(groupId, groupEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        groupService.delete(edgeId);
+    @Path("{groupId}")
+    public void delete(@PathParam("groupId") int groupId) {
+        groupService.delete(groupId);
     }
 
 }

@@ -42,15 +42,15 @@ public class EmployeeService {
     }
 
 
-    public FileEntity get(int id) {
+    public EmployeeEntity get(int id) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<FileModel> criteria = builder.createQuery(FileModel.class);
-        Root<FileModel> EdgeEntities = criteria.from(FileModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        CriteriaQuery<EmployeeModel> criteria = builder.createQuery(EmployeeModel.class);
+        Root<EmployeeModel> EmployeeModels = criteria.from(EmployeeModel.class);
+        criteria.where(builder.equal(EmployeeModels.get("id"), id));
         try {
-            FileModel fileModel = session.createQuery(criteria).getSingleResult();
-            return new FileEntity(fileModel);
+            EmployeeModel employeeModel = session.createQuery(criteria).getSingleResult();
+            return new EmployeeEntity(employeeModel);
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -58,15 +58,31 @@ public class EmployeeService {
         }
     }
 
-    public FileEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//    public EmployeeEntity create(int employeeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            EmployeeEntity employeeEntity = new EmployeeEntity(employeeId, startX, startY, endX, endY, shapeId);
+//            EmployeeModel employeeModel = employeeEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(employeeModel)));
+//            tx.commit();
+//            EmployeeEntity result = new EmployeeEntity(employeeModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
+    public EmployeeEntity create(EmployeeEntity employeeEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            FileEntity fileEntity = new FileEntity(edgeId, startX, startY, endX, endY, shapeId);
-            FileModel fileModel = fileEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(fileModel)));
+            EmployeeModel employeeModel = employeeEntity.toModel();
+            Integer.valueOf(String.valueOf(session.save(employeeModel)));
             tx.commit();
-            FileEntity result = new FileEntity(fileModel);
+            EmployeeEntity result = new EmployeeEntity(employeeModel);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -75,45 +91,29 @@ public class EmployeeService {
         return null;
     }
 
-    public FileEntity create(FileEntity fileEntity) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            FileModel fileModel = fileEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(fileModel)));
-            tx.commit();
-            FileEntity result = new FileEntity(fileModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public EmployeeEntity update(int employeeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            EmployeeEntity employeeEntity = new EmployeeEntity(employeeId, startX, startY, endX, endY, shapeId);
+//            session.update(employeeEntity.toModel());
+//            tx.commit();
+//            EmployeeEntity result = get(employeeId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public FileEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+    public EmployeeEntity update(int employeeId, EmployeeEntity employeeEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            FileEntity fileEntity = new FileEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(fileEntity.toModel());
+            session.update(employeeEntity.toModel());
             tx.commit();
-            FileEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public FileEntity update(int edgeId, FileEntity fileEntity) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            session.update(fileEntity.toModel());
-            tx.commit();
-            FileEntity result = get(edgeId);
+            EmployeeEntity result = get(employeeId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -126,9 +126,9 @@ public class EmployeeService {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            FileModel fileModel = new FileModel();
-            fileModel.setEdgeId(id);
-            session.delete(fileModel);
+            EmployeeModel employeeModel = new EmployeeModel();
+            employeeModel.setId(id);
+            session.delete(employeeModel);
             tx.commit();
             return true;
         } catch (HibernateException e) {
@@ -138,15 +138,15 @@ public class EmployeeService {
         return false;
     }
 
-    public List<FileEntity> get(SearchEmployeeModel searchEmployeeModel) {
+    public List<EmployeeEntity> get(SearchEmployeeModel searchEmployeeModel) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<FileModel> criteria = builder.createQuery(FileModel.class);
-        Root<FileModel> EdgeEntities = criteria.from(FileModel.class);
+        CriteriaQuery<EmployeeModel> criteria = builder.createQuery(EmployeeModel.class);
+        Root<EmployeeModel> EmployeeModels = criteria.from(EmployeeModel.class);
         try {
-            List<FileModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
-                    .map(s -> new FileEntity(s)).collect(Collectors.toList());
+            List<EmployeeModel> employeeList = session.createQuery(criteria).getResultList();
+            return employeeList.stream()
+                    .map(s -> new EmployeeEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;
         } finally {

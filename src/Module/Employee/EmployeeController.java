@@ -1,11 +1,11 @@
-ackage Module.Employee;
+package Module.Employee;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/employees")
 public class EmployeeController {
     @Inject
     private EmployeeService employeeService;
@@ -17,14 +17,14 @@ public class EmployeeController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<FileEntity> get(@BeanParam SearchFileModel searchFileModel) {
-        return employeeService.get(searchFileModel);
+    public List<EmployeeEntity> get(@BeanParam SearchEmployeeModel searchEmployeeModel) {
+        return employeeService.get(searchEmployeeModel);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchFileModel searchFileModel) {
+    public int count(@BeanParam SearchEmployeeModel searchEmployeeModel) {
         return 100;
     }
 
@@ -32,14 +32,14 @@ public class EmployeeController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{edgeId}")
-    public FileEntity getId(@PathParam("edgeId") int edgeId) {
+    public EmployeeEntity getId(@PathParam("edgeId") int edgeId) {
         return employeeService.get(edgeId);
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public FileEntity create(FileEntity fileEntity) {
+    public EmployeeEntity create(EmployeeEntity fileEntity) {
         return employeeService.create(fileEntity);
     }
 
@@ -47,7 +47,7 @@ public class EmployeeController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{edgeId}")
-    public FileEntity update(@PathParam("edgeId") int edgeId, FileEntity fileEntity) {
+    public EmployeeEntity update(@PathParam("edgeId") int edgeId, EmployeeEntity fileEntity) {
         return employeeService.update(edgeId, fileEntity);
     }
 

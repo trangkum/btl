@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/roles")
 public class RoleController {
     @Inject
     private RoleService roleService;
@@ -31,9 +31,9 @@ public class RoleController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public RoleEntity getId(@PathParam("edgeId") int edgeId) {
-        return roleService.get(edgeId);
+    @Path("{roleId}")
+    public RoleEntity getId(@PathParam("roleId") int roleId) {
+        return roleService.get(roleId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class RoleController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public RoleEntity update(@PathParam("edgeId") int edgeId, RoleEntity roleEntity) {
-        return roleService.update(edgeId, roleEntity);
+    @Path("{roleId}")
+    public RoleEntity update(@PathParam("roleId") int roleId, RoleEntity roleEntity) {
+        return roleService.update(roleId, roleEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        roleService.delete(edgeId);
+    @Path("{roleId}")
+    public void delete(@PathParam("roleId") int roleId) {
+        roleService.delete(roleId);
     }
 
 }

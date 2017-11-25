@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/ticketThreads")
 public class TicketThreadController {
     @Inject
     private TicketThreadService ticketThreadService;
@@ -31,9 +31,9 @@ public class TicketThreadController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public TicketThreadEntity getId(@PathParam("edgeId") int edgeId) {
-        return ticketThreadService.get(edgeId);
+    @Path("{ticketThreadId}")
+    public TicketThreadEntity getId(@PathParam("ticketThreadId") int ticketThreadId) {
+        return ticketThreadService.get(ticketThreadId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class TicketThreadController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public TicketThreadEntity update(@PathParam("edgeId") int edgeId, TicketThreadEntity ticketThreadEntity) {
-        return ticketThreadService.update(edgeId, ticketThreadEntity);
+    @Path("{ticketThreadId}")
+    public TicketThreadEntity update(@PathParam("ticketThreadId") int ticketThreadId, TicketThreadEntity ticketThreadEntity) {
+        return ticketThreadService.update(ticketThreadId, ticketThreadEntity);
     }
 
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        ticketThreadService.delete(edgeId);
-    }
+//    @DELETE
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("{ticketThreadId}")
+//    public void delete(@PathParam("ticketThreadId") int ticketThreadId) {
+//        ticketThreadService.delete(ticketThreadId);
+//    }
 
 }

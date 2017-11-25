@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/permissions")
 public class PermissionController {
     @Inject
     private PermissionService permissionService;
@@ -31,9 +31,9 @@ public class PermissionController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public PermissionEntity getId(@PathParam("edgeId") int edgeId) {
-        return permissionService.get(edgeId);
+    @Path("{permissionId}")
+    public PermissionEntity getId(@PathParam("permissionId") int permissionId) {
+        return permissionService.get(permissionId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class PermissionController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public PermissionEntity update(@PathParam("edgeId") int edgeId, PermissionEntity permissionEntity) {
-        return permissionService.update(edgeId, permissionEntity);
+    @Path("{permissionId}")
+    public PermissionEntity update(@PathParam("permissionId") int permissionId, PermissionEntity permissionEntity) {
+        return permissionService.update(permissionId, permissionEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        permissionService.delete(edgeId);
+    @Path("{permissionId}")
+    public void delete(@PathParam("permissionId") int permissionId) {
+        permissionService.delete(permissionId);
     }
 
 }

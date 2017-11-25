@@ -42,12 +42,12 @@ public class UserService {
     }
 
 
-    public UserEntity get(int id) {
+    public UserEntity get(String userName) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
-        Root<UserModel> EdgeEntities = criteria.from(UserModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<UserModel> UserModels = criteria.from(UserModel.class);
+        criteria.where(builder.equal(UserModels.get("userName"), userName));
         try {
             UserModel userModel = session.createQuery(criteria).getSingleResult();
             return new UserEntity(userModel);
@@ -58,22 +58,22 @@ public class UserService {
         }
     }
 
-    public UserEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            UserEntity userEntity = new UserEntity(edgeId, startX, startY, endX, endY, shapeId);
-            UserModel userModel = userEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(userModel)));
-            tx.commit();
-            UserEntity result = new UserEntity(userModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public UserEntity create(int userId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            UserEntity userEntity = new UserEntity(userId, startX, startY, endX, endY, shapeId);
+//            UserModel userModel = userEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(userModel)));
+//            tx.commit();
+//            UserEntity result = new UserEntity(userModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public UserEntity create(UserEntity userEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class UserService {
         return null;
     }
 
-    public UserEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            UserEntity userEntity = new UserEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(userEntity.toModel());
-            tx.commit();
-            UserEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public UserEntity update(int userId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            UserEntity userEntity = new UserEntity(userId, startX, startY, endX, endY, shapeId);
+//            session.update(userEntity.toModel());
+//            tx.commit();
+//            UserEntity result = get(userId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public UserEntity update(int edgeId, UserEntity userEntity) {
+    public UserEntity update(String userName, UserEntity userEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(userEntity.toModel());
             tx.commit();
-            UserEntity result = get(edgeId);
+            UserEntity result = get(userName);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -142,10 +142,10 @@ public class UserService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
-        Root<UserModel> EdgeEntities = criteria.from(UserModel.class);
+        Root<UserModel> UserModels = criteria.from(UserModel.class);
         try {
-            List<UserModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<UserModel> userList = session.createQuery(criteria).getResultList();
+            return userList.stream()
                     .map(s -> new UserEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

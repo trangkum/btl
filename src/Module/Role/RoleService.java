@@ -46,8 +46,8 @@ public class RoleService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RoleModel> criteria = builder.createQuery(RoleModel.class);
-        Root<RoleModel> EdgeEntities = criteria.from(RoleModel.class);
-        criteria.where(builder.equal(EdgeEntities.get("edgeId"), id));
+        Root<RoleModel> RoleModels = criteria.from(RoleModel.class);
+        criteria.where(builder.equal(RoleModels.get("id"), id));
         try {
             RoleModel roleModel = session.createQuery(criteria).getSingleResult();
             return new RoleEntity(roleModel);
@@ -58,22 +58,22 @@ public class RoleService {
         }
     }
 
-    public RoleEntity create(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            RoleEntity roleEntity = new RoleEntity(edgeId, startX, startY, endX, endY, shapeId);
-            RoleModel roleModel = roleEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(roleModel)));
-            tx.commit();
-            RoleEntity result = new RoleEntity(roleModel);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public RoleEntity create(int roleId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            RoleEntity roleEntity = new RoleEntity(roleId, startX, startY, endX, endY, shapeId);
+//            RoleModel roleModel = roleEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(roleModel)));
+//            tx.commit();
+//            RoleEntity result = new RoleEntity(roleModel);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public RoleEntity create(RoleEntity roleEntity) {
         Transaction tx = null;
@@ -91,29 +91,29 @@ public class RoleService {
         return null;
     }
 
-    public RoleEntity update(int edgeId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
-        Transaction tx = null;
-        try (Session session = factory.openSession()) {
-            tx = session.beginTransaction();
-            RoleEntity roleEntity = new RoleEntity(edgeId, startX, startY, endX, endY, shapeId);
-            session.update(roleEntity.toModel());
-            tx.commit();
-            RoleEntity result = get(edgeId);
-            return result;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public RoleEntity update(int roleId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//        Transaction tx = null;
+//        try (Session session = factory.openSession()) {
+//            tx = session.beginTransaction();
+//            RoleEntity roleEntity = new RoleEntity(roleId, startX, startY, endX, endY, shapeId);
+//            session.update(roleEntity.toModel());
+//            tx.commit();
+//            RoleEntity result = get(roleId);
+//            return result;
+//        } catch (HibernateException e) {
+//            if (tx != null) tx.rollback();
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public RoleEntity update(int edgeId, RoleEntity roleEntity) {
+    public RoleEntity update(int roleId, RoleEntity roleEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             session.update(roleEntity.toModel());
             tx.commit();
-            RoleEntity result = get(edgeId);
+            RoleEntity result = get(roleId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -127,7 +127,7 @@ public class RoleService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             RoleModel roleModel = new RoleModel();
-            roleModel.setEdgeId(id);
+            roleModel.setId(id);
             session.delete(roleModel);
             tx.commit();
             return true;
@@ -142,10 +142,10 @@ public class RoleService {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RoleModel> criteria = builder.createQuery(RoleModel.class);
-        Root<RoleModel> EdgeEntities = criteria.from(RoleModel.class);
+        Root<RoleModel> RoleModels = criteria.from(RoleModel.class);
         try {
-            List<RoleModel> edgeList = session.createQuery(criteria).getResultList();
-            return edgeList.stream()
+            List<RoleModel> roleList = session.createQuery(criteria).getResultList();
+            return roleList.stream()
                     .map(s -> new RoleEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

@@ -5,7 +5,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/edges")
+@Path("/ticketAttributes")
 public class TicketAttributeController {
     @Inject
     private TicketAttributeService ticketAttributeService;
@@ -31,9 +31,9 @@ public class TicketAttributeController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public TicketAttributeEntity getId(@PathParam("edgeId") int edgeId) {
-        return ticketAttributeService.get(edgeId);
+    @Path("{ticketAttributeId}")
+    public TicketAttributeEntity getId(@PathParam("ticketAttributeId") int ticketAttributeId) {
+        return ticketAttributeService.get(ticketAttributeId);
     }
 
     @POST
@@ -46,17 +46,17 @@ public class TicketAttributeController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public TicketAttributeEntity update(@PathParam("edgeId") int edgeId, TicketAttributeEntity ticketAttributeEntity) {
-        return ticketAttributeService.update(edgeId, ticketAttributeEntity);
+    @Path("{ticketAttributeId}")
+    public TicketAttributeEntity update(@PathParam("ticketAttributeId") int ticketAttributeId, TicketAttributeEntity ticketAttributeEntity) {
+        return ticketAttributeService.update(ticketAttributeId, ticketAttributeEntity);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{edgeId}")
-    public void delete(@PathParam("edgeId") int edgeId) {
-        ticketAttributeService.delete(edgeId);
+    @Path("{ticketAttributeId}")
+    public void delete(@PathParam("ticketAttributeId") int ticketAttributeId) {
+        ticketAttributeService.delete(ticketAttributeId);
     }
 
 }
