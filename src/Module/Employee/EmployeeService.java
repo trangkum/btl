@@ -47,7 +47,7 @@ public class EmployeeService {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<EmployeeModel> criteria = builder.createQuery(EmployeeModel.class);
         Root<EmployeeModel> EmployeeModels = criteria.from(EmployeeModel.class);
-        criteria.where(builder.equal(EmployeeModels.get("id"), id));
+        criteria.where(builder.equal(EmployeeModels.get(EmployeeModel_.id), id));
         try {
             EmployeeModel employeeModel = session.createQuery(criteria).getSingleResult();
             return new EmployeeEntity(employeeModel);
@@ -138,14 +138,15 @@ public class EmployeeService {
         return false;
     }
 
-    public List<EmployeeEntity> get(SearchEmployeeModel searchEmployeeModel) {
+    public List<EmployeeEntity> get(SearchEmployeeEntity searchEmployeeEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<EmployeeModel> criteria = builder.createQuery(EmployeeModel.class);
         Root<EmployeeModel> EmployeeModels = criteria.from(EmployeeModel.class);
         try {
-            List<EmployeeModel> employeeList = session.createQuery(criteria).getResultList();
-            return employeeList.stream()
+            CriteriaQuery criteriaQuery = searchEmployeeEntity.applyTo(builder,criteria,EmployeeModels);
+            List<EmployeeModel> employeeModels = searchEmployeeEntity.skipAndTake(session.createQuery(searchEmployeeEntity.order(builder,criteriaQuery,EmployeeModels))).getResultList();
+            return employeeModels.stream()
                     .map(s -> new EmployeeEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

@@ -30,6 +30,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="24" parent="8" name="email">
       <Position>2</Position>
@@ -80,6 +81,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="35" parent="9" name="data">
       <Position>2</Position>
@@ -123,6 +125,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="45" parent="10" name="name">
       <Position>2</Position>
@@ -152,6 +155,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="51" parent="11" name="roleId">
       <Position>2</Position>
@@ -188,6 +192,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="59" parent="12" name="name">
       <Position>2</Position>
@@ -206,6 +211,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="63" parent="13" name="name">
       <Position>2</Position>
@@ -228,6 +234,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="68" parent="14" name="name">
       <Position>2</Position>
@@ -271,6 +278,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="77" parent="15" name="content">
       <Position>2</Position>
@@ -412,6 +420,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="108" parent="17" name="fielId">
       <Position>2</Position>

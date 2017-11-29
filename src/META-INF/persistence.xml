@@ -34,6 +34,21 @@
         <class>Module.TicketRead.TicketreadModel</class>
         <class>Module.TicketRelater.TicketrelaterModel</class>
         <class>Module.User.TokenModel</class>
+        <class>Model.EmployeeModel</class>
+        <class>Model.FileModel</class>
+        <class>Model.GroupModel</class>
+        <class>Model.PermissionModel</class>
+        <class>Model.RoleModel</class>
+        <class>Model.RouteModel</class>
+        <class>Model.TeamModel</class>
+        <class>Model.TicketModel</class>
+        <class>Model.TicketattributeModel</class>
+        <class>Model.TicketimageModel</class>
+        <class>Model.TicketreadModel</class>
+        <class>Model.TicketrelaterModel</class>
+        <class>Model.TicketthreadModel</class>
+        <class>Model.TokenModel</class>
+        <class>Model.UserModel</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

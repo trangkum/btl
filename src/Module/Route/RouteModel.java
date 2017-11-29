@@ -1,14 +1,17 @@
 package Module.Route;
 
+
 import Module.Permission.PermissionModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.Collection;
 
 @Entity
 @Table(name = "route", schema = "btl", catalog = "")
 public class RouteModel {
-    private int id;
+    private Integer id;
     private String name;
     private String method;
     private String route;
@@ -16,11 +19,11 @@ public class RouteModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -61,7 +64,7 @@ public class RouteModel {
 
         RouteModel that = (RouteModel) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (method != null ? !method.equals(that.method) : that.method != null) return false;
         if (route != null ? !route.equals(that.route) : that.route != null) return false;
@@ -71,14 +74,14 @@ public class RouteModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (method != null ? method.hashCode() : 0);
         result = 31 * result + (route != null ? route.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "routeByRouteId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "routeByRouteId")
     public Collection<PermissionModel> getPermissionsById() {
         return permissionsById;
     }
@@ -86,4 +89,12 @@ public class RouteModel {
     public void setPermissionsById(Collection<PermissionModel> permissionsById) {
         this.permissionsById = permissionsById;
     }
+}
+
+@StaticMetamodel(RouteModel.class)
+class RouteModel_ {
+    public static volatile SingularAttribute<RouteModel, Integer> id;
+    public static volatile SingularAttribute<RouteModel, String> name;
+    public static volatile SingularAttribute<RouteModel, String> method;
+    public static volatile SingularAttribute<RouteModel, String> route;
 }

@@ -17,14 +17,14 @@ public class EmployeeController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<EmployeeEntity> get(@BeanParam SearchEmployeeModel searchEmployeeModel) {
-        return employeeService.get(searchEmployeeModel);
+    public List<EmployeeEntity> get(@BeanParam SearchEmployeeEntity searchEmployeeEntity) {
+        return employeeService.get(searchEmployeeEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchEmployeeModel searchEmployeeModel) {
+    public int count(@BeanParam SearchEmployeeEntity searchEmployeeEntity) {
         return 100;
     }
 

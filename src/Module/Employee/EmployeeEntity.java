@@ -31,8 +31,8 @@ public class EmployeeEntity implements Serializable {
     public int id;
     public String email;
     public String name;
-    public int teamId;
-    public int groupId;
+    public Integer teamId;
+    public Integer groupId;
     public String briefName;
     public TeamEntity teamEntity;
     public GroupEntity groupEntity;
@@ -102,6 +102,7 @@ public class EmployeeEntity implements Serializable {
         employeeModel.setName(name);
         employeeModel.setId(id);
         employeeModel.setGroupId(groupId);
+        employeeModel.setTeamId(teamId);
         return employeeModel;
     }
 }

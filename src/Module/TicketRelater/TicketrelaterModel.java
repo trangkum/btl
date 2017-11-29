@@ -1,36 +1,39 @@
 package Module.TicketRelater;
 
+
 import Module.Employee.EmployeeModel;
 import Module.Ticket.TicketModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 
 @Entity
 @Table(name = "ticketrelater", schema = "btl", catalog = "")
 @IdClass(TicketrelaterModelPK.class)
 public class TicketrelaterModel {
-    private int employeeId;
-    private int ticketId;
+    private Integer employeeId;
+    private Integer ticketId;
     private EmployeeModel employeeByEmployeeId;
     private TicketModel ticketByTicketId;
 
     @Id
     @Column(name = "employeeId", nullable = false)
-    public int getEmployeeId() {
+    public Integer getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
     }
 
     @Id
     @Column(name = "ticketId", nullable = false)
-    public int getTicketId() {
+    public Integer getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
     }
 
@@ -41,21 +44,21 @@ public class TicketrelaterModel {
 
         TicketrelaterModel that = (TicketrelaterModel) o;
 
-        if (employeeId != that.employeeId) return false;
-        if (ticketId != that.ticketId) return false;
+        if (employeeId != null ? !employeeId.equals(that.employeeId) : that.employeeId != null) return false;
+        if (ticketId != null ? !ticketId.equals(that.ticketId) : that.ticketId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = employeeId;
-        result = 31 * result + ticketId;
+        int result = employeeId != null ? employeeId.hashCode() : 0;
+        result = 31 * result + (ticketId != null ? ticketId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "employeeId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public EmployeeModel getEmployeeByEmployeeId() {
         return employeeByEmployeeId;
     }
@@ -64,8 +67,8 @@ public class TicketrelaterModel {
         this.employeeByEmployeeId = employeeByEmployeeId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "ticketId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticketId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public TicketModel getTicketByTicketId() {
         return ticketByTicketId;
     }
@@ -73,4 +76,10 @@ public class TicketrelaterModel {
     public void setTicketByTicketId(TicketModel ticketByTicketId) {
         this.ticketByTicketId = ticketByTicketId;
     }
+}
+
+@StaticMetamodel(TicketrelaterModel.class)
+class TicketrelaterModel_ {
+    public static volatile SingularAttribute<TicketrelaterModel, Integer> employeeId;
+    public static volatile SingularAttribute<TicketrelaterModel, Integer> ticketId;
 }

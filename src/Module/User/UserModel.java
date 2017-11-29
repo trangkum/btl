@@ -1,8 +1,11 @@
 package Module.User;
 
+
 import Module.Employee.EmployeeModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.Collection;
 
 @Entity
@@ -66,7 +69,7 @@ public class UserModel {
         return result;
     }
 
-    @OneToMany(mappedBy = "userByUserName")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "userByUserName")
     public Collection<TokenModel> getTokensByUserName() {
         return tokensByUserName;
     }
@@ -75,8 +78,8 @@ public class UserModel {
         this.tokensByUserName = tokensByUserName;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "employeeId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeId", referencedColumnName = "id", insertable = false, updatable = false)
     public EmployeeModel getEmployeeByEmployeeId() {
         return employeeByEmployeeId;
     }
@@ -84,4 +87,11 @@ public class UserModel {
     public void setEmployeeByEmployeeId(EmployeeModel employeeByEmployeeId) {
         this.employeeByEmployeeId = employeeByEmployeeId;
     }
+}
+
+@StaticMetamodel(UserModel.class)
+class UserModel_ {
+    public static volatile SingularAttribute<UserModel, String> userName;
+    public static volatile SingularAttribute<UserModel, String> passWord;
+    public static volatile SingularAttribute<UserModel, Integer> employeeId;
 }

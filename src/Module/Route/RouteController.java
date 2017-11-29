@@ -17,14 +17,14 @@ public class RouteController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<RouteEntity> get(@BeanParam SearchRouteModel searchRouteModel) {
-        return routeService.get(searchRouteModel);
+    public List<RouteEntity> get(@BeanParam SearchRouteEntity searchRouteEntity) {
+        return routeService.get(searchRouteEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchRouteModel searchRouteModel) {
+    public int count(@BeanParam SearchRouteEntity searchRouteEntity) {
         return 100;
     }
 

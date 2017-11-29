@@ -1,0 +1,64 @@
+Hibernate:
+    /* select
+        generatedAlias0
+    from
+        UserModel as generatedAlias0
+    order by
+        generatedAlias0.userName asc */ select
+            usermodel0_.userName as userName1_14_,
+            usermodel0_.employeeId as employee2_14_,
+            usermodel0_.passWord as passWord3_14_
+        from
+            user usermodel0_
+        order by
+            usermodel0_.userName asc limit ?,
+            ?
+Hibernate:
+    select
+        employeemo0_.id as id1_0_0_,
+        employeemo0_.briefName as briefNam2_0_0_,
+        employeemo0_.email as email3_0_0_,
+        employeemo0_.groupId as groupId4_0_0_,
+        employeemo0_.name as name5_0_0_,
+        employeemo0_.teamId as teamId6_0_0_,
+        groupmodel1_.id as id1_2_1_,
+        groupmodel1_.managerEmloyeeId as managerE2_2_1_,
+        groupmodel1_.name as name3_2_1_,
+        employeemo2_.id as id1_0_2_,
+        employeemo2_.briefName as briefNam2_0_2_,
+        employeemo2_.email as email3_0_2_,
+        employeemo2_.groupId as groupId4_0_2_,
+        employeemo2_.name as name5_0_2_,
+        employeemo2_.teamId as teamId6_0_2_,
+        teammodel3_.id as id1_6_3_,
+        teammodel3_.leaderEmployeeId as leaderEm3_6_3_,
+        teammodel3_.groupId as groupId2_6_3_,
+        teammodel3_.name as name4_6_3_,
+        employeemo4_.id as id1_0_4_,
+        employeemo4_.briefName as briefNam2_0_4_,
+        employeemo4_.email as email3_0_4_,
+        employeemo4_.groupId as groupId4_0_4_,
+        employeemo4_.name as name5_0_4_,
+        employeemo4_.teamId as teamId6_0_4_,
+        groupmodel5_.id as id1_2_5_,
+        groupmodel5_.managerEmloyeeId as managerE2_2_5_,
+        groupmodel5_.name as name3_2_5_
+    from
+        employee employeemo0_
+    left outer join
+
+    group groupmodel1_
+        on employeemo0_.groupId=groupmodel1_.id left outer join
+            employee employeemo2_
+                on groupmodel1_.managerEmloyeeId=employeemo2_.id
+        left outer join
+            team teammodel3_
+                on employeemo0_.teamId=teammodel3_.id
+        left outer join
+            employee employeemo4_
+                on teammodel3_.leaderEmployeeId=employeemo4_.id
+        left outer join
+
+        group groupmodel5_
+            on teammodel3_.groupId=groupmodel5_.id where
+                employeemo0_.id=?

@@ -1,18 +1,21 @@
 package Module.Group;
 
+
+import Module.Employee.EmployeeModel;
 import Module.Team.TeamModel;
 import Module.Ticket.TicketModel;
-import Module.Employee.EmployeeModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.Collection;
 
 @Entity
 @Table(name = "group", schema = "btl", catalog = "")
 public class GroupModel {
-    private int id;
+    private Integer id;
     private String name;
-    private int managerEmloyeeId;
+    private Integer managerEmloyeeId;
     private Collection<EmployeeModel> employeesById;
     private EmployeeModel employeeByManagerEmloyeeId;
     private Collection<TeamModel> teamsById;
@@ -20,11 +23,11 @@ public class GroupModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,11 +43,11 @@ public class GroupModel {
 
     @Basic
     @Column(name = "managerEmloyeeId", nullable = false)
-    public int getManagerEmloyeeId() {
+    public Integer getManagerEmloyeeId() {
         return managerEmloyeeId;
     }
 
-    public void setManagerEmloyeeId(int managerEmloyeeId) {
+    public void setManagerEmloyeeId(Integer managerEmloyeeId) {
         this.managerEmloyeeId = managerEmloyeeId;
     }
 
@@ -55,22 +58,23 @@ public class GroupModel {
 
         GroupModel that = (GroupModel) o;
 
-        if (id != that.id) return false;
-        if (managerEmloyeeId != that.managerEmloyeeId) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (managerEmloyeeId != null ? !managerEmloyeeId.equals(that.managerEmloyeeId) : that.managerEmloyeeId != null)
+            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + managerEmloyeeId;
+        result = 31 * result + (managerEmloyeeId != null ? managerEmloyeeId.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "groupByGroupId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupByGroupId")
     public Collection<EmployeeModel> getEmployeesById() {
         return employeesById;
     }
@@ -79,8 +83,8 @@ public class GroupModel {
         this.employeesById = employeesById;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "managerEmloyeeId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "managerEmloyeeId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public EmployeeModel getEmployeeByManagerEmloyeeId() {
         return employeeByManagerEmloyeeId;
     }
@@ -89,7 +93,7 @@ public class GroupModel {
         this.employeeByManagerEmloyeeId = employeeByManagerEmloyeeId;
     }
 
-    @OneToMany(mappedBy = "groupByGroupId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupByGroupId")
     public Collection<TeamModel> getTeamsById() {
         return teamsById;
     }
@@ -98,7 +102,7 @@ public class GroupModel {
         this.teamsById = teamsById;
     }
 
-    @OneToMany(mappedBy = "groupByGroupId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupByGroupId")
     public Collection<TicketModel> getTicketsById() {
         return ticketsById;
     }
@@ -106,4 +110,11 @@ public class GroupModel {
     public void setTicketsById(Collection<TicketModel> ticketsById) {
         this.ticketsById = ticketsById;
     }
+}
+
+@StaticMetamodel(GroupModel.class)
+class GroupModel_ {
+    public static volatile SingularAttribute<GroupModel, Integer> id;
+    public static volatile SingularAttribute<GroupModel, String> name;
+    public static volatile SingularAttribute<GroupModel, Integer> managerEmloyeeId;
 }

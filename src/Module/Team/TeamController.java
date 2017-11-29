@@ -17,14 +17,14 @@ public class TeamController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<TeamEntity> get(@BeanParam SearchTeamModel searchTeamModel) {
-        return teamService.get(searchTeamModel);
+    public List<TeamEntity> get(@BeanParam SearchTeamEntity searchTeamEntity) {
+        return teamService.get(searchTeamEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchTeamModel searchTeamModel) {
+    public int count(@BeanParam SearchTeamEntity searchTeamEntity) {
         return 100;
     }
 

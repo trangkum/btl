@@ -1,13 +1,16 @@
 package Module.TicketAttribute;
 
+
 import Module.Ticket.TicketModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 
 @Entity
 @Table(name = "ticketattribute", schema = "btl", catalog = "")
 public class TicketattributeModel {
-    private int id;
+    private Integer id;
     private String status;
     private String priority;
     private String rating;
@@ -17,11 +20,11 @@ public class TicketattributeModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -82,7 +85,7 @@ public class TicketattributeModel {
 
         TicketattributeModel that = (TicketattributeModel) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
         if (priority != null ? !priority.equals(that.priority) : that.priority != null) return false;
         if (rating != null ? !rating.equals(that.rating) : that.rating != null) return false;
@@ -94,7 +97,7 @@ public class TicketattributeModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (priority != null ? priority.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
@@ -103,8 +106,8 @@ public class TicketattributeModel {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "ticketId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticketId", referencedColumnName = "id", insertable = false, updatable = false)
     public TicketModel getTicketByTicketId() {
         return ticketByTicketId;
     }
@@ -112,4 +115,14 @@ public class TicketattributeModel {
     public void setTicketByTicketId(TicketModel ticketByTicketId) {
         this.ticketByTicketId = ticketByTicketId;
     }
+}
+
+@StaticMetamodel(TicketattributeModel.class)
+class TicketattributeModel_ {
+    public static volatile SingularAttribute<TicketattributeModel, Integer> id;
+    public static volatile SingularAttribute<TicketattributeModel, String> status;
+    public static volatile SingularAttribute<TicketattributeModel, String> priority;
+    public static volatile SingularAttribute<TicketattributeModel, String> rating;
+    public static volatile SingularAttribute<TicketattributeModel, String> reopened;
+    public static volatile SingularAttribute<TicketattributeModel, Integer> ticketId;
 }

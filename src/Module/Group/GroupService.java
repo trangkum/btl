@@ -138,7 +138,7 @@ public class GroupService {
         return false;
     }
 
-    public List<GroupEntity> get(SearchGroupModel searchGroupModel) {
+    public List<GroupEntity> get(SearchGroupEntity searchGroupEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<GroupModel> criteria = builder.createQuery(GroupModel.class);

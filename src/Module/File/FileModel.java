@@ -1,9 +1,12 @@
 package Module.File;
 
-import Module.TicketImage.TicketimageModel;
+
 import Module.Employee.EmployeeModel;
+import Module.TicketImage.TicketimageModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,7 +14,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "file", schema = "btl", catalog = "")
 public class FileModel {
-    private int id;
+    private Integer id;
     private byte[] data;
     private Integer length;
     private String name;
@@ -23,15 +26,16 @@ public class FileModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Basic
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "data", nullable = true)
     public byte[] getData() {
         return data;
@@ -98,7 +102,7 @@ public class FileModel {
 
         FileModel fileModel = (FileModel) o;
 
-        if (id != fileModel.id) return false;
+        if (id != null ? !id.equals(fileModel.id) : fileModel.id != null) return false;
         if (!Arrays.equals(data, fileModel.data)) return false;
         if (length != null ? !length.equals(fileModel.length) : fileModel.length != null) return false;
         if (name != null ? !name.equals(fileModel.name) : fileModel.name != null) return false;
@@ -111,7 +115,7 @@ public class FileModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + Arrays.hashCode(data);
         result = 31 * result + (length != null ? length.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
@@ -121,8 +125,8 @@ public class FileModel {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "employeeId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeId", referencedColumnName = "id", insertable = false, updatable = false)
     public EmployeeModel getEmployeeByEmployeeId() {
         return employeeByEmployeeId;
     }
@@ -139,4 +143,14 @@ public class FileModel {
     public void setTicketimagesById(Collection<TicketimageModel> ticketimagesById) {
         this.ticketimagesById = ticketimagesById;
     }
+}
+
+@StaticMetamodel(FileModel.class)
+class FileModel_ {
+    public static volatile SingularAttribute<FileModel, Integer> id;
+    public static volatile SingularAttribute<FileModel, Integer> length;
+    public static volatile SingularAttribute<FileModel, String> name;
+    public static volatile SingularAttribute<FileModel, Integer> employeeId;
+    public static volatile SingularAttribute<FileModel, Timestamp> createTime;
+    public static volatile SingularAttribute<FileModel, String> extension;
 }

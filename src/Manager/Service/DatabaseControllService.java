@@ -4,7 +4,24 @@ package Manager.Service;
 import Manager.Entity.DatabaseEntity;
 import Manager.Interface.IDatabaseControllService;
 import Manager.Model.DatabaseModel;
-import Module.Edge.EdgeModel;
+import Module.Employee.EmployeeModel;
+import Module.File.FileModel;
+import Module.Group.GroupModel;
+import Module.Permission.PermissionModel;
+import Module.Role.RoleModel;
+import Module.Route.RouteModel;
+import Module.Team.TeamModel;
+import Module.Ticket.TicketModel;
+import Module.TicketAttribute.TicketattributeModel;
+import Module.TicketImage.TicketimageModel;
+import Module.TicketImage.TicketimageModelPK;
+import Module.TicketRead.TicketreadModel;
+import Module.TicketRelater.TicketrelaterModel;
+import Module.TicketRelater.TicketrelaterModelPK;
+import Module.TicketThread.TicketreadModelPK;
+import Module.TicketThread.TicketthreadModel;
+import Module.User.TokenModel;
+import Module.User.UserModel;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -32,6 +49,13 @@ public class DatabaseControllService implements IDatabaseControllService {
                         .setProperty("hibernate.connection.username", databaseModel.userName)
                         .setProperty("hibernate.connection.password", databaseModel.passWord)
                         .setProperty("hibernate.connection.pool_size", "100")
+                        .setProperty("hibernate.show_sql", "true")
+                        .setProperty("hibernate.format_sql", "true")
+                        .setProperty("hibernate.use_sql_comments", "true")
+//                        .setProperty("hibernate.hbm2ddl.auto", "update")
+                        .setProperty("hibernate.connection.CharSet", "utf8")
+                        .setProperty("hibernate.connection.characterEncoding", "utf8")
+                        .setProperty("hibernate.connection.useUnicode", "true")
 //                        .setProperty("hibernate.hbm2ddl.auto", "update")
                         .setProperty("hibernate.connection.autoReconnect", "true")
                         .setProperty("hibernate.connection.verifyServerCertificate", "false")
@@ -40,8 +64,21 @@ public class DatabaseControllService implements IDatabaseControllService {
 //                        .setProperty("hibernate.c3p0.timeout","1")
 //                        .setProperty("hibernate.c3p0.max_statements","50")
 //                        .setProperty("hibernate.c3p0.idle_test_period","3000")
-                        .addAnnotatedClass(EdgeModel.class)
-                        .addAnnotatedClass(UserModel.class);
+                        .addAnnotatedClass(EmployeeModel.class)
+                        .addAnnotatedClass(FileModel.class)
+                        .addAnnotatedClass(GroupModel.class)
+                        .addAnnotatedClass(PermissionModel.class)
+                        .addAnnotatedClass(RoleModel.class)
+                        .addAnnotatedClass(RouteModel.class)
+                        .addAnnotatedClass(TeamModel.class)
+                        .addAnnotatedClass(TicketModel.class)
+                        .addAnnotatedClass(TicketattributeModel.class)
+                        .addAnnotatedClass(TicketimageModel.class)
+                        .addAnnotatedClass(TicketreadModel.class)
+                        .addAnnotatedClass(TicketrelaterModel.class)
+                        .addAnnotatedClass(TicketthreadModel.class)
+                        .addAnnotatedClass(UserModel.class)
+                        .addAnnotatedClass(TokenModel.class);
                 break;
             default:
                 cfg = new Configuration()
@@ -54,12 +91,22 @@ public class DatabaseControllService implements IDatabaseControllService {
                         .setProperty("hibernate.id.new_generator_mappings", "false")
                         .setProperty("hibernate.connection.autoReconnect", "true")
                         .setProperty("hibernate.connection.verifyServerCertificate", "false")
-//                        .setProperty("hibernate.c3p0.min_size","5")
-//                        .setProperty("hibernate.c3p0.max_size","50")
-//                        .setProperty("hibernate.c3p0.timeout","1")
-//                        .setProperty("hibernate.c3p0.max_statements","50")
-//                        .setProperty("hibernate.c3p0.idle_test_period","3000")
-                        .addAnnotatedClass(EdgeModel.class)
+                        .addAnnotatedClass(EmployeeModel.class)
+                        .addAnnotatedClass(FileModel.class)
+                        .addAnnotatedClass(GroupModel.class)
+                        .addAnnotatedClass(PermissionModel.class)
+                        .addAnnotatedClass(RoleModel.class)
+                        .addAnnotatedClass(RouteModel.class)
+                        .addAnnotatedClass(TeamModel.class)
+                        .addAnnotatedClass(TicketModel.class)
+                        .addAnnotatedClass(TicketattributeModel.class)
+                        .addAnnotatedClass(TicketimageModel.class)
+                        .addAnnotatedClass(TicketreadModel.class)
+                        .addAnnotatedClass(TicketrelaterModel.class)
+                        .addAnnotatedClass(TicketthreadModel.class)
+                        .addAnnotatedClass(TicketreadModelPK.class)
+                        .addAnnotatedClass(TicketimageModelPK.class)
+                        .addAnnotatedClass(TicketrelaterModelPK.class)
                         .addAnnotatedClass(UserModel.class);
                 break;
         }

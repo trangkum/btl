@@ -138,7 +138,7 @@ public class TicketImageService {
 //        return false;
 //    }
 
-    public List<TicketImageEntity> get(SearchTicketImageModel searchTicketImageModel) {
+    public List<TicketImageEntity> get(SearchTicketImageEntity searchTicketImageEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketimageModel> criteria = builder.createQuery(TicketimageModel.class);

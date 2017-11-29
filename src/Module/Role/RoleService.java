@@ -138,7 +138,7 @@ public class RoleService {
         return false;
     }
 
-    public List<RoleEntity> get(SearchRoleModel searchRoleModel) {
+    public List<RoleEntity> get(SearchRoleEntity searchRoleEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RoleModel> criteria = builder.createQuery(RoleModel.class);

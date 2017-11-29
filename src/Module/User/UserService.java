@@ -14,6 +14,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.sql.SQLSyntaxErrorException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -138,14 +139,18 @@ public class UserService {
 //        return false;
 //    }
 
-    public List<UserEntity> get(SearchUserModel searchUserModel) {
+    public List<UserEntity> get(SearchUserEntity searchUserEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
         Root<UserModel> UserModels = criteria.from(UserModel.class);
         try {
-            List<UserModel> userList = session.createQuery(criteria).getResultList();
-            return userList.stream()
+            CriteriaQuery criteriaQuery = searchUserEntity.applyTo(builder, criteria, UserModels);
+            criteriaQuery.toString();
+            List<UserModel> userEntities = session.createQuery(criteriaQuery).getResultList();
+
+//            List<UserModel> userEntities = searchUserEntity.skipAndTake(session.createQuery(searchUserEntity.order(builder, criteriaQuery, UserModels))).getResultList();
+            return userEntities.stream()
                     .map(s -> new UserEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;

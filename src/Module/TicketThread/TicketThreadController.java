@@ -17,14 +17,14 @@ public class TicketThreadController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<TicketThreadEntity> get(@BeanParam SearchTicketThreadModel searchTicketThreadModel) {
-        return ticketThreadService.get(searchTicketThreadModel);
+    public List<TicketThreadEntity> get(@BeanParam SearchTicketThreadEntity searchTicketThreadEntity) {
+        return ticketThreadService.get(searchTicketThreadEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchTicketThreadModel searchTicketThreadModel) {
+    public int count(@BeanParam SearchTicketThreadEntity searchTicketThreadEntity) {
         return 100;
     }
 

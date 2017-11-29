@@ -17,14 +17,14 @@ public class PermissionController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<PermissionEntity> get(@BeanParam SearchPermissionModel searchPermissionModel) {
-        return permissionService.get(searchPermissionModel);
+    public List<PermissionEntity> get(@BeanParam SearchPermissionEntity searchPermissionEntity) {
+        return permissionService.get(searchPermissionEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchPermissionModel searchPermissionModel) {
+    public int count(@BeanParam SearchPermissionEntity searchPermissionEntity) {
         return 100;
     }
 

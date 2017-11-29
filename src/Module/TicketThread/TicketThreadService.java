@@ -5,9 +5,6 @@ import Manager.Interface.IDatabaseControllService;
 import Manager.Interface.IDatabaseService;
 import Manager.Service.DatabaseControllService;
 import Manager.Service.DatabaseService;
-import Module.TicketThread.SearchTicketThreadModel;
-import Module.TicketThread.TicketThreadEntity;
-import Module.TicketThread.TicketthreadModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -141,7 +138,7 @@ public class TicketThreadService {
 //        return false;
 //    }
 
-    public List<TicketThreadEntity> get(SearchTicketThreadModel searchTicketThreadModel) {
+    public List<TicketThreadEntity> get(SearchTicketThreadEntity searchTicketThreadEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketthreadModel> criteria = builder.createQuery(TicketthreadModel.class);

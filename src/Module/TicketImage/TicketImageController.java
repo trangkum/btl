@@ -17,14 +17,14 @@ public class TicketImageController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<TicketImageEntity> get(@BeanParam SearchTicketImageModel searchTicketImageModel) {
-        return ticketImageService.get(searchTicketImageModel);
+    public List<TicketImageEntity> get(@BeanParam SearchTicketImageEntity searchTicketImageEntity) {
+        return ticketImageService.get(searchTicketImageEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchTicketImageModel searchTicketImageModel) {
+    public int count(@BeanParam SearchTicketImageEntity searchTicketImageEntity) {
         return 100;
     }
 

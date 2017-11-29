@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
  * and open the template in the editor.
  */
 public class UserEntity implements Serializable {
-    private String userName;
-    private String passWord;
-    private Integer employeeId;
-    private List<TokenEntity> tokenEntities;
-    private EmployeeEntity employeeEntity;
+    public String userName;
+    public String passWord;
+    public Integer employeeId;
+    public List<TokenEntity> tokenEntities;
+    public EmployeeEntity employeeEntity;
 
 
     public UserEntity() {
@@ -47,7 +47,6 @@ public class UserEntity implements Serializable {
                 }
             }
         }
-
     }
 
     public UserModel toModel() {

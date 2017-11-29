@@ -5,21 +5,23 @@ import Module.Group.GroupModel;
 import Module.Team.TeamModel;
 import Module.Ticket.TicketModel;
 import Module.TicketRead.TicketreadModel;
-import Module.TicketThread.TicketthreadModel;
 import Module.TicketRelater.TicketrelaterModel;
+import Module.TicketThread.TicketthreadModel;
 import Module.User.UserModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.Collection;
 
 @Entity
 @Table(name = "employee", schema = "btl", catalog = "")
 public class EmployeeModel {
-    private int id;
+    private Integer id;
     private String email;
     private String name;
-    private int teamId;
-    private int groupId;
+    private Integer teamId;
+    private Integer groupId;
     private String briefName;
     private TeamModel teamByTeamId;
     private GroupModel groupByGroupId;
@@ -35,11 +37,11 @@ public class EmployeeModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,21 +67,21 @@ public class EmployeeModel {
 
     @Basic
     @Column(name = "teamId", nullable = true)
-    public int getTeamId() {
+    public Integer getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(int teamId) {
+    public void setTeamId(Integer teamId) {
         this.teamId = teamId;
     }
 
     @Basic
     @Column(name = "groupId", nullable = true)
-    public int getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
 
@@ -100,11 +102,11 @@ public class EmployeeModel {
 
         EmployeeModel that = (EmployeeModel) o;
 
-        if (id != that.id) return false;
-        if (teamId != that.teamId) return false;
-        if (groupId != that.groupId) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (teamId != null ? !teamId.equals(that.teamId) : that.teamId != null) return false;
+        if (groupId != null ? !groupId.equals(that.groupId) : that.groupId != null) return false;
         if (briefName != null ? !briefName.equals(that.briefName) : that.briefName != null) return false;
 
         return true;
@@ -112,17 +114,17 @@ public class EmployeeModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + teamId;
-        result = 31 * result + groupId;
+        result = 31 * result + (teamId != null ? teamId.hashCode() : 0);
+        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
         result = 31 * result + (briefName != null ? briefName.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "teamId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teamId", referencedColumnName = "id", insertable = false, updatable = false)
     public TeamModel getTeamByTeamId() {
         return teamByTeamId;
     }
@@ -131,8 +133,8 @@ public class EmployeeModel {
         this.teamByTeamId = teamByTeamId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "groupId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "groupId", referencedColumnName = "id", insertable = false, updatable = false)
     public GroupModel getGroupByGroupId() {
         return groupByGroupId;
     }
@@ -141,7 +143,7 @@ public class EmployeeModel {
         this.groupByGroupId = groupByGroupId;
     }
 
-    @OneToMany(mappedBy = "employeeByEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByEmployeeId")
     public Collection<FileModel> getFilesById() {
         return filesById;
     }
@@ -150,7 +152,7 @@ public class EmployeeModel {
         this.filesById = filesById;
     }
 
-    @OneToMany(mappedBy = "employeeByManagerEmloyeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByManagerEmloyeeId")
     public Collection<GroupModel> getGroupsById() {
         return groupsById;
     }
@@ -159,7 +161,7 @@ public class EmployeeModel {
         this.groupsById = groupsById;
     }
 
-    @OneToMany(mappedBy = "employeeByLeaderEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByLeaderEmployeeId")
     public Collection<TeamModel> getTeamsById() {
         return teamsById;
     }
@@ -168,7 +170,7 @@ public class EmployeeModel {
         this.teamsById = teamsById;
     }
 
-    @OneToMany(mappedBy = "employeeByCreateEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByCreateEmployeeId")
     public Collection<TicketModel> getTicketsById() {
         return ticketsById;
     }
@@ -177,7 +179,7 @@ public class EmployeeModel {
         this.ticketsById = ticketsById;
     }
 
-    @OneToMany(mappedBy = "employeeByAssignedEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByAssignedEmployeeId")
     public Collection<TicketModel> getTicketsById_0() {
         return ticketsById_0;
     }
@@ -186,7 +188,7 @@ public class EmployeeModel {
         this.ticketsById_0 = ticketsById_0;
     }
 
-    @OneToMany(mappedBy = "employeeByEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByEmployeeId")
     public Collection<TicketreadModel> getTicketreadsById() {
         return ticketreadsById;
     }
@@ -195,7 +197,7 @@ public class EmployeeModel {
         this.ticketreadsById = ticketreadsById;
     }
 
-    @OneToMany(mappedBy = "employeeByEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByEmployeeId")
     public Collection<TicketrelaterModel> getTicketrelatersById() {
         return ticketrelatersById;
     }
@@ -204,7 +206,7 @@ public class EmployeeModel {
         this.ticketrelatersById = ticketrelatersById;
     }
 
-    @OneToMany(mappedBy = "employeeByEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByEmployeeId")
     public Collection<TicketthreadModel> getTicketthreadsById() {
         return ticketthreadsById;
     }
@@ -213,7 +215,7 @@ public class EmployeeModel {
         this.ticketthreadsById = ticketthreadsById;
     }
 
-    @OneToMany(mappedBy = "employeeByEmployeeId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByEmployeeId")
     public Collection<UserModel> getUsersById() {
         return usersById;
     }
@@ -221,4 +223,14 @@ public class EmployeeModel {
     public void setUsersById(Collection<UserModel> usersById) {
         this.usersById = usersById;
     }
+}
+
+@StaticMetamodel(EmployeeModel.class)
+class EmployeeModel_ {
+    public static volatile SingularAttribute<EmployeeModel, Integer> id;
+    public static volatile SingularAttribute<EmployeeModel, String> email;
+    public static volatile SingularAttribute<EmployeeModel, String> name;
+    public static volatile SingularAttribute<EmployeeModel, Integer> teamId;
+    public static volatile SingularAttribute<EmployeeModel, Integer> groupId;
+    public static volatile SingularAttribute<EmployeeModel, String> briefName;
 }

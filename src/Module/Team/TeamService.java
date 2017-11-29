@@ -138,7 +138,7 @@ public class TeamService {
         return false;
     }
 
-    public List<TeamEntity> get(SearchTeamModel searchTeamModel) {
+    public List<TeamEntity> get(SearchTeamEntity searchTeamEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TeamModel> criteria = builder.createQuery(TeamModel.class);

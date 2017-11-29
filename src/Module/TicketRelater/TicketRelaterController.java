@@ -17,14 +17,14 @@ public class TicketRelaterController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<TicketRelaterEntity> get(@BeanParam SearchTicketRelaterModel searchTicketRelaterModel) {
-        return ticketRelaterService.get(searchTicketRelaterModel);
+    public List<TicketRelaterEntity> get(@BeanParam SearchTicketRelaterEntity searchTicketRelaterEntity) {
+        return ticketRelaterService.get(searchTicketRelaterEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchTicketRelaterModel searchTicketRelaterModel) {
+    public int count(@BeanParam SearchTicketRelaterEntity searchTicketRelaterEntity) {
         return 100;
     }
 

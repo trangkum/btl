@@ -138,7 +138,7 @@ public class TicketRelaterService {
 //        return false;
 //    }
 
-    public List<TicketRelaterEntity> get(SearchTicketRelaterModel searchTicketRelaterModel) {
+    public List<TicketRelaterEntity> get(SearchTicketRelaterEntity searchTicketRelaterEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketrelaterModel> criteria = builder.createQuery(TicketrelaterModel.class);

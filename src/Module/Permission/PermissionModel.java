@@ -1,14 +1,17 @@
 package Module.Permission;
 
+
 import Module.Role.RoleModel;
 import Module.Route.RouteModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 
 @Entity
 @Table(name = "permission", schema = "btl", catalog = "")
 public class PermissionModel {
-    private int id;
+    private Integer id;
     private Integer roleId;
     private Integer routeId;
     private RoleModel roleByRoleId;
@@ -16,11 +19,11 @@ public class PermissionModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,7 +54,7 @@ public class PermissionModel {
 
         PermissionModel that = (PermissionModel) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (roleId != null ? !roleId.equals(that.roleId) : that.roleId != null) return false;
         if (routeId != null ? !routeId.equals(that.routeId) : that.routeId != null) return false;
 
@@ -60,14 +63,14 @@ public class PermissionModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (roleId != null ? roleId.hashCode() : 0);
         result = 31 * result + (routeId != null ? routeId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "roleId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "roleId", referencedColumnName = "id", insertable = false, updatable = false)
     public RoleModel getRoleByRoleId() {
         return roleByRoleId;
     }
@@ -76,8 +79,8 @@ public class PermissionModel {
         this.roleByRoleId = roleByRoleId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "routeId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "routeId", referencedColumnName = "id", insertable = false, updatable = false)
     public RouteModel getRouteByRouteId() {
         return routeByRouteId;
     }
@@ -85,4 +88,11 @@ public class PermissionModel {
     public void setRouteByRouteId(RouteModel routeByRouteId) {
         this.routeByRouteId = routeByRouteId;
     }
+}
+
+@StaticMetamodel(PermissionModel.class)
+class PermissionModel_ {
+    public static volatile SingularAttribute<PermissionModel, Integer> id;
+    public static volatile SingularAttribute<PermissionModel, Integer> roleId;
+    public static volatile SingularAttribute<PermissionModel, Integer> routeId;
 }

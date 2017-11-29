@@ -1,25 +1,28 @@
 package Module.Role;
 
+
 import Module.Permission.PermissionModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.util.Collection;
 
 @Entity
 @Table(name = "role", schema = "btl", catalog = "")
 public class RoleModel {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private Collection<PermissionModel> permissionsById;
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -50,7 +53,7 @@ public class RoleModel {
 
         RoleModel roleModel = (RoleModel) o;
 
-        if (id != roleModel.id) return false;
+        if (id != null ? !id.equals(roleModel.id) : roleModel.id != null) return false;
         if (name != null ? !name.equals(roleModel.name) : roleModel.name != null) return false;
         if (description != null ? !description.equals(roleModel.description) : roleModel.description != null)
             return false;
@@ -60,13 +63,13 @@ public class RoleModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "roleByRoleId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "roleByRoleId")
     public Collection<PermissionModel> getPermissionsById() {
         return permissionsById;
     }
@@ -74,4 +77,11 @@ public class RoleModel {
     public void setPermissionsById(Collection<PermissionModel> permissionsById) {
         this.permissionsById = permissionsById;
     }
+}
+
+@StaticMetamodel(RoleModel.class)
+class RoleModel_ {
+    public static volatile SingularAttribute<RoleModel, Integer> id;
+    public static volatile SingularAttribute<RoleModel, String> name;
+    public static volatile SingularAttribute<RoleModel, String> description;
 }

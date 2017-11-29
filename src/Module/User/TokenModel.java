@@ -77,7 +77,7 @@ public class TokenModel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "userName", referencedColumnName = "userName")
+    @JoinColumn(name = "userName", referencedColumnName = "userName", insertable = false, updatable = false)
     public UserModel getUserByUserName() {
         return userByUserName;
     }

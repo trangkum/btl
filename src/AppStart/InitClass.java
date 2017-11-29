@@ -1,3 +1,5 @@
+package AppStart;
+
 import Manager.Entity.DatabaseEntity;
 import org.glassfish.jersey.server.ResourceConfig;
 

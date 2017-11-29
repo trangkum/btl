@@ -138,7 +138,7 @@ public class PermissionService {
         return false;
     }
 
-    public List<PermissionEntity> get(SearchPermissionModel searchPermissionModel) {
+    public List<PermissionEntity> get(SearchPermissionEntity searchPermissionEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<PermissionModel> criteria = builder.createQuery(PermissionModel.class);

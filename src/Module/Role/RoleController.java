@@ -17,14 +17,14 @@ public class RoleController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<RoleEntity> get(@BeanParam SearchRoleModel searchRoleModel) {
-        return roleService.get(searchRoleModel);
+    public List<RoleEntity> get(@BeanParam SearchRoleEntity searchRoleEntity) {
+        return roleService.get(searchRoleEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchRoleModel searchRoleModel) {
+    public int count(@BeanParam SearchRoleEntity searchRoleEntity) {
         return 100;
     }
 

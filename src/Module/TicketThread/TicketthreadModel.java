@@ -1,17 +1,20 @@
 package Module.TicketThread;
 
+
 import Module.Employee.EmployeeModel;
 import Module.Ticket.TicketModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "ticketthread", schema = "btl", catalog = "")
 public class TicketthreadModel {
-    private int id;
-    private int ticketId;
-    private int employeeId;
+    private Integer id;
+    private Integer ticketId;
+    private Integer employeeId;
     private String content;
     private Byte type;
     private Timestamp createTime;
@@ -21,31 +24,31 @@ public class TicketthreadModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "ticketId", nullable = false)
-    public int getTicketId() {
+    public Integer getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
     }
 
     @Basic
     @Column(name = "employeeId", nullable = false)
-    public int getEmployeeId() {
+    public Integer getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -96,9 +99,9 @@ public class TicketthreadModel {
 
         TicketthreadModel that = (TicketthreadModel) o;
 
-        if (id != that.id) return false;
-        if (ticketId != that.ticketId) return false;
-        if (employeeId != that.employeeId) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (ticketId != null ? !ticketId.equals(that.ticketId) : that.ticketId != null) return false;
+        if (employeeId != null ? !employeeId.equals(that.employeeId) : that.employeeId != null) return false;
         if (content != null ? !content.equals(that.content) : that.content != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
@@ -109,9 +112,9 @@ public class TicketthreadModel {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + ticketId;
-        result = 31 * result + employeeId;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (ticketId != null ? ticketId.hashCode() : 0);
+        result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
@@ -119,8 +122,8 @@ public class TicketthreadModel {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "ticketId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticketId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public TicketModel getTicketByTicketId() {
         return ticketByTicketId;
     }
@@ -129,8 +132,8 @@ public class TicketthreadModel {
         this.ticketByTicketId = ticketByTicketId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "employeeId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public EmployeeModel getEmployeeByEmployeeId() {
         return employeeByEmployeeId;
     }
@@ -138,4 +141,15 @@ public class TicketthreadModel {
     public void setEmployeeByEmployeeId(EmployeeModel employeeByEmployeeId) {
         this.employeeByEmployeeId = employeeByEmployeeId;
     }
+}
+
+@StaticMetamodel(TicketthreadModel.class)
+class TicketthreadModel_ {
+    public static volatile SingularAttribute<TicketthreadModel, Integer> id;
+    public static volatile SingularAttribute<TicketthreadModel, Integer> ticketId;
+    public static volatile SingularAttribute<TicketthreadModel, Integer> employeeId;
+    public static volatile SingularAttribute<TicketthreadModel, String> content;
+    public static volatile SingularAttribute<TicketthreadModel, Byte> type;
+    public static volatile SingularAttribute<TicketthreadModel, Timestamp> createTime;
+    public static volatile SingularAttribute<TicketthreadModel, Timestamp> updateTime;
 }

@@ -138,7 +138,7 @@ public class RouteService {
         return false;
     }
 
-    public List<RouteEntity> get(SearchRouteModel searchRouteModel) {
+    public List<RouteEntity> get(SearchRouteEntity searchRouteEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RouteModel> criteria = builder.createQuery(RouteModel.class);

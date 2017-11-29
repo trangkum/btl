@@ -1,30 +1,32 @@
 package Module.Ticket;
 
+import Module.Employee.EmployeeModel;
+import Module.Group.GroupModel;
+import Module.TicketAttribute.TicketattributeModel;
 import Module.TicketImage.TicketimageModel;
 import Module.TicketRead.TicketreadModel;
 import Module.TicketRelater.TicketrelaterModel;
 import Module.TicketThread.TicketthreadModel;
-import Module.Employee.EmployeeModel;
-import Module.Group.GroupModel;
-import Module.TicketAttribute.TicketattributeModel;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
 @Table(name = "ticket", schema = "btl", catalog = "")
 public class TicketModel {
-    private int id;
+    private Integer id;
     private String content;
     private String subject;
-    private int createEmployeeId;
-    private int status;
-    private int priority;
+    private Integer createEmployeeId;
+    private Integer status;
+    private Integer priority;
     private Timestamp deadline;
     private Integer assignedEmployeeId;
     private Byte rating;
-    private int groupId;
+    private Integer groupId;
     private Timestamp resolvedTime;
     private Timestamp closedTime;
     private Timestamp createdTime;
@@ -41,11 +43,11 @@ public class TicketModel {
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,31 +73,31 @@ public class TicketModel {
 
     @Basic
     @Column(name = "createEmployeeId", nullable = false)
-    public int getCreateEmployeeId() {
+    public Integer getCreateEmployeeId() {
         return createEmployeeId;
     }
 
-    public void setCreateEmployeeId(int createEmployeeId) {
+    public void setCreateEmployeeId(Integer createEmployeeId) {
         this.createEmployeeId = createEmployeeId;
     }
 
     @Basic
     @Column(name = "status", nullable = false)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
     @Basic
     @Column(name = "priority", nullable = false)
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 
@@ -131,11 +133,11 @@ public class TicketModel {
 
     @Basic
     @Column(name = "groupId", nullable = false)
-    public int getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
 
@@ -196,17 +198,18 @@ public class TicketModel {
 
         TicketModel that = (TicketModel) o;
 
-        if (id != that.id) return false;
-        if (createEmployeeId != that.createEmployeeId) return false;
-        if (status != that.status) return false;
-        if (priority != that.priority) return false;
-        if (groupId != that.groupId) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (content != null ? !content.equals(that.content) : that.content != null) return false;
         if (subject != null ? !subject.equals(that.subject) : that.subject != null) return false;
+        if (createEmployeeId != null ? !createEmployeeId.equals(that.createEmployeeId) : that.createEmployeeId != null)
+            return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (priority != null ? !priority.equals(that.priority) : that.priority != null) return false;
         if (deadline != null ? !deadline.equals(that.deadline) : that.deadline != null) return false;
         if (assignedEmployeeId != null ? !assignedEmployeeId.equals(that.assignedEmployeeId) : that.assignedEmployeeId != null)
             return false;
         if (rating != null ? !rating.equals(that.rating) : that.rating != null) return false;
+        if (groupId != null ? !groupId.equals(that.groupId) : that.groupId != null) return false;
         if (resolvedTime != null ? !resolvedTime.equals(that.resolvedTime) : that.resolvedTime != null) return false;
         if (closedTime != null ? !closedTime.equals(that.closedTime) : that.closedTime != null) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) return false;
@@ -218,16 +221,16 @@ public class TicketModel {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (subject != null ? subject.hashCode() : 0);
-        result = 31 * result + createEmployeeId;
-        result = 31 * result + status;
-        result = 31 * result + priority;
+        result = 31 * result + (createEmployeeId != null ? createEmployeeId.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (priority != null ? priority.hashCode() : 0);
         result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
         result = 31 * result + (assignedEmployeeId != null ? assignedEmployeeId.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
-        result = 31 * result + groupId;
+        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
         result = 31 * result + (resolvedTime != null ? resolvedTime.hashCode() : 0);
         result = 31 * result + (closedTime != null ? closedTime.hashCode() : 0);
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
@@ -236,8 +239,8 @@ public class TicketModel {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "createEmployeeId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createEmployeeId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public EmployeeModel getEmployeeByCreateEmployeeId() {
         return employeeByCreateEmployeeId;
     }
@@ -246,8 +249,8 @@ public class TicketModel {
         this.employeeByCreateEmployeeId = employeeByCreateEmployeeId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "assignedEmployeeId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignedEmployeeId", referencedColumnName = "id", insertable = false, updatable = false)
     public EmployeeModel getEmployeeByAssignedEmployeeId() {
         return employeeByAssignedEmployeeId;
     }
@@ -256,8 +259,8 @@ public class TicketModel {
         this.employeeByAssignedEmployeeId = employeeByAssignedEmployeeId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "groupId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "groupId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public GroupModel getGroupByGroupId() {
         return groupByGroupId;
     }
@@ -266,7 +269,7 @@ public class TicketModel {
         this.groupByGroupId = groupByGroupId;
     }
 
-    @OneToMany(mappedBy = "ticketByTicketId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "ticketByTicketId")
     public Collection<TicketattributeModel> getTicketattributesById() {
         return ticketattributesById;
     }
@@ -275,7 +278,7 @@ public class TicketModel {
         this.ticketattributesById = ticketattributesById;
     }
 
-    @OneToMany(mappedBy = "ticketByTicketId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "ticketByTicketId")
     public Collection<TicketimageModel> getTicketimagesById() {
         return ticketimagesById;
     }
@@ -284,7 +287,7 @@ public class TicketModel {
         this.ticketimagesById = ticketimagesById;
     }
 
-    @OneToMany(mappedBy = "ticketByTicketId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "ticketByTicketId")
     public Collection<TicketreadModel> getTicketreadsById() {
         return ticketreadsById;
     }
@@ -293,7 +296,7 @@ public class TicketModel {
         this.ticketreadsById = ticketreadsById;
     }
 
-    @OneToMany(mappedBy = "ticketByTicketId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "ticketByTicketId")
     public Collection<TicketrelaterModel> getTicketrelatersById() {
         return ticketrelatersById;
     }
@@ -302,7 +305,7 @@ public class TicketModel {
         this.ticketrelatersById = ticketrelatersById;
     }
 
-    @OneToMany(mappedBy = "ticketByTicketId")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "ticketByTicketId")
     public Collection<TicketthreadModel> getTicketthreadsById() {
         return ticketthreadsById;
     }
@@ -310,4 +313,23 @@ public class TicketModel {
     public void setTicketthreadsById(Collection<TicketthreadModel> ticketthreadsById) {
         this.ticketthreadsById = ticketthreadsById;
     }
+}
+
+@StaticMetamodel(TicketModel.class)
+class TicketModel_ {
+    public static volatile SingularAttribute<TicketModel, Integer> id;
+    public static volatile SingularAttribute<TicketModel, String> content;
+    public static volatile SingularAttribute<TicketModel, String> subject;
+    public static volatile SingularAttribute<TicketModel, Integer> createEmployeeId;
+    public static volatile SingularAttribute<TicketModel, Integer> status;
+    public static volatile SingularAttribute<TicketModel, Integer> priority;
+    public static volatile SingularAttribute<TicketModel, Timestamp> deadline;
+    public static volatile SingularAttribute<TicketModel, Integer> assignedEmployeeId;
+    public static volatile SingularAttribute<TicketModel, Byte> rating;
+    public static volatile SingularAttribute<TicketModel, Integer> groupId;
+    public static volatile SingularAttribute<TicketModel, Timestamp> resolvedTime;
+    public static volatile SingularAttribute<TicketModel, Timestamp> closedTime;
+    public static volatile SingularAttribute<TicketModel, Timestamp> createdTime;
+    public static volatile SingularAttribute<TicketModel, Timestamp> updatedTime;
+    public static volatile SingularAttribute<TicketModel, Timestamp> deletedTime;
 }

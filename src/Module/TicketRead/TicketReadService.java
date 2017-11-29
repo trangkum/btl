@@ -138,7 +138,7 @@ public class TicketReadService {
 //        return false;
 //    }
 
-    public List<TicketReadEntity> get(SearchTicketReadModel searchTicketReadModel) {
+    public List<TicketReadEntity> get(SearchTicketReadEntity searchTicketReadEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketreadModel> criteria = builder.createQuery(TicketreadModel.class);

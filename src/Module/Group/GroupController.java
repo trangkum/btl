@@ -17,14 +17,14 @@ public class GroupController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<GroupEntity> get(@BeanParam SearchGroupModel searchGroupModel) {
-        return groupService.get(searchGroupModel);
+    public List<GroupEntity> get(@BeanParam SearchGroupEntity searchGroupEntity) {
+        return groupService.get(searchGroupEntity);
     }
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/Count")
-    public int count(@BeanParam SearchGroupModel searchGroupModel) {
+    public int count(@BeanParam SearchGroupEntity searchGroupEntity) {
         return 100;
     }
 
