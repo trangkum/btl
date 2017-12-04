@@ -1,0 +1,89 @@
+﻿<!--<div class="navbar-fixed-top">-->
+<!--<div class="page-header-top">-->
+<!--<div class="container">-->
+<!--<div class="page-logo">-->
+<!--<a href="/">-->
+<!--<b> Trí tuệ nhân tạo</b>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="page-info" id="asds">-->
+<!--<div class="page-info-content">-->
+<!--<span class="public-header-avatar">-->
+<!--<img src="Angular4/src/assets/VNU-UET.jpg" alt="logo" width="47"/>-->
+<!--</span>-->
+<!--&lt;!&ndash;<span class="page-info-content-name">{{UserEntity !== undefined ? UserEntity.Display : "" }}</span>&ndash;&gt;-->
+<!--<a href="" >-->
+<!--<i class="glyphicon glyphicon-log-out"></i> Đăng xuất-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<nav class="nav navbar-inverse fpt-navbar navbar-toggleable-md">-->
+<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleContainer"-->
+<!--aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">-->
+<!--<span class="navbar-toggler-icon"></span>-->
+<!--</button>-->
+<!--<div class="container collapse navbar-collapse" id="navbarsExampleContainer">-->
+<!--<ul class="navbar-nav mr-auto">-->
+<!--<li *ngFor="let menu of MenuList"-->
+<!--[ngClass]=" (menu.hasSub() ? ' dropdown' : '')">-->
+<!--<a class="fpt-nav-link nav-link" routerLinkActive="active-link"-->
+<!--[routerLink]="[menu.Link]">{{menu.Name}}-->
+<!--<i class="fa fa-angle-down" *ngIf="menu.hasSub()"></i>-->
+<!--</a>-->
+<!--<div class="dropdown-content" *ngIf="menu.hasSub()">-->
+<!--<a *ngFor="let sub of menu.Sub" class="fpt-dropdown-menu fpt-nav-link"-->
+<!--routerLinkActive="active-sublink"-->
+<!--[routerLink]="[sub.Link]">{{sub.Name}}</a>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+<div style="padding: 4px; width:100%">
+    <p style="font-size: 1.7em;font-family: sans-serif;">REQUEST IT</p>
+    <button data-dismiss="modal" data-backdrop="false" (click)="Add()"
+            class="btn btn-danger">
+        <i class="fa fa-plus" aria-hidden="true"></i><span style="margin-left: 20px">THÊM YÊU CẦU</span>
+    </button>
+
+    <div class="panel">
+        <div id="TriggerCollapsePanel1" data-toggle="collapse" data-target="#panel1" aria-expanded="true" aria-controls="panel1"></div>
+        <div class="tab" (click)="collapse()">
+            Việc tôi yêu cầu
+            <div class="right-icon" *ngIf="isPanel1Collapse"> + </div>
+            <div class="right-icon" *ngIf="!isPanel1Collapse"> - </div>
+        </div>
+        <div id="panel1" class="collapse show">
+            <div class="tab">
+                <a routerLinkActive="active-link"
+                   [routerLink]="'MyRequest'">MyRequest</a>
+            </div>
+            <div class="tab">Việc tôi yêu cầu</div>
+            <div class="tab">Việc tôi yêu cầu</div>
+            <div class="tab">Việc tôi yêu cầu</div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="tab">Việc tôi yêu cầu</div>
+        <div class="tab">Việc tôi yêu cầu</div>
+        <div class="tab">Việc tôi yêu cầu</div>
+        <div class="tab">Việc tôi yêu cầu</div>
+        <div class="tab">Việc tôi yêu cầu</div>
+    </div>
+    <!--<div class="panel-group" style="margin-top: 10px;">-->
+    <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading">-->
+    <!--<h4 class="panel-title">-->
+    <!--<a data-toggle="collapse" href="#collapse1">Việc tôi yêu cầu</a>-->
+    <!--</h4>-->
+    <!--</div>-->
+    <!--<div id="collapse1" class="panel-collapse collapse">-->
+    <!--<div class="panel-body">Panel Body</div>-->
+    <!--<div class="panel-footer">Panel Footer</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>

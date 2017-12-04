@@ -1,0 +1,35 @@
+<div class="row">
+    <table class="table table-bordered">
+        <thead style="white-space: nowrap">
+        <tr>
+            <th>STT</th>
+            <th>Tên công việc</th>
+            <th>Mức độ ưu tiên</th>
+            <th>Người yêu cầu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td>
+                <input class="form-control" [(ngModel)]="searchTicketEntity.problemId" type="number"
+                       placeholder="Tìm kiếm..." (keydown.enter)="Search()">
+            </td>
+            <td>
+                <input class="form-control" [(ngModel)]="searchTicketEntity.problemId" type="text"
+                       placeholder="Search..." (keydown.enter)="Search()">
+            </td>
+            <td>
+                <input class="form-control" [(ngModel)]="searchTicketEntity.problemId" type="text"
+                       placeholder="Tìm kiếm..." (keydown.enter)="Search()">
+            </td>
+        </tr>
+        <tr *ngFor="let ticketEntity of (ticketEntities ? ticketEntities : []); let i = index">
+            <td>{{1}}</td>
+            <td>{{ticketEntity?.subject}}</td>
+            <td>{{ticketEntity?.priority}}</td>
+            <td>{{ticketEntity?.createEmployeeId}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
