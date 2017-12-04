@@ -44,6 +44,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/web/Angular4/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/web/Angular4/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/web/Angular4/src/app" />
+      <excludeFolder url="file://$MODULE_DIR$/web/Angular4/tmp" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
