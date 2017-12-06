@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
  * and open the template in the editor.
  */
 public class UserEntity implements Serializable {
+    public Integer id;
     public String userName;
     public String passWord;
     public Integer employeeId;
@@ -24,17 +25,18 @@ public class UserEntity implements Serializable {
     public UserEntity() {
     }
 
-    public UserEntity(String userName, String passWord, Integer employeeId) {
+    public UserEntity(Integer id, String userName, String passWord, Integer employeeId) {
+        this.id = id;
         this.userName = userName;
         this.passWord = passWord;
         this.employeeId = employeeId;
     }
 
-
     public UserEntity(UserModel UserModel, Object... objects) {
         this.userName = UserModel.getUserName();
         this.passWord = UserModel.getPassWord();
         this.employeeId = UserModel.getEmployeeId();
+        this.id = UserModel.getId();
         for (Object object : objects) {
             if (object instanceof EmployeeModel) {
                 this.employeeEntity = new EmployeeEntity((EmployeeModel) object);
@@ -51,6 +53,7 @@ public class UserEntity implements Serializable {
 
     public UserModel toModel() {
         UserModel UserModel = new UserModel();
+        UserModel.setId(id);
         UserModel.setUserName(userName);
         UserModel.setPassWord(passWord);
         UserModel.setEmployeeId(employeeId);

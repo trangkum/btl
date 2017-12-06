@@ -1,4 +1,9 @@
-﻿<div class="row" style="background-color: #EFF4F2;">
-    <public-header class="col-md-3"></public-header>
-    <public-body class="col-md-9" (mousedown)="DropdownComponent.TurnOffAnother(); DiscussionComponent.TurnOffAnother()"></public-body>
+﻿<div class="container-fluid" style="padding-top: 10px">
+    <div class="row">
+        <public-header class="col-md-3 menu">
+        </public-header>
+        <public-body class="col-md-9"
+                     (mousedown)="DropdownComponent.TurnOffAnother(); DiscussionComponent.TurnOffAnother()">
+        </public-body>
+    </div>
 </div>

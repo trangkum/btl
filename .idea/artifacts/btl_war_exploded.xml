@@ -96,7 +96,11 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="btl/web/Web" />
-      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+      <element id="directory" name="Angular4">
+        <element id="directory" name="dist">
+          <element id="dir-copy" path="$PROJECT_DIR$/web/Angular4/dist" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

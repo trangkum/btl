@@ -1,4 +1,4 @@
-package Module.Group;
+package Module.Location;
 
 import Manager.Entity.DatabaseEntity;
 import Manager.Interface.IDatabaseControllService;
@@ -20,15 +20,15 @@ import java.util.stream.Collectors;
 /**
  * Created by Son on 6/15/2017.
  */
-public class GroupService {
+public class LocationService {
     private static SessionFactory factory;
     private static int currentActive;
 
-    public GroupService(SessionFactory factory) {
+    public LocationService(SessionFactory factory) {
         this.factory = factory;
     }
 
-    public GroupService() {
+    public LocationService() {
         if (factory == null || currentActive != DatabaseEntity.Active) {
             IDatabaseService databaseService = new DatabaseService();
             IDatabaseControllService databaseControllService = new DatabaseControllService();
@@ -38,19 +38,19 @@ public class GroupService {
     }
 
     public static void setFactory(SessionFactory factory) {
-        GroupService.factory = factory;
+        Module.Location.LocationService.factory = factory;
     }
 
 
-    public GroupEntity get(int id) {
+    public LocationEntity get(int id) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<GroupModel> criteria = builder.createQuery(GroupModel.class);
-        Root<GroupModel> GroupModels = criteria.from(GroupModel.class);
-        criteria.where(builder.equal(GroupModels.get("id"), id));
+        CriteriaQuery<LocationModel> criteria = builder.createQuery(LocationModel.class);
+        Root<LocationModel> LocationModels = criteria.from(LocationModel.class);
+        criteria.where(builder.equal(LocationModels.get("id"), id));
         try {
-            GroupModel groupModel = session.createQuery(criteria).getSingleResult();
-            return new GroupEntity(groupModel);
+            LocationModel locationModel = session.createQuery(criteria).getSingleResult();
+            return new LocationEntity(locationModel);
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -58,15 +58,15 @@ public class GroupService {
         }
     }
 
-//    public GroupEntity create(int groupId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//    public LocationEntity create(int locationId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
 //        Transaction tx = null;
 //        try (Session session = factory.openSession()) {
 //            tx = session.beginTransaction();
-//            GroupEntity groupEntity = new GroupEntity(groupId, startX, startY, endX, endY, shapeId);
-//            GroupModel groupModel = groupEntity.toModel();
-//            Integer.valueOf(String.valueOf(session.save(groupModel)));
+//            LocationEntity locationEntity = new LocationEntity(locationId, startX, startY, endX, endY, shapeId);
+//            LocationModel locationModel = locationEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(locationModel)));
 //            tx.commit();
-//            GroupEntity result = new GroupEntity(groupModel);
+//            LocationEntity result = new LocationEntity(locationModel);
 //            return result;
 //        } catch (HibernateException e) {
 //            if (tx != null) tx.rollback();
@@ -75,14 +75,14 @@ public class GroupService {
 //        return null;
 //    }
 
-    public GroupEntity create(GroupEntity groupEntity) {
+    public LocationEntity create(LocationEntity locationEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            GroupModel groupModel = groupEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(groupModel)));
+            LocationModel locationModel = locationEntity.toModel();
+            Integer.valueOf(String.valueOf(session.save(locationModel)));
             tx.commit();
-            GroupEntity result = new GroupEntity(groupModel);
+            LocationEntity result = new LocationEntity(locationModel);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -91,14 +91,14 @@ public class GroupService {
         return null;
     }
 
-//    public GroupEntity update(int groupId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//    public LocationEntity update(int locationId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
 //        Transaction tx = null;
 //        try (Session session = factory.openSession()) {
 //            tx = session.beginTransaction();
-//            GroupEntity groupEntity = new GroupEntity(groupId, startX, startY, endX, endY, shapeId);
-//            session.update(groupEntity.toModel());
+//            LocationEntity locationEntity = new LocationEntity(locationId, startX, startY, endX, endY, shapeId);
+//            session.update(locationEntity.toModel());
 //            tx.commit();
-//            GroupEntity result = get(groupId);
+//            LocationEntity result = get(locationId);
 //            return result;
 //        } catch (HibernateException e) {
 //            if (tx != null) tx.rollback();
@@ -107,13 +107,13 @@ public class GroupService {
 //        return null;
 //    }
 
-    public GroupEntity update(int groupId, GroupEntity groupEntity) {
+    public LocationEntity update(int locationId, LocationEntity locationEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            session.update(groupEntity.toModel());
+            session.update(locationEntity.toModel());
             tx.commit();
-            GroupEntity result = get(groupId);
+            LocationEntity result = get(locationId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -126,9 +126,9 @@ public class GroupService {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            GroupModel groupModel = new GroupModel();
-            groupModel.setId(id);
-            session.delete(groupModel);
+            LocationModel locationModel = new LocationModel();
+            locationModel.setId(id);
+            session.delete(locationModel);
             tx.commit();
             return true;
         } catch (HibernateException e) {
@@ -138,15 +138,15 @@ public class GroupService {
         return false;
     }
 
-    public List<GroupEntity> get(SearchGroupEntity searchGroupEntity) {
+    public List<LocationEntity> get(SearchLocationEntity searchLocationEntity) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<GroupModel> criteria = builder.createQuery(GroupModel.class);
-        Root<GroupModel> GroupModels = criteria.from(GroupModel.class);
+        CriteriaQuery<LocationModel> criteria = builder.createQuery(LocationModel.class);
+        Root<LocationModel> LocationModels = criteria.from(LocationModel.class);
         try {
-            List<GroupModel> groupList = session.createQuery(criteria).getResultList();
-            return groupList.stream()
-                    .map(s -> new GroupEntity(s)).collect(Collectors.toList());
+            List<LocationModel> locationList = session.createQuery(criteria).getResultList();
+            return locationList.stream()
+                    .map(s -> new LocationEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;
         } finally {

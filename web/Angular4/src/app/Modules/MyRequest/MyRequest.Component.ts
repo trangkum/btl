@@ -9,6 +9,7 @@ import {hitAreas, types} from "ngvas";
 import {TicketService} from "../Ticket/Ticket.Service";
 import {TicketEntity} from "../Ticket/Ticket.Entity";
 import {SearchTicketEntity} from "../Ticket/Ticket.SearchEntity";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'App-MyRequest',
@@ -19,15 +20,30 @@ import {SearchTicketEntity} from "../Ticket/Ticket.SearchEntity";
 export class MyRequestComponent {
     ticketEntities: TicketEntity[] = [];
     searchTicketEntity: SearchTicketEntity = new SearchTicketEntity();
+    title: string = "";
+    urlId: string = "";
 
-    constructor(private toastr: BottomToastsManager, private ticketService: TicketService, vcr: ViewContainerRef) {
-        // this.ticketService.Get(this.searchTicketEntity).subscribe(list => {
-        //     this.ticketEntities = list;
-        // });
-        let x = {"subject": "aaaa", "createEmployeeId": 11, "priority": 3};
-        let t = new TicketEntity(x);
-        this.ticketEntities.push(t);
-        // t.createEmployeeEntity.name
+    constructor(private toastr: BottomToastsManager, private ticketService: TicketService, private route: ActivatedRoute, vcr: ViewContainerRef) {
+        this.route.params.subscribe(params => {
+            this.urlId = params['urlId'];
+            switch (this.urlId) {
+                case "MyRequest":
+                    this.title = "Danh sách công việc yêu cầu";
+                    break;
+                case "Related":
+                    this.title = "Danh sách công việc liên quan";
+                    break;
+                case "MyWork":
+                    this.title = "Danh sách công việc được giao";
+                    break;
+                case "Team":
+                    this.title = "Danh sách công việc của team";
+                    break;
+                case "IT":
+                    this.title = "Danh sách công việc của bộ phận IT";
+                    break;
+            }
+        });
     }
 
 

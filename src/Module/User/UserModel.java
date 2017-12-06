@@ -14,10 +14,11 @@ public class UserModel {
     private String userName;
     private String passWord;
     private Integer employeeId;
-    private Collection<TokenModel> tokensByUserName;
+    private int id;
+    private Collection<TokenModel> tokensById;
     private EmployeeModel employeeByEmployeeId;
 
-    @Id
+    @Basic
     @Column(name = "userName", nullable = false, length = 30)
     public String getUserName() {
         return userName;
@@ -47,6 +48,16 @@ public class UserModel {
         this.employeeId = employeeId;
     }
 
+    @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,6 +65,7 @@ public class UserModel {
 
         UserModel userModel = (UserModel) o;
 
+        if (id != userModel.id) return false;
         if (userName != null ? !userName.equals(userModel.userName) : userModel.userName != null) return false;
         if (passWord != null ? !passWord.equals(userModel.passWord) : userModel.passWord != null) return false;
         if (employeeId != null ? !employeeId.equals(userModel.employeeId) : userModel.employeeId != null) return false;
@@ -66,20 +78,21 @@ public class UserModel {
         int result = userName != null ? userName.hashCode() : 0;
         result = 31 * result + (passWord != null ? passWord.hashCode() : 0);
         result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
+        result = 31 * result + id;
         return result;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "userByUserName")
-    public Collection<TokenModel> getTokensByUserName() {
-        return tokensByUserName;
+    @OneToMany(mappedBy = "userByUserId", fetch = FetchType.LAZY)
+    public Collection<TokenModel> getTokensById() {
+        return tokensById;
     }
 
-    public void setTokensByUserName(Collection<TokenModel> tokensByUserName) {
-        this.tokensByUserName = tokensByUserName;
+    public void setTokensById(Collection<TokenModel> tokensById) {
+        this.tokensById = tokensById;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employeeId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "employeeId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public EmployeeModel getEmployeeByEmployeeId() {
         return employeeByEmployeeId;
     }
@@ -91,6 +104,7 @@ public class UserModel {
 
 @StaticMetamodel(UserModel.class)
 class UserModel_ {
+    public static volatile SingularAttribute<UserModel, Integer> id;
     public static volatile SingularAttribute<UserModel, String> userName;
     public static volatile SingularAttribute<UserModel, String> passWord;
     public static volatile SingularAttribute<UserModel, Integer> employeeId;

@@ -2,7 +2,7 @@ package Module.Team;
 
 
 import Module.Employee.EmployeeModel;
-import Module.Group.GroupModel;
+import Module.Location.LocationModel;
 
 import javax.persistence.*;
 import javax.persistence.metamodel.SingularAttribute;
@@ -14,10 +14,10 @@ import java.util.Collection;
 public class TeamModel {
     private Integer id;
     private String name;
-    private Integer groupId;
+    private Integer locationId;
     private Integer leaderEmployeeId;
     private Collection<EmployeeModel> employeesById;
-    private GroupModel groupByGroupId;
+    private LocationModel locationByLocationId;
     private EmployeeModel employeeByLeaderEmployeeId;
 
     @Id
@@ -41,13 +41,13 @@ public class TeamModel {
     }
 
     @Basic
-    @Column(name = "groupId", nullable = false)
-    public Integer getGroupId() {
-        return groupId;
+    @Column(name = "locationId", nullable = false)
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
     @Basic
@@ -69,7 +69,7 @@ public class TeamModel {
 
         if (id != null ? !id.equals(teamModel.id) : teamModel.id != null) return false;
         if (name != null ? !name.equals(teamModel.name) : teamModel.name != null) return false;
-        if (groupId != null ? !groupId.equals(teamModel.groupId) : teamModel.groupId != null) return false;
+        if (locationId != null ? !locationId.equals(teamModel.locationId) : teamModel.locationId != null) return false;
         if (leaderEmployeeId != null ? !leaderEmployeeId.equals(teamModel.leaderEmployeeId) : teamModel.leaderEmployeeId != null)
             return false;
 
@@ -80,7 +80,7 @@ public class TeamModel {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
+        result = 31 * result + (locationId != null ? locationId.hashCode() : 0);
         result = 31 * result + (leaderEmployeeId != null ? leaderEmployeeId.hashCode() : 0);
         return result;
     }
@@ -95,13 +95,13 @@ public class TeamModel {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "groupId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public GroupModel getGroupByGroupId() {
-        return groupByGroupId;
+    @JoinColumn(name = "locationId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public LocationModel getLocationByLocationId() {
+        return locationByLocationId;
     }
 
-    public void setGroupByGroupId(GroupModel groupByGroupId) {
-        this.groupByGroupId = groupByGroupId;
+    public void setLocationByLocationId(LocationModel locationByLocationId) {
+        this.locationByLocationId = locationByLocationId;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -119,6 +119,6 @@ public class TeamModel {
 class TeamModel_ {
     public static volatile SingularAttribute<TeamModel, Integer> id;
     public static volatile SingularAttribute<TeamModel, String> name;
-    public static volatile SingularAttribute<TeamModel, Integer> groupId;
+    public static volatile SingularAttribute<TeamModel, Integer> locationId;
     public static volatile SingularAttribute<TeamModel, Integer> leaderEmployeeId;
 }

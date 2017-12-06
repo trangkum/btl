@@ -50,6 +50,8 @@ import {BottomToastsManager} from "./Shared/CustomToaster";
 import {NgvasModule} from "./Shared/NgVas/ngvas.module";
 import {MyRequestComponent} from "./Modules/MyRequest/MyRequest.Component";
 import {TicketService} from "./Modules/Ticket/Ticket.Service";
+import {PanelComponent} from "./Shared/MaterialComponent/panel/Panel.Component";
+import {CreateRequestComponent} from "./Modules/CreateRequest/CreateRequest.Component";
 // import {[MODULE]Service} from "./Modules/[MODULE]/[MODULE].Service";
 //[END]
 
@@ -58,7 +60,7 @@ import {TicketService} from "./Modules/Ticket/Ticket.Service";
         InputTextModule, CalendarModule, ButtonModule, DataTableModule, DialogModule, TreeModule, RatingModule, AccordionModule, ContextMenuModule],
     declarations: [AppComponent, HeaderComponent, BodyComponent, PagingComponent, DropdownComponent, ExcelComponent, TagsinputComponent,
         HomeComponent, InputfileComponent, ModalComponent, Dropdown2Component, PortletComponent,
-        MenuPurchaseComponent, TooltipDirective, InputDiscussionComponent,
+        MenuPurchaseComponent, TooltipDirective,CreateRequestComponent, InputDiscussionComponent, PanelComponent,
         // LayerAccessControlComponent, RuleComponent,
         //[IMPORT MODULE] [
         //[MODULE]Component,

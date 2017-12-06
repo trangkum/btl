@@ -1,6 +1,7 @@
 ﻿import {Component} from "@angular/core";
 import {MenuModel} from "../../menu-model";
 import {Http} from "@angular/http";
+import {PanelEntity} from "../MaterialComponent/panel/PanelEntity.Component";
 // import {AuthService} from "../../Modules/Auth/Auth.Service";
 // import {UserEntity} from "../../Modules/User/User.Entity";
 // import {UserService} from "../../Modules/User/User.Service";
@@ -13,47 +14,40 @@ import {Http} from "@angular/http";
     styleUrls: ['./Header.Component.css']
 })
 export class HeaderComponent {
-    MenuList: MenuModel[];
-    // static User: UserEntity;
-    // ParentLayerControl: LayerAccessControlEntity;
-    // UserEntity: UserEntity;
-    public isPanel1Collapse: boolean = false;
-
+    panelList : PanelEntity[] = [];
     constructor(public Http: Http,
                 // private UserService: UserService
                 // , public AuthService: AuthService
     ) {
-        // UserService.GetCurrent().subscribe(x => {
-        // HeaderComponent.User = x;
-        // this.UserService.UserEntity = x;
-        // this.UserEntity = x;
-        // });
-        this.MenuList = Array<MenuModel>();
-        let Home = new MenuModel("Trang chủ", "Home");
-        let users = new MenuModel("Người dùng", "users");
-        let shapes = new MenuModel("Mảnh ghép", "shapes");
-        let problems = new MenuModel("Đề bài", "problems");
-        let points = new MenuModel("Tọa độ điểm", "points");
-        let files = new MenuModel("File", "files");
-        let edges = new MenuModel("Cạnh", "edges");
-        let board = new MenuModel("Bảng vẽ", "board");
+        let myRequestPanel : PanelEntity = new PanelEntity();
+        myRequestPanel.title = "Việc tôi yêu cầu";
+        myRequestPanel.url = "MyRequest";
+        myRequestPanel.isShow[4] = false;
+        myRequestPanel.isShow[6] = false;
+        myRequestPanel.isAccessed = false;
+        this.panelList.push(myRequestPanel);
+        let relatedPanel : PanelEntity = new PanelEntity();
+        relatedPanel.title = "Công việc liên quan";
+        relatedPanel.url = "Related";
+        relatedPanel.isShow[4] = false;
+        relatedPanel.isShow[6] = false;
+        this.panelList.push(relatedPanel);
+        let myWorkPanel : PanelEntity = new PanelEntity();
+        myWorkPanel.title = "Việc tôi được giao";
+        myWorkPanel.url = "MyWork";
+        myWorkPanel.isShow[3] = false;
+        myWorkPanel.isShow[6] = false;
+        this.panelList.push(myWorkPanel);
+        let teamWorkPanel : PanelEntity = new PanelEntity();
+        teamWorkPanel.title = "Công việc của team";
+        teamWorkPanel.url = "Team";
+        teamWorkPanel.isShow[3] = false;
+        this.panelList.push(teamWorkPanel);
+        let ITWorkPanel : PanelEntity = new PanelEntity();
+        ITWorkPanel.title = "Công việc của bộ phận IT";
+        ITWorkPanel.url = "IT";
+        ITWorkPanel.isShow[3] = false;
+        this.panelList.push(ITWorkPanel);
 
-        this.MenuList.push(Home);
-        this.MenuList.push(problems);
-        this.MenuList.push(shapes);
-        this.MenuList.push(points);
-        this.MenuList.push(files);
-        this.MenuList.push(edges);
-        this.MenuList.push(users);
-        this.MenuList.push(board);
     }
-
-    collapse() {
-        if (!document.getElementById("panel1").classList.contains("collapsing")) {
-            this.isPanel1Collapse = !this.isPanel1Collapse;
-            document.getElementById("TriggerCollapsePanel1").click();
-        }
-    }
-
-    Name: string = "đâsdasdasd";
 }

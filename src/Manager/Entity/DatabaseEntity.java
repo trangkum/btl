@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class DatabaseEntity implements IDatabaseEntity {
     public static int Active = 0;
     private static String fileDir;
-    private static List<DatabaseModel> databaseModels;
+    public static List<DatabaseModel> databaseModels;
     private static int id = 0;
     private DatabaseModel databaseModel;
 

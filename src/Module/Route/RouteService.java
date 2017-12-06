@@ -42,12 +42,29 @@ public class RouteService {
     }
 
 
-    public RouteEntity get(int id) {
+    public RouteEntity get(Integer id) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RouteModel> criteria = builder.createQuery(RouteModel.class);
         Root<RouteModel> RouteModels = criteria.from(RouteModel.class);
-        criteria.where(builder.equal(RouteModels.get("id"), id));
+        criteria.where(builder.equal(RouteModels.get(RouteModel_.id), id));
+        try {
+            RouteModel routeModel = session.createQuery(criteria).getSingleResult();
+            return new RouteEntity(routeModel);
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public RouteEntity get(String method, String route) {
+        Session session = factory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<RouteModel> criteria = builder.createQuery(RouteModel.class);
+        Root<RouteModel> RouteModels = criteria.from(RouteModel.class);
+        criteria.where(builder.equal(builder.lower(RouteModels.get(RouteModel_.method)), method.toLowerCase()));
+        criteria.where(builder.equal(builder.lower(RouteModels.get(RouteModel_.route)), route.toLowerCase()));
         try {
             RouteModel routeModel = session.createQuery(criteria).getSingleResult();
             return new RouteEntity(routeModel);
@@ -98,7 +115,7 @@ public class RouteService {
 //            RouteEntity routeEntity = new RouteEntity(routeId, startX, startY, endX, endY, shapeId);
 //            session.update(routeEntity.toModel());
 //            tx.commit();
-//            RouteEntity result = get(routeId);
+//            RouteEntity result = getByUserName(routeId);
 //            return result;
 //        } catch (HibernateException e) {
 //            if (tx != null) tx.rollback();

@@ -1,7 +1,7 @@
 package Module.Employee;
 
 import Module.File.FileModel;
-import Module.Group.GroupModel;
+import Module.Location.LocationModel;
 import Module.Team.TeamModel;
 import Module.Ticket.TicketModel;
 import Module.TicketRead.TicketreadModel;
@@ -21,12 +21,12 @@ public class EmployeeModel {
     private String email;
     private String name;
     private Integer teamId;
-    private Integer groupId;
+    private Integer locationId;
     private String briefName;
     private TeamModel teamByTeamId;
-    private GroupModel groupByGroupId;
+    private LocationModel locationByLocationId;
     private Collection<FileModel> filesById;
-    private Collection<GroupModel> groupsById;
+    private Collection<LocationModel> locationsById;
     private Collection<TeamModel> teamsById;
     private Collection<TicketModel> ticketsById;
     private Collection<TicketModel> ticketsById_0;
@@ -76,13 +76,13 @@ public class EmployeeModel {
     }
 
     @Basic
-    @Column(name = "groupId", nullable = true)
-    public Integer getGroupId() {
-        return groupId;
+    @Column(name = "locationId", nullable = true)
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
     @Basic
@@ -106,7 +106,7 @@ public class EmployeeModel {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (teamId != null ? !teamId.equals(that.teamId) : that.teamId != null) return false;
-        if (groupId != null ? !groupId.equals(that.groupId) : that.groupId != null) return false;
+        if (locationId != null ? !locationId.equals(that.locationId) : that.locationId != null) return false;
         if (briefName != null ? !briefName.equals(that.briefName) : that.briefName != null) return false;
 
         return true;
@@ -118,7 +118,7 @@ public class EmployeeModel {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (teamId != null ? teamId.hashCode() : 0);
-        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
+        result = 31 * result + (locationId != null ? locationId.hashCode() : 0);
         result = 31 * result + (briefName != null ? briefName.hashCode() : 0);
         return result;
     }
@@ -134,13 +134,13 @@ public class EmployeeModel {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "groupId", referencedColumnName = "id", insertable = false, updatable = false)
-    public GroupModel getGroupByGroupId() {
-        return groupByGroupId;
+    @JoinColumn(name = "locationId", referencedColumnName = "id", insertable = false, updatable = false)
+    public LocationModel getLocationByLocationId() {
+        return locationByLocationId;
     }
 
-    public void setGroupByGroupId(GroupModel groupByGroupId) {
-        this.groupByGroupId = groupByGroupId;
+    public void setLocationByLocationId(LocationModel locationByLocationId) {
+        this.locationByLocationId = locationByLocationId;
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByEmployeeId")
@@ -153,12 +153,12 @@ public class EmployeeModel {
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByManagerEmloyeeId")
-    public Collection<GroupModel> getGroupsById() {
-        return groupsById;
+    public Collection<LocationModel> getLocationsById() {
+        return locationsById;
     }
 
-    public void setGroupsById(Collection<GroupModel> groupsById) {
-        this.groupsById = groupsById;
+    public void setLocationsById(Collection<LocationModel> locationsById) {
+        this.locationsById = locationsById;
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "employeeByLeaderEmployeeId")
@@ -231,6 +231,6 @@ class EmployeeModel_ {
     public static volatile SingularAttribute<EmployeeModel, String> email;
     public static volatile SingularAttribute<EmployeeModel, String> name;
     public static volatile SingularAttribute<EmployeeModel, Integer> teamId;
-    public static volatile SingularAttribute<EmployeeModel, Integer> groupId;
+    public static volatile SingularAttribute<EmployeeModel, Integer> locationId;
     public static volatile SingularAttribute<EmployeeModel, String> briefName;
 }

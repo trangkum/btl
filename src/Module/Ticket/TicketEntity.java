@@ -2,8 +2,8 @@ package Module.Ticket;
 
 import Module.Employee.EmployeeEntity;
 import Module.Employee.EmployeeModel;
-import Module.Group.GroupEntity;
-import Module.Group.GroupModel;
+import Module.Location.LocationEntity;
+import Module.Location.LocationModel;
 import Module.TicketImage.TicketImageEntity;
 import Module.TicketImage.TicketimageModel;
 import Module.TicketRead.TicketReadEntity;
@@ -36,7 +36,7 @@ public class TicketEntity implements Serializable {
     public Timestamp deadline;
     public Integer assignedEmployeeId;
     public Byte rating;
-    public int groupId;
+    public int locationId;
     public Timestamp resolvedTime;
     public Timestamp closedTime;
     public Timestamp createdTime;
@@ -44,7 +44,7 @@ public class TicketEntity implements Serializable {
     public Timestamp deletedTime;
     public EmployeeEntity createEmployeeEntity;
     public EmployeeEntity assignedEmployeeEntity;
-    public GroupEntity groupEntity;
+    public LocationEntity locationEntity;
     public List<TicketAttributeEntity> ticketAttributeEntities;
     public List<TicketImageEntity> ticketImageEntities;
     public List<TicketReadEntity> ticketReadEntities;
@@ -64,7 +64,7 @@ public class TicketEntity implements Serializable {
         this.deadline = ticketModel.getDeadline();
         this.assignedEmployeeId = ticketModel.getAssignedEmployeeId();
         this.rating = ticketModel.getRating();
-        this.groupId = ticketModel.getGroupId();
+        this.locationId = ticketModel.getLocationId();
         this.resolvedTime = ticketModel.getResolvedTime();
         this.closedTime = ticketModel.getClosedTime();
         this.createdTime = ticketModel.getCreatedTime();
@@ -73,8 +73,8 @@ public class TicketEntity implements Serializable {
         for (Object object : objects) {
             if (object instanceof EmployeeModel) {
                 this.assignedEmployeeEntity = new EmployeeEntity((EmployeeModel) object);
-            } else if (object instanceof GroupModel) {
-                this.groupEntity = new GroupEntity((GroupModel) object);
+            } else if (object instanceof LocationModel) {
+                this.locationEntity = new LocationEntity((LocationModel) object);
             } else if (object instanceof Collection) {
                 for (Object o : (Collection<Object>) object) {
                     if (o instanceof TicketattributeModel) {
@@ -109,7 +109,7 @@ public class TicketEntity implements Serializable {
         ticketModel.setDeadline(deadline);
         ticketModel.setAssignedEmployeeId(assignedEmployeeId);
         ticketModel.setRating(rating);
-        ticketModel.setGroupId(groupId);
+        ticketModel.setLocationId(locationId);
         ticketModel.setResolvedTime(resolvedTime);
         ticketModel.setClosedTime(closedTime);
         ticketModel.setCreatedTime(createdTime);

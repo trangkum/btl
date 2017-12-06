@@ -20,15 +20,15 @@ import java.util.stream.Collectors;
 /**
  * Created by Son on 6/15/2017.
  */
-public class UserService {
+public class TokenService {
     private static SessionFactory factory;
     private static int currentActive;
 
-    public UserService(SessionFactory factory) {
+    public TokenService(SessionFactory factory) {
         this.factory = factory;
     }
 
-    public UserService() {
+    public TokenService() {
         if (factory == null || currentActive != DatabaseEntity.Active) {
             IDatabaseService databaseService = new DatabaseService();
             IDatabaseControllService databaseControllService = new DatabaseControllService();
@@ -38,19 +38,19 @@ public class UserService {
     }
 
     public static void setFactory(SessionFactory factory) {
-        UserService.factory = factory;
+        TokenService.factory = factory;
     }
 
 
-    public UserEntity getByUserName(String userName) {
+    public TokenEntity get(Integer id) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
-        Root<UserModel> UserModels = criteria.from(UserModel.class);
-        criteria.where(builder.equal(UserModels.get(UserModel_.userName), userName));
+        CriteriaQuery<TokenModel> criteria = builder.createQuery(TokenModel.class);
+        Root<TokenModel> TokenModels = criteria.from(TokenModel.class);
+        criteria.where(builder.equal(TokenModels.get("id"), id));
         try {
-            UserModel userModel = session.createQuery(criteria).getSingleResult();
-            return new UserEntity(userModel);
+            TokenModel tokenModel = session.createQuery(criteria).getSingleResult();
+            return new TokenEntity(tokenModel);
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -58,15 +58,15 @@ public class UserService {
         }
     }
 
-    public UserEntity get(Integer userId) {
+    public TokenEntity getByTokenKey(String tokenKey) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
-        Root<UserModel> UserModels = criteria.from(UserModel.class);
-        criteria.where(builder.equal(UserModels.get(UserModel_.id), userId));
+        CriteriaQuery<TokenModel> criteria = builder.createQuery(TokenModel.class);
+        Root<TokenModel> TokenModels = criteria.from(TokenModel.class);
+        criteria.where(builder.equal(TokenModels.get("tokenKey"), tokenKey));
         try {
-            UserModel userModel = session.createQuery(criteria).getSingleResult();
-            return new UserEntity(userModel);
+            TokenModel tokenModel = session.createQuery(criteria).getSingleResult();
+            return new TokenEntity(tokenModel);
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -74,15 +74,15 @@ public class UserService {
         }
     }
 
-//    public UserEntity create(int userId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//    public TokenEntity create(int tokenId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
 //        Transaction tx = null;
 //        try (Session session = factory.openSession()) {
 //            tx = session.beginTransaction();
-//            UserEntity userEntity = new UserEntity(userId, startX, startY, endX, endY, shapeId);
-//            UserModel userModel = userEntity.toModel();
-//            Integer.valueOf(String.valueOf(session.save(userModel)));
+//            TokenEntity tokenEntity = new TokenEntity(tokenId, startX, startY, endX, endY, shapeId);
+//            TokenModel tokenModel = tokenEntity.toModel();
+//            Integer.valueOf(String.valueOf(session.save(tokenModel)));
 //            tx.commit();
-//            UserEntity result = new UserEntity(userModel);
+//            TokenEntity result = new TokenEntity(tokenModel);
 //            return result;
 //        } catch (HibernateException e) {
 //            if (tx != null) tx.rollback();
@@ -91,14 +91,14 @@ public class UserService {
 //        return null;
 //    }
 
-    public UserEntity create(UserEntity userEntity) {
+    public TokenEntity create(TokenEntity tokenEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            UserModel userModel = userEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(userModel)));
+            TokenModel tokenModel = tokenEntity.toModel();
+            Integer.valueOf(String.valueOf(session.save(tokenModel)));
             tx.commit();
-            UserEntity result = new UserEntity(userModel);
+            TokenEntity result = new TokenEntity(tokenModel);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -107,14 +107,14 @@ public class UserService {
         return null;
     }
 
-//    public UserEntity update(int userId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
+//    public TokenEntity update(int tokenId, Double startX, Double startY, Double endX, Double endY, Integer shapeId) {
 //        Transaction tx = null;
 //        try (Session session = factory.openSession()) {
 //            tx = session.beginTransaction();
-//            UserEntity userEntity = new UserEntity(userId, startX, startY, endX, endY, shapeId);
-//            session.update(userEntity.toModel());
+//            TokenEntity tokenEntity = new TokenEntity(tokenId, startX, startY, endX, endY, shapeId);
+//            session.update(tokenEntity.toModel());
 //            tx.commit();
-//            UserEntity result = getByUserName(userId);
+//            TokenEntity result = get(tokenId);
 //            return result;
 //        } catch (HibernateException e) {
 //            if (tx != null) tx.rollback();
@@ -123,13 +123,13 @@ public class UserService {
 //        return null;
 //    }
 
-    public UserEntity update(String userName, UserEntity userEntity) {
+    public TokenEntity update(Integer id, TokenEntity tokenEntity) {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            session.update(userEntity.toModel());
+            session.update(tokenEntity.toModel());
             tx.commit();
-            UserEntity result = getByUserName(userName);
+            TokenEntity result = get(id);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -138,34 +138,33 @@ public class UserService {
         return null;
     }
 
-//    public boolean delete(int id) {
-//        Transaction tx = null;
-//        try (Session session = factory.openSession()) {
-//            tx = session.beginTransaction();
-//            UserModel userModel = new UserModel();
-//            userModel.set(id);
-//            session.delete(userModel);
-//            tx.commit();
-//            return true;
-//        } catch (HibernateException e) {
-//            if (tx != null) tx.rollback();
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
+    public boolean delete(Integer id) {
+        Transaction tx = null;
+        try (Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            TokenModel tokenModel = new TokenModel();
+            tokenModel.setId(id);
+            session.delete(tokenModel);
+            tx.commit();
+            return true;
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+        return false;
+    }
 
-    public List<UserEntity> get(SearchUserEntity searchUserEntity) {
+    public List<TokenEntity> getTokensByUser(String userName) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
-        Root<UserModel> UserModels = criteria.from(UserModel.class);
+        CriteriaQuery<TokenModel> criteria = builder.createQuery(TokenModel.class);
+        Root<TokenModel> TokenModels = criteria.from(TokenModel.class);
         try {
-            CriteriaQuery criteriaQuery = searchUserEntity.applyTo(builder, criteria, UserModels);
-            criteriaQuery.toString();
-            List<UserModel> userEntities = session.createQuery(criteriaQuery).getResultList();
-//            List<UserModel> userEntities = searchUserEntity.skipAndTake(session.createQuery(searchUserEntity.order(builder, criteriaQuery, UserModels))).getResultList();
-            return userEntities.stream()
-                    .map(s -> new UserEntity(s)).collect(Collectors.toList());
+            criteria.where(builder.equal(TokenModels.get("userName"), userName));
+            List<TokenModel> tokenEntities = session.createQuery(criteria).getResultList();
+//            List<TokenModel> tokenEntities = searchTokenEntity.skipAndTake(session.createQuery(searchTokenEntity.order(builder, criteriaQuery, TokenModels))).getResultList();
+            return tokenEntities.stream()
+                    .map(s -> new TokenEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;
         } finally {

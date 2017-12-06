@@ -13,8 +13,8 @@
 //
 // @Component({
 //     selector: 'App-shape',
-//     templateUrl: './MyRequest.Component.html',
-//     styleUrls: ['./MyRequest.Component.css'],
+//     templateUrl: './CreateRequest.Component.html',
+//     styleUrls: ['./CreateRequest.Component.css'],
 //     providers: [ShapeService, BottomToastsManager]
 // })
 // export class MyRequestComponent {

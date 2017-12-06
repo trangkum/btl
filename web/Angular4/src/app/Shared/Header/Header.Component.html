@@ -42,48 +42,13 @@
 <!--</ul>-->
 <!--</div>-->
 <!--</nav>-->
-<div style="padding: 4px; width:100%">
-    <p style="font-size: 1.7em;font-family: sans-serif;">REQUEST IT</p>
-    <button data-dismiss="modal" data-backdrop="false" (click)="Add()"
-            class="btn btn-danger">
-        <i class="fa fa-plus" aria-hidden="true"></i><span style="margin-left: 20px">THÊM YÊU CẦU</span>
-    </button>
 
-    <div class="panel">
-        <div id="TriggerCollapsePanel1" data-toggle="collapse" data-target="#panel1" aria-expanded="true" aria-controls="panel1"></div>
-        <div class="tab" (click)="collapse()">
-            Việc tôi yêu cầu
-            <div class="right-icon" *ngIf="isPanel1Collapse"> + </div>
-            <div class="right-icon" *ngIf="!isPanel1Collapse"> - </div>
-        </div>
-        <div id="panel1" class="collapse show">
-            <div class="tab">
-                <a routerLinkActive="active-link"
-                   [routerLink]="'MyRequest'">MyRequest</a>
-            </div>
-            <div class="tab">Việc tôi yêu cầu</div>
-            <div class="tab">Việc tôi yêu cầu</div>
-            <div class="tab">Việc tôi yêu cầu</div>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="tab">Việc tôi yêu cầu</div>
-        <div class="tab">Việc tôi yêu cầu</div>
-        <div class="tab">Việc tôi yêu cầu</div>
-        <div class="tab">Việc tôi yêu cầu</div>
-        <div class="tab">Việc tôi yêu cầu</div>
-    </div>
-    <!--<div class="panel-group" style="margin-top: 10px;">-->
-    <!--<div class="panel panel-default">-->
-    <!--<div class="panel-heading">-->
-    <!--<h4 class="panel-title">-->
-    <!--<a data-toggle="collapse" href="#collapse1">Việc tôi yêu cầu</a>-->
-    <!--</h4>-->
-    <!--</div>-->
-    <!--<div id="collapse1" class="panel-collapse collapse">-->
-    <!--<div class="panel-body">Panel Body</div>-->
-    <!--<div class="panel-footer">Panel Footer</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-</div>
+
+<h4 class="title">Request IT</h4>
+<button [routerLink]="['/CreateRequest']" class="btn btn-danger btn-sm" style="margin-top:10px">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    <span class="title-button">THÊM YÊU CẦU</span>
+</button>
+<span *ngFor="let panel of panelList; let i = index">
+    <panel [panel]="panel"></panel>
+</span>

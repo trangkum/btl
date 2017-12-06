@@ -1,35 +1,90 @@
-<div class="row">
-    <table class="table table-bordered">
-        <thead style="white-space: nowrap">
-        <tr>
-            <th>STT</th>
-            <th>Tên công việc</th>
-            <th>Mức độ ưu tiên</th>
-            <th>Người yêu cầu</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td>
-                <input class="form-control" [(ngModel)]="searchTicketEntity.problemId" type="number"
-                       placeholder="Tìm kiếm..." (keydown.enter)="Search()">
-            </td>
-            <td>
-                <input class="form-control" [(ngModel)]="searchTicketEntity.problemId" type="text"
-                       placeholder="Search..." (keydown.enter)="Search()">
-            </td>
-            <td>
-                <input class="form-control" [(ngModel)]="searchTicketEntity.problemId" type="text"
-                       placeholder="Tìm kiếm..." (keydown.enter)="Search()">
-            </td>
-        </tr>
-        <tr *ngFor="let ticketEntity of (ticketEntities ? ticketEntities : []); let i = index">
-            <td>{{1}}</td>
-            <td>{{ticketEntity?.subject}}</td>
-            <td>{{ticketEntity?.priority}}</td>
-            <td>{{ticketEntity?.createEmployeeId}}</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="main-content">
+    <div class="content">
+        <div class="header-content">
+            <div class="row action-content">
+                <div class="col-md-6">
+                    <div class="title-header-content">
+                        {{title}}
+                    </div>
+                </div>
+                <div class="col-md-6 group-action-content">
+                    <button class="btn btn-sm btn-info">Reset bộ lọc</button>
+                    <button class="btn btn-sm btn-info">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+        <div class="body-content">
+            <table class="main-table">
+                <thead>
+                <tr>
+                    <th><span>STT</span></th>
+                    <th><span> Tên công việc </span><i class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th><span> Mức độ ưu tiên </span><i class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th><span> Người yêu cầu </span><i class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th><span> Người thực hiện </span><i class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th><span> Ngày hết hạn </span><i class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th><span> Trạng thái </span><i class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="input-group-sm search-input"><input class="form-control" placeholder="Tìm kiếm"
+                                                                   type="text"></td>
+                    <td class="input-group-sm search-input"><input class="form-control" placeholder="Tìm kiếm"
+                                                                   type="text"></td>
+                    <td class="input-group-sm search-input"><input class="form-control" placeholder="Tìm kiếm"
+                                                                   type="text"></td>
+                    <td class="input-group-sm search-input"><input class="form-control" placeholder="Tìm kiếm"
+                                                                   type="text"></td>
+                    <td class="input-group-sm search-input"><input class="form-control" placeholder="Tìm kiếm"
+                                                                   type="text"></td>
+                    <td class="input-group-sm search-input"><input class="form-control" placeholder="Tìm kiếm"
+                                                                   type="text"></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>STT</td>
+                    <td>Tên công việc</td>
+                    <td>Mức độ ưu tiên</td>
+                    <td>Người yêu cầu</td>
+                    <td>Người thực hiện</td>
+                    <td>Ngày hết hạn</td>
+                    <td>Trạng thái</td>
+                </tr>
+                <tr>
+                    <td>STT</td>
+                    <td>Tên công việc</td>
+                    <td>Mức độ ưu tiên</td>
+                    <td>Người yêu cầu</td>
+                    <td>Người thực hiện</td>
+                    <td>Ngày hết hạn</td>
+                    <td>Trạng thái</td>
+                </tr>
+                <tr>
+                    <td>STT</td>
+                    <td>Tên công việc</td>
+                    <td>Mức độ ưu tiên</td>
+                    <td>Người yêu cầu</td>
+                    <td>Người thực hiện</td>
+                    <td>Ngày hết hạn</td>
+                    <td>Trạng thái</td>
+                </tr>
+                <tr>
+                    <td>STT</td>
+                    <td>Tên công việc</td>
+                    <td>Mức độ ưu tiên</td>
+                    <td>Người yêu cầu</td>
+                    <td>Người thực hiện</td>
+                    <td>Ngày hết hạn</td>
+                    <td>Trạng thái</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

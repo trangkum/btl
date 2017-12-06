@@ -1,4 +1,4 @@
-package Module.Group;
+package Module.Location;
 
 
 import Module.Employee.EmployeeModel;
@@ -11,8 +11,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 import java.util.Collection;
 
 @Entity
-@Table(name = "group", schema = "btl", catalog = "")
-public class GroupModel {
+@Table(name = "location", schema = "btl", catalog = "")
+public class LocationModel {
     private Integer id;
     private String name;
     private Integer managerEmloyeeId;
@@ -56,7 +56,7 @@ public class GroupModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        GroupModel that = (GroupModel) o;
+        LocationModel that = (LocationModel) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
@@ -74,7 +74,7 @@ public class GroupModel {
         return result;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupByGroupId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "locationByLocationId")
     public Collection<EmployeeModel> getEmployeesById() {
         return employeesById;
     }
@@ -93,7 +93,7 @@ public class GroupModel {
         this.employeeByManagerEmloyeeId = employeeByManagerEmloyeeId;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupByGroupId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "locationByLocationId")
     public Collection<TeamModel> getTeamsById() {
         return teamsById;
     }
@@ -102,7 +102,7 @@ public class GroupModel {
         this.teamsById = teamsById;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupByGroupId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "locationByLocationId")
     public Collection<TicketModel> getTicketsById() {
         return ticketsById;
     }
@@ -112,9 +112,9 @@ public class GroupModel {
     }
 }
 
-@StaticMetamodel(GroupModel.class)
-class GroupModel_ {
-    public static volatile SingularAttribute<GroupModel, Integer> id;
-    public static volatile SingularAttribute<GroupModel, String> name;
-    public static volatile SingularAttribute<GroupModel, Integer> managerEmloyeeId;
+@StaticMetamodel(LocationModel.class)
+class LocationModel_ {
+    public static volatile SingularAttribute<LocationModel, Integer> id;
+    public static volatile SingularAttribute<LocationModel, String> name;
+    public static volatile SingularAttribute<LocationModel, Integer> managerEmloyeeId;
 }

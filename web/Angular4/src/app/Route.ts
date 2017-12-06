@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 //import {DestinationDomainComponent} from "./Component/Registry/DestinationDomain/DestinationDomain.Component";
 import {HomeComponent} from "./Modules/Home/Home.Component";
 import {MyRequestComponent} from "./Modules/MyRequest/MyRequest.Component";
+import {CreateRequestComponent} from "./Modules/CreateRequest/CreateRequest.Component";
 //[IMPORT MODULE]
 // import {[MODULE]Component} from "./Modules/[MODULE]/[MODULE].Component";
 // import {MyRequestComponent} from "./Modules/shape/shape.Component";
@@ -26,7 +27,15 @@ const routes: Routes = [
 //     {path: 'points', component: pointComponent},
 //     {path: 'problems', component: problemComponent},
 //     {path: 'shapes', component: MyRequestComponent},
-    {path: 'MyRequest', component: MyRequestComponent},
+    {path: 'All/:urlId', component: MyRequestComponent},
+    {path: 'New/:urlId', component: MyRequestComponent},
+    {path: 'InProgress/:urlId', component: MyRequestComponent},
+    {path: 'Resolved/:urlId', component: MyRequestComponent},
+    {path: 'Feedback/:urlId', component: MyRequestComponent},
+    {path: 'OutOfDate/:urlId', component: MyRequestComponent},
+    {path: 'Closed/:urlId', component: MyRequestComponent},
+    {path: 'CreateRequest', component: CreateRequestComponent},
+
     // {path: 'board', component: BoardComponent},
 // {    path: '[MODULE]',    component: [MODULE]Component},
     //[END]

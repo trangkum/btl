@@ -32,9 +32,9 @@ public class UserController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{userName}")
-    public UserEntity getId(@PathParam("userName") String userName) {
-        return userService.get(userName);
+    @Path("{userId}")
+    public UserEntity getId(@PathParam("userId") Integer userId) {
+        return userService.get(userId);
     }
 
     @POST

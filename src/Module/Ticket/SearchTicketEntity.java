@@ -30,8 +30,8 @@ public class SearchTicketEntity extends FilterEntity {
     public Integer assignedEmployeeId;
     @QueryParam("rating")
     public Byte rating;
-    @QueryParam("groupId")
-    public Integer groupId;
+    @QueryParam("locationId")
+    public Integer locationId;
     @QueryParam("resolvedTime")
     public Timestamp resolvedTime;
     @QueryParam("closedTime")
@@ -73,8 +73,8 @@ public class SearchTicketEntity extends FilterEntity {
             criteria.where(builder.equal(root.get(TicketModel_.rating), rating));
         }
 
-        if (groupId != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.groupId), groupId));
+        if (locationId != null) {
+            criteria.where(builder.equal(root.get(TicketModel_.locationId), locationId));
         }
         if (resolvedTime != null) {
             criteria.where(builder.equal(root.get(TicketModel_.resolvedTime), resolvedTime));

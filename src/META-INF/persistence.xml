@@ -18,14 +18,14 @@
         <class>Module.User.TokenModel</class>
         <class>Module.User.UserModel</class>
         <class>Module.File.FileModel</class>
-        <class>Module.Group.GroupModel</class>
+        <class>Module.Location.LocationModel</class>
         <class>Module.Permission.PermissionModel</class>
         <class>Module.Role.RoleModel</class>
         <class>Module.Route.RouteModel</class>
         <class>Module.Team.TeamModel</class>
         <class>Module.Employee.EmployeeModel</class>
         <class>Module.File.FileModel</class>
-        <class>Module.Group.GroupModel</class>
+        <class>Module.Location.LocationModel</class>
         <class>Module.Permission.PermissionModel</class>
         <class>Module.Role.RoleModel</class>
         <class>Module.Route.RouteModel</class>
@@ -49,6 +49,7 @@
         <class>Model.TicketthreadModel</class>
         <class>Model.TokenModel</class>
         <class>Model.UserModel</class>
+        <class>Module.Subcribe.SubcribeModel</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

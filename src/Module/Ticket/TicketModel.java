@@ -1,7 +1,7 @@
 package Module.Ticket;
 
 import Module.Employee.EmployeeModel;
-import Module.Group.GroupModel;
+import Module.Location.LocationModel;
 import Module.TicketAttribute.TicketattributeModel;
 import Module.TicketImage.TicketimageModel;
 import Module.TicketRead.TicketreadModel;
@@ -26,7 +26,7 @@ public class TicketModel {
     private Timestamp deadline;
     private Integer assignedEmployeeId;
     private Byte rating;
-    private Integer groupId;
+    private Integer locationId;
     private Timestamp resolvedTime;
     private Timestamp closedTime;
     private Timestamp createdTime;
@@ -34,7 +34,7 @@ public class TicketModel {
     private Timestamp deletedTime;
     private EmployeeModel employeeByCreateEmployeeId;
     private EmployeeModel employeeByAssignedEmployeeId;
-    private GroupModel groupByGroupId;
+    private LocationModel locationByLocationId;
     private Collection<TicketattributeModel> ticketattributesById;
     private Collection<TicketimageModel> ticketimagesById;
     private Collection<TicketreadModel> ticketreadsById;
@@ -132,13 +132,13 @@ public class TicketModel {
     }
 
     @Basic
-    @Column(name = "groupId", nullable = false)
-    public Integer getGroupId() {
-        return groupId;
+    @Column(name = "locationId", nullable = false)
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
     @Basic
@@ -209,7 +209,7 @@ public class TicketModel {
         if (assignedEmployeeId != null ? !assignedEmployeeId.equals(that.assignedEmployeeId) : that.assignedEmployeeId != null)
             return false;
         if (rating != null ? !rating.equals(that.rating) : that.rating != null) return false;
-        if (groupId != null ? !groupId.equals(that.groupId) : that.groupId != null) return false;
+        if (locationId != null ? !locationId.equals(that.locationId) : that.locationId != null) return false;
         if (resolvedTime != null ? !resolvedTime.equals(that.resolvedTime) : that.resolvedTime != null) return false;
         if (closedTime != null ? !closedTime.equals(that.closedTime) : that.closedTime != null) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) return false;
@@ -230,7 +230,7 @@ public class TicketModel {
         result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
         result = 31 * result + (assignedEmployeeId != null ? assignedEmployeeId.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
-        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
+        result = 31 * result + (locationId != null ? locationId.hashCode() : 0);
         result = 31 * result + (resolvedTime != null ? resolvedTime.hashCode() : 0);
         result = 31 * result + (closedTime != null ? closedTime.hashCode() : 0);
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
@@ -260,13 +260,13 @@ public class TicketModel {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "groupId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public GroupModel getGroupByGroupId() {
-        return groupByGroupId;
+    @JoinColumn(name = "locationId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public LocationModel getLocationByLocationId() {
+        return locationByLocationId;
     }
 
-    public void setGroupByGroupId(GroupModel groupByGroupId) {
-        this.groupByGroupId = groupByGroupId;
+    public void setLocationByLocationId(LocationModel locationByLocationId) {
+        this.locationByLocationId = locationByLocationId;
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "ticketByTicketId")
@@ -326,7 +326,7 @@ class TicketModel_ {
     public static volatile SingularAttribute<TicketModel, Timestamp> deadline;
     public static volatile SingularAttribute<TicketModel, Integer> assignedEmployeeId;
     public static volatile SingularAttribute<TicketModel, Byte> rating;
-    public static volatile SingularAttribute<TicketModel, Integer> groupId;
+    public static volatile SingularAttribute<TicketModel, Integer> locationId;
     public static volatile SingularAttribute<TicketModel, Timestamp> resolvedTime;
     public static volatile SingularAttribute<TicketModel, Timestamp> closedTime;
     public static volatile SingularAttribute<TicketModel, Timestamp> createdTime;

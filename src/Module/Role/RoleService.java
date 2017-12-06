@@ -47,7 +47,7 @@ public class RoleService {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RoleModel> criteria = builder.createQuery(RoleModel.class);
         Root<RoleModel> RoleModels = criteria.from(RoleModel.class);
-        criteria.where(builder.equal(RoleModels.get("id"), id));
+        criteria.where(builder.equal(RoleModels.get(RoleModel_.id), id));
         try {
             RoleModel roleModel = session.createQuery(criteria).getSingleResult();
             return new RoleEntity(roleModel);
@@ -98,7 +98,7 @@ public class RoleService {
 //            RoleEntity roleEntity = new RoleEntity(roleId, startX, startY, endX, endY, shapeId);
 //            session.update(roleEntity.toModel());
 //            tx.commit();
-//            RoleEntity result = get(roleId);
+//            RoleEntity result = getByUserName(roleId);
 //            return result;
 //        } catch (HibernateException e) {
 //            if (tx != null) tx.rollback();
@@ -146,7 +146,7 @@ public class RoleService {
         try {
             List<RoleModel> roleList = session.createQuery(criteria).getResultList();
             return roleList.stream()
-                    .map(s -> new RoleEntity(s)).collect(Collectors.toList());
+                    .map(s -> new RoleEntity(s,s.getPermissionsById())).collect(Collectors.toList());
         } catch (NoResultException e) {
             return null;
         } finally {

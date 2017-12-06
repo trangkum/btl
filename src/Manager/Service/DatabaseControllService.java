@@ -6,10 +6,11 @@ import Manager.Interface.IDatabaseControllService;
 import Manager.Model.DatabaseModel;
 import Module.Employee.EmployeeModel;
 import Module.File.FileModel;
-import Module.Group.GroupModel;
+import Module.Location.LocationModel;
 import Module.Permission.PermissionModel;
 import Module.Role.RoleModel;
 import Module.Route.RouteModel;
+import Module.Subcribe.SubcribeModel;
 import Module.Team.TeamModel;
 import Module.Ticket.TicketModel;
 import Module.TicketAttribute.TicketattributeModel;
@@ -66,7 +67,7 @@ public class DatabaseControllService implements IDatabaseControllService {
 //                        .setProperty("hibernate.c3p0.idle_test_period","3000")
                         .addAnnotatedClass(EmployeeModel.class)
                         .addAnnotatedClass(FileModel.class)
-                        .addAnnotatedClass(GroupModel.class)
+                        .addAnnotatedClass(LocationModel.class)
                         .addAnnotatedClass(PermissionModel.class)
                         .addAnnotatedClass(RoleModel.class)
                         .addAnnotatedClass(RouteModel.class)
@@ -78,6 +79,7 @@ public class DatabaseControllService implements IDatabaseControllService {
                         .addAnnotatedClass(TicketrelaterModel.class)
                         .addAnnotatedClass(TicketthreadModel.class)
                         .addAnnotatedClass(UserModel.class)
+                        .addAnnotatedClass(SubcribeModel.class)
                         .addAnnotatedClass(TokenModel.class);
                 break;
             default:
@@ -87,13 +89,13 @@ public class DatabaseControllService implements IDatabaseControllService {
                         .setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect")
                         .setProperty("hibernate.connection.username", databaseModel.userName)
                         .setProperty("hibernate.connection.password", databaseModel.passWord)
-                        .setProperty("hibernate.hbm2ddl.auto", "update")
+//                        .setProperty("hibernate.hbm2ddl.auto", "update")
                         .setProperty("hibernate.id.new_generator_mappings", "false")
                         .setProperty("hibernate.connection.autoReconnect", "true")
                         .setProperty("hibernate.connection.verifyServerCertificate", "false")
                         .addAnnotatedClass(EmployeeModel.class)
                         .addAnnotatedClass(FileModel.class)
-                        .addAnnotatedClass(GroupModel.class)
+                        .addAnnotatedClass(LocationModel.class)
                         .addAnnotatedClass(PermissionModel.class)
                         .addAnnotatedClass(RoleModel.class)
                         .addAnnotatedClass(RouteModel.class)
@@ -105,6 +107,7 @@ public class DatabaseControllService implements IDatabaseControllService {
                         .addAnnotatedClass(TicketrelaterModel.class)
                         .addAnnotatedClass(TicketthreadModel.class)
                         .addAnnotatedClass(TicketreadModelPK.class)
+                        .addAnnotatedClass(SubcribeModel.class)
                         .addAnnotatedClass(TicketimageModelPK.class)
                         .addAnnotatedClass(TicketrelaterModelPK.class)
                         .addAnnotatedClass(UserModel.class);

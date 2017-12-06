@@ -1,4 +1,4 @@
-package Module.Group;
+package Module.Location;
 
 import Module.Employee.EmployeeEntity;
 import Module.Employee.EmployeeModel;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class GroupEntity implements Serializable {
+public class LocationEntity implements Serializable {
     public int id;
     public String name;
     public int managerEmloyeeId;
@@ -27,13 +27,13 @@ public class GroupEntity implements Serializable {
     public List<TicketEntity> ticketEntities;
 
 
-    public GroupEntity() {
+    public LocationEntity() {
     }
 
-    public GroupEntity(GroupModel GroupModel, Object... objects) {
-        this.id = GroupModel.getId();
-        this.name = GroupModel.getName();
-        this.managerEmloyeeId = GroupModel.getManagerEmloyeeId();
+    public LocationEntity(LocationModel LocationModel, Object... objects) {
+        this.id = LocationModel.getId();
+        this.name = LocationModel.getName();
+        this.managerEmloyeeId = LocationModel.getManagerEmloyeeId();
         for (Object object : objects) {
             if (object instanceof EmployeeModel) {
                 this.managerEmployeeEntity = new EmployeeEntity((EmployeeModel) object);
@@ -54,11 +54,11 @@ public class GroupEntity implements Serializable {
         }
     }
 
-    public GroupModel toModel() {
-        GroupModel GroupModel = new GroupModel();
-        GroupModel.setId(id);
-        GroupModel.setName(name);
-        GroupModel.setManagerEmloyeeId(managerEmloyeeId);
-        return GroupModel;
+    public LocationModel toModel() {
+        LocationModel LocationModel = new LocationModel();
+        LocationModel.setId(id);
+        LocationModel.setName(name);
+        LocationModel.setManagerEmloyeeId(managerEmloyeeId);
+        return LocationModel;
     }
 }

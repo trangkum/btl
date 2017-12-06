@@ -1,2 +1,91 @@
-﻿<router-outlet></router-outlet>
+﻿<div class="map">
+    <span class="item-map">
+        <i class="fa fa-tachometer" aria-hidden="true"></i>
+        <span>Home</span>
+    </span>
+    <span class="item-map" *ngIf="splitPath.length > 0">
+        >
+    </span>
+    <span *ngFor="let path of splitPath; let i = index">
+        <span class="item-map">
+            <span>{{path}}</span>
+        </span>
+        <span class="item-map" *ngIf="i != splitPath.length-1">
+            >
+        </span>
+    </span>
+</div>
+    <router-outlet></router-outlet>
 
+
+<!--<div class="header-content">-->
+<!--<div class="row action-content">-->
+<!--<div class="col-md-4">-->
+<!--<div class="title-header-content">-->
+<!--Thêm yêu cầu-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="body-content">-->
+<!--<div class="row">-->
+<!--<div class="col-md-1"></div>-->
+<!--<div class="col-md-10">-->
+<!--<div class="row">-->
+<!--<div class="pair-input-create-request col-md-12">-->
+<!--<div class="label-input-create-request">Tên công việc <span class="red-start"></span></div>-->
+<!--<input type="text" placeholder="Tên công việc" class="form-control">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="pair-input-create-request col-md-6">-->
+<!--<div class="label-input-create-request">Mức độ ưu tiên </div>-->
+<!--<input type="text" class="form-control">-->
+<!--</div>-->
+<!--<div class="pair-input-create-request col-md-6">-->
+<!--<div class="label-input-create-request">Ngày hết hạn <span class="red-start"></span></div>-->
+<!--<input type="text" class="form-control">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="pair-input-create-request col-md-6">-->
+<!--<div class="label-input-create-request">Bộ phận IT <span class="red-start"></span></div>-->
+<!--<input type="text" class="form-control">-->
+<!--</div>-->
+<!--<div class="pair-input-create-request col-md-6">-->
+<!--<div class="label-input-create-request">Người liên quan </div>-->
+<!--<input type="text" class="form-control">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="pair-input-create-request col-md-12">-->
+<!--<div class="label-input-create-request">Nội dung <span class="red-start"></span></div>-->
+<!--<textarea class="content-input-discussion form-control" rows="6"></textarea>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="file-input-create-request col-md-12">-->
+<!--<div class="row">-->
+<!--<div class="col-md-8">-->
+<!--<input type="text" class="form-control file-title-input-create-request"-->
+<!--value="Choose files to upload" disabled>-->
+<!--</div>-->
+<!--<div class="col-md-1">-->
+<!--<button class="btn btn-primary">Choose Files</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="action-create-request col-md-12">-->
+<!--<button class="btn btn-sm btn-info">-->
+<!--<i class="fa fa-send" aria-hidden="true"></i>-->
+<!--Gửi yêu cầu</button>-->
+<!--<button class="btn btn-sm ">-->
+<!--<i class="fa fa-ban" aria-hidden="true"></i>-->
+<!--Hủy bỏ</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

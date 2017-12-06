@@ -14,7 +14,7 @@ public class SearchEmployeeEntity extends FilterEntity {
     @QueryParam("email") public String email;
     @QueryParam("name") public String name;
     @QueryParam("teamId")public Integer teamId;
-    @QueryParam("groupId")public Integer groupId;
+    @QueryParam("locationId")public Integer locationId;
     @QueryParam("briefName")public String briefName;
     public CriteriaQuery<EmployeeModel> applyTo(CriteriaBuilder builder, CriteriaQuery<EmployeeModel> criteria, Root<EmployeeModel> root) {
         if (id != null) {
@@ -29,8 +29,8 @@ public class SearchEmployeeEntity extends FilterEntity {
         if (teamId != null) {
             criteria.where(builder.equal(root.get(EmployeeModel_.teamId), teamId));
         }
-        if (groupId != null) {
-            criteria.where(builder.equal(root.get(EmployeeModel_.groupId), groupId));
+        if (locationId != null) {
+            criteria.where(builder.equal(root.get(EmployeeModel_.locationId), locationId));
         }
         if (briefName != null && !briefName.isEmpty()) {
             criteria.where(builder.like(builder.lower(root.get(EmployeeModel_.briefName)), "%" + briefName.toLowerCase() + "%"));

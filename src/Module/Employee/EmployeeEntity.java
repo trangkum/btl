@@ -2,8 +2,8 @@ package Module.Employee;
 
 import Module.File.FileEntity;
 import Module.File.FileModel;
-import Module.Group.GroupEntity;
-import Module.Group.GroupModel;
+import Module.Location.LocationEntity;
+import Module.Location.LocationModel;
 import Module.Team.TeamEntity;
 import Module.Team.TeamModel;
 import Module.Ticket.TicketEntity;
@@ -32,12 +32,12 @@ public class EmployeeEntity implements Serializable {
     public String email;
     public String name;
     public Integer teamId;
-    public Integer groupId;
+    public Integer locationId;
     public String briefName;
     public TeamEntity teamEntity;
-    public GroupEntity groupEntity;
+    public LocationEntity locationEntity;
     public List<FileEntity> fileEntities;
-    public List<GroupEntity> groupEntities;
+    public List<LocationEntity> locationEntities;
     public List<TeamEntity> teamEntities;
     public List<TicketEntity> createTicketEntities;
     public List<TicketEntity> assignTicketEntities;
@@ -55,20 +55,20 @@ public class EmployeeEntity implements Serializable {
         this.email = EmployeeModel.getEmail();
         this.name = EmployeeModel.getName();
         this.teamId = EmployeeModel.getTeamId();
-        this.groupId = EmployeeModel.getGroupId();
+        this.locationId = EmployeeModel.getLocationId();
         this.briefName = EmployeeModel.getBriefName();
         for (Object object : objects) {
             if (object instanceof TeamModel) {
                 this.teamEntity = new TeamEntity((TeamModel) object);
-            } else if (object instanceof GroupModel) {
-                this.groupEntity = new GroupEntity((GroupModel) object);
+            } else if (object instanceof LocationModel) {
+                this.locationEntity = new LocationEntity((LocationModel) object);
             } else if (object instanceof Collection) {
                 for (Object o : (Collection<Object>) object) {
                     if (o instanceof FileModel) {
                         this.fileEntities = ((Collection<FileModel>) object).parallelStream().map(FileEntity::new).collect(Collectors.toList());
                         break;
-                    } else if (o instanceof GroupModel) {
-                        this.groupEntities = ((Collection<GroupModel>) object).parallelStream().map(GroupEntity::new).collect(Collectors.toList());
+                    } else if (o instanceof LocationModel) {
+                        this.locationEntities = ((Collection<LocationModel>) object).parallelStream().map(LocationEntity::new).collect(Collectors.toList());
                         break;
                     } else if (o instanceof TeamModel) {
                         this.teamEntities = ((Collection<TeamModel>) object).parallelStream().map(TeamEntity::new).collect(Collectors.toList());
@@ -101,7 +101,7 @@ public class EmployeeEntity implements Serializable {
         employeeModel.setEmail(email);
         employeeModel.setName(name);
         employeeModel.setId(id);
-        employeeModel.setGroupId(groupId);
+        employeeModel.setLocationId(locationId);
         employeeModel.setTeamId(teamId);
         return employeeModel;
     }

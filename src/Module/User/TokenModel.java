@@ -1,16 +1,22 @@
 package Module.User;
 
+import Module.Subcribe.SubcribeModel;
+
 import javax.persistence.*;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 @Table(name = "token", schema = "btl", catalog = "")
 public class TokenModel {
     private int id;
-    private String userName;
-    private String key;
+    private Integer userId;
+    private String tokenKey;
     private Timestamp expriedTime;
-    private UserModel userByUserName;
+    private Collection<SubcribeModel> subcribesById;
+    private UserModel userByUserId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -23,23 +29,23 @@ public class TokenModel {
     }
 
     @Basic
-    @Column(name = "userName", nullable = true, length = 30)
-    public String getUserName() {
-        return userName;
+    @Column(name = "userId", nullable = true)
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Basic
-    @Column(name = "key", nullable = true, length = -1)
-    public String getKey() {
-        return key;
+    @Column(name = "tokenKey", nullable = true, length = -1)
+    public String getTokenKey() {
+        return tokenKey;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setTokenKey(String tokenKey) {
+        this.tokenKey = tokenKey;
     }
 
     @Basic
@@ -60,8 +66,8 @@ public class TokenModel {
         TokenModel that = (TokenModel) o;
 
         if (id != that.id) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (key != null ? !key.equals(that.key) : that.key != null) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (tokenKey != null ? !tokenKey.equals(that.tokenKey) : that.tokenKey != null) return false;
         if (expriedTime != null ? !expriedTime.equals(that.expriedTime) : that.expriedTime != null) return false;
 
         return true;
@@ -70,19 +76,28 @@ public class TokenModel {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (key != null ? key.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (tokenKey != null ? tokenKey.hashCode() : 0);
         result = 31 * result + (expriedTime != null ? expriedTime.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "userName", referencedColumnName = "userName", insertable = false, updatable = false)
-    public UserModel getUserByUserName() {
-        return userByUserName;
+    @OneToMany(mappedBy = "tokenByTokenId",fetch = FetchType.LAZY)
+    public Collection<SubcribeModel> getSubcribesById() {
+        return subcribesById;
     }
 
-    public void setUserByUserName(UserModel userByUserName) {
-        this.userByUserName = userByUserName;
+    public void setSubcribesById(Collection<SubcribeModel> subcribesById) {
+        this.subcribesById = subcribesById;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public UserModel getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(UserModel userByUserId) {
+        this.userByUserId = userByUserId;
     }
 }
