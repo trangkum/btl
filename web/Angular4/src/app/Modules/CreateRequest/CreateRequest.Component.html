@@ -1,0 +1,82 @@
+<div class="main-content">
+
+    <div class="header-content">
+        <div class="row action-content">
+            <div class="col-md-4">
+                <div class="title-header-content">
+                    Thêm yêu cầu
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="pair-input-create-request col-md-12">
+                        <div class="label-input-create-request">Tên công việc <span class="red-start"></span></div>
+                        <input type="text" placeholder="Tên công việc" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pair-input-create-request col-md-6">
+                        <div class="label-input-create-request">Mức độ ưu tiên</div>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="pair-input-create-request col-md-6">
+                        <div class="label-input-create-request">Ngày hết hạn <span class="red-start"></span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pair-input-create-request col-md-6">
+                        <div class="label-input-create-request">Bộ phận IT <span class="red-start"></span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="pair-input-create-request col-md-6">
+                        <div class="label-input-create-request">Người liên quan</div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pair-input-create-request col-md-12">
+                        <div class="label-input-create-request">Nội dung <span class="red-start"></span></div>
+                        <textarea class="content-input-discussion form-control" rows="6"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-input-create-request col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input *ngIf="file.name == null" type="text" class="form-control file-title-input-create-request"
+                                       value="Choose files to upload" disabled>
+                                <input *ngIf="file.name != null" type="text" class="form-control file-title-input-create-request"
+                                      [ngModel]="file.name" disabled>
+                            </div>
+                            <div class="col-md-1">
+                                <InputDiscussion>
+                                </InputDiscussion>
+                                <inputfile [DataEntity]="file" (onFileChanged)="showName()">
+                                    <button class="btn btn-primary">Choose Files</button>
+                                </inputfile>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="action-create-request col-md-12">
+                        <button class="btn btn-sm btn-info">
+                            <i class="fa fa-send" aria-hidden="true"></i>
+                            Gửi yêu cầu
+                        </button>
+                        <button class="btn btn-sm ">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            Hủy bỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
