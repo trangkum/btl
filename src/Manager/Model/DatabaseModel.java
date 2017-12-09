@@ -2,9 +2,6 @@ package Manager.Model;
 
 import org.json.simple.JSONObject;
 
-/**
- * Created by Son on 4/28/2017.
- */
 public class DatabaseModel {
     public int id;
     public int typeDB;

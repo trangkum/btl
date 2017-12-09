@@ -17,9 +17,6 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Son on 6/15/2017.
- */
 public class EmployeeService {
     private static SessionFactory factory;
     private static int currentActive;

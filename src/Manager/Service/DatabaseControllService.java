@@ -25,9 +25,6 @@ import Module.User.TokenModel;
 import Module.User.UserModel;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Created by Son on 5/12/2017.
- */
 
 public class DatabaseControllService implements IDatabaseControllService {
     public boolean setActive(int id) {

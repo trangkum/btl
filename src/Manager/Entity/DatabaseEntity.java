@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by Son on 4/28/2017.
- */
 public class DatabaseEntity implements IDatabaseEntity {
     public static int Active = 0;
     private static String fileDir;
