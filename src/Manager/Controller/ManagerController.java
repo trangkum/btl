@@ -16,10 +16,6 @@ package Manager.Controller;//package Manager.Controller;
 //import javax.ws.rs.core.HttpHeaders;
 //import javax.ws.rs.core.MediaType;
 //
-///**
-// * Created by Son on 4/28/2017.
-// */
-//
 //public class ManagerController {
 //    private IDatabaseService databaseService;
 //

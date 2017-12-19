@@ -1,5 +1,5 @@
 import {TeamEntity} from "../Team/Team.Entity";
-import {GroupEntity} from "../Group/Group.Entity";
+import {LocationEntity} from "../Location/Location.Entity";
 import {FileEntity} from "../File/File.Entity";
 import {TicketEntity} from "../Ticket/Ticket.Entity";
 import {TicketReadEntity} from "../TicketRead/TicketRead.Entity";
@@ -13,12 +13,12 @@ export class EmployeeEntity {
     email: string;
     name: string;
     teamId: number;
-    groupId : number;
+    locationId : number;
     briefName : string;
     teamEntity : TeamEntity;
-    groupEntity : GroupEntity;
+    locationEntity : LocationEntity;
     fileEntities : FileEntity[];
-    groupEntities : GroupEntity[];
+    locationEntities : LocationEntity[];
     teamEntities : TeamEntity[];
     createTicketEntities : TicketEntity[];
     assignTicketEntities : TicketEntity[];
@@ -36,12 +36,12 @@ export class EmployeeEntity {
             this.email = null;
             this.name = null;
             this.teamId = null;
-            this.groupId = null;
+            this.locationId = null;
             this.briefName = null;
             this.teamEntity = null;
-            this.groupEntity = null;
+            this.locationEntity = null;
             this.fileEntities = [];
-            this.groupEntities = [];
+            this.locationEntities = [];
             this.teamEntities = [];
             this.createTicketEntities = [];
             this.assignTicketEntities = [];
@@ -54,22 +54,22 @@ export class EmployeeEntity {
             this.email = data.email;
             this.name = data.name;
             this.teamId = data.teamId;
-            this.groupId = data.groupId;
+            this.locationId = data.locationId;
             this.briefName = data.briefName;
             this.teamEntity = data.teamEntity;
-            this.groupEntity = data.groupEntity;
+            this.locationEntity = data.locationEntity;
             if (data.fileEntities != null) {
                 this.fileEntities = [];
                 for (let item of data.fileEntities) {
                     this.fileEntities.push(new FileEntity(item));
                 }
             } else data.fileEntities = [];
-            if (data.groupEntities != null) {
-                this.groupEntities = [];
-                for (let item of data.groupEntities) {
-                    this.groupEntities.push(new GroupEntity(item));
+            if (data.locationEntities != null) {
+                this.locationEntities = [];
+                for (let item of data.locationEntities) {
+                    this.locationEntities.push(new LocationEntity(item));
                 }
-            } else data.groupEntities = [];
+            } else data.locationEntities = [];
             if (data.teamEntities != null) {
                 this.teamEntities = [];
                 for (let item of data.teamEntities) {
@@ -113,7 +113,7 @@ export class EmployeeEntity {
                 }
             } else data.userEntities = [];
             if (this.teamEntity == null) this.teamEntity = new TeamEntity();
-            if (this.groupEntity == null) this.groupEntity = new GroupEntity();
+            if (this.locationEntity == null) this.locationEntity = new LocationEntity();
         }
         this.IsEdit = false;
     }

@@ -21,7 +21,7 @@ function mod(a, b) {
 }
 
 /**
- * The civil calendar is one type of Hijri calendars used in islamic countries.
+ * The civil calendar is one orderType of Hijri calendars used in islamic countries.
  * Uses a fixed cycle of alternating 29- and 30-day months,
  * with a leap day added to the last month of 11 out of every 30 years.
  * http://cldr.unicode.org/development/development-process/design-proposals/islamic-calendar-types

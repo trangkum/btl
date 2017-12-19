@@ -13,7 +13,9 @@ import org.hibernate.Transaction;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -158,9 +160,8 @@ public class UserService {
         CriteriaQuery<UserModel> criteria = builder.createQuery(UserModel.class);
         Root<UserModel> UserModels = criteria.from(UserModel.class);
         try {
-            CriteriaQuery criteriaQuery = searchUserEntity.applyTo(builder, criteria, UserModels);
-            criteriaQuery.toString();
-            List<UserModel> userEntities = session.createQuery(criteriaQuery).getResultList();
+            List<Predicate> predicates = searchUserEntity.applyTo(builder, new ArrayList<>(), UserModels);
+            List<UserModel> userEntities = session.createQuery(criteria.where(predicates.toArray(new Predicate[]{}))).getResultList();
 //            List<UserModel> userEntities = searchUserEntity.skipAndTake(session.createQuery(searchUserEntity.order(builder, criteriaQuery, UserModels))).getResultList();
             return userEntities.stream()
                     .map(s -> new UserEntity(s)).collect(Collectors.toList());

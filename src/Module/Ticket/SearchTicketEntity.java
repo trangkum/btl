@@ -1,15 +1,15 @@
 package Module.Ticket;
 
+import AppStart.RESTTimestamp;
+import Module.Employee.EmployeeModel;
+import Module.Employee.EmployeeModel_;
 import Module.FilterEntity;
-import Module.User.UserModel;
+import Module.Location.LocationModel;
+import Module.Location.LocationModel_;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.ws.rs.QueryParam;
-import java.sql.Timestamp;
+import java.util.List;
 
 public class SearchTicketEntity extends FilterEntity {
     @QueryParam("id")
@@ -18,80 +18,129 @@ public class SearchTicketEntity extends FilterEntity {
     public String content;
     @QueryParam("subject")
     public String subject;
-    @QueryParam("createEmployeeId")
-    public Integer createEmployeeId;
+
     @QueryParam("status")
     public Integer status;
     @QueryParam("priority")
     public Integer priority;
     @QueryParam("deadline")
-    public Timestamp deadline;
-    @QueryParam("assignedEmployeeId")
-    public Integer assignedEmployeeId;
+    public String deadline;
     @QueryParam("rating")
     public Byte rating;
     @QueryParam("locationId")
     public Integer locationId;
     @QueryParam("resolvedTime")
-    public Timestamp resolvedTime;
+    public String resolvedTime;
     @QueryParam("closedTime")
-    public Timestamp closedTime;
+    public String closedTime;
     @QueryParam("createdTime")
-    public Timestamp createdTime;
+    public String createdTime;
     @QueryParam("updatedTime")
-    public Timestamp updatedTime;
+    public String updatedTime;
     @QueryParam("deletedTime")
-    public Timestamp deletedTime;
+    public String deletedTime;
+    @QueryParam("assignedEmployeeName")
+    public String assignedEmployeeName;
+    @QueryParam("createEmployeeName")
+    public String createEmployeeName;
 
-    public CriteriaQuery<TicketModel> applyTo(CriteriaBuilder builder, CriteriaQuery<TicketModel> criteria, Root<TicketModel> root) {
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<TicketModel> root) {
 
         if (id != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.id), id));
+            predicates.add(builder.equal(root.get(TicketModel_.id), id));
         }
         if (content != null && !content.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(TicketModel_.content)), "%" + content.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(TicketModel_.content)), "%" + content.toLowerCase() + "%"));
         }
         if (subject != null && !subject.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(TicketModel_.subject)), "%" + subject.toLowerCase() + "%"));
-        }
-        if (createEmployeeId != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.createEmployeeId), createEmployeeId));
+            predicates.add(builder.like(builder.lower(root.get(TicketModel_.subject)), "%" + subject.toLowerCase() + "%"));
         }
         if (status != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.status), status));
+            predicates.add(builder.equal(root.get(TicketModel_.status), status));
         }
         if (priority != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.priority), priority));
+            predicates.add(builder.equal(root.get(TicketModel_.priority), priority));
         }
-        if (deadline != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.deadline), deadline));
-        }
-        if (assignedEmployeeId != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.assignedEmployeeId), assignedEmployeeId));
+        if (deadline != null && !deadline.isEmpty()) {
+            predicates.add(builder.equal(root.get(TicketModel_.deadline), RESTTimestamp.Parse(deadline)));
         }
         if (rating != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.rating), rating));
+            predicates.add(builder.equal(root.get(TicketModel_.rating), rating));
         }
-
         if (locationId != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.locationId), locationId));
+            predicates.add(builder.equal(root.get(TicketModel_.locationId), locationId));
         }
-        if (resolvedTime != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.resolvedTime), resolvedTime));
+        if (resolvedTime != null && !resolvedTime.isEmpty()) {
+            predicates.add(builder.equal(root.get(TicketModel_.resolvedTime), resolvedTime));
         }
-        if (closedTime != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.closedTime), closedTime));
+        if (closedTime != null && !closedTime.isEmpty()) {
+            predicates.add(builder.equal(root.get(TicketModel_.closedTime), closedTime));
         }
-        if (createdTime != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.createdTime), createdTime));
+        if (createdTime != null && !createdTime.isEmpty()) {
+            predicates.add(builder.equal(root.get(TicketModel_.createdTime), createdTime));
         }
-        if (updatedTime != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.updatedTime), updatedTime));
+        if (updatedTime != null && !updatedTime.isEmpty()) {
+            predicates.add(builder.equal(root.get(TicketModel_.updatedTime), updatedTime));
         }
-        if (deletedTime != null) {
-            criteria.where(builder.equal(root.get(TicketModel_.deletedTime), deletedTime));
+        if (deletedTime != null && !deletedTime.isEmpty()) {
+            predicates.add(builder.equal(root.get(TicketModel_.deletedTime), deletedTime));
         }
-        return criteria;
+        if (createEmployeeName != null && !createEmployeeName.isEmpty()) {
+            Join<TicketModel, EmployeeModel> createEmployee = root.join(TicketModel_.employeeByCreateEmployeeId);
+            predicates.add(builder.like(builder.lower(createEmployee.get(EmployeeModel_.name)), "%" + createEmployeeName.toLowerCase() + "%"));
+        }
+        if (assignedEmployeeName != null && !assignedEmployeeName.isEmpty()) {
+            Join<TicketModel, EmployeeModel> assignedEmployee = root.join(TicketModel_.employeeByAssignedEmployeeId);
+            predicates.add(builder.like(builder.lower(assignedEmployee.get(EmployeeModel_.name)), "%" + assignedEmployeeName.toLowerCase() + "%"));
+        }
+        return predicates;
     }
 
+    @Override
+    public boolean specOrder(CriteriaBuilder builder, CriteriaQuery criteria, Root root) {
+        if ("createEmployeeName".equals(orderBy)) {
+            Join<TicketModel, EmployeeModel> createEmployee = root.join(TicketModel_.employeeByCreateEmployeeId);
+            if (orderType == null) orderType = "Asc";
+            switch (orderType) {
+                case "Asc":
+                case "asc":
+                    criteria.orderBy(builder.asc(createEmployee.get(EmployeeModel_.name)));
+                    break;
+                case "Desc":
+                case "desc":
+                    criteria.orderBy(builder.desc(createEmployee.get(EmployeeModel_.name)));
+                    break;
+            }
+            return true;
+        } else if ("assignedEmployeeName".equals(orderBy)) {
+            Join<TicketModel, EmployeeModel> assignedEmployee = root.join(TicketModel_.employeeByAssignedEmployeeId);
+            if (orderType == null) orderType = "Asc";
+            switch (orderType) {
+                case "Asc":
+                case "asc":
+                    criteria.orderBy(builder.asc(assignedEmployee.get(EmployeeModel_.name)));
+                    break;
+                case "Desc":
+                case "desc":
+                    criteria.orderBy(builder.desc(assignedEmployee.get(EmployeeModel_.name)));
+                    break;
+            }
+            return true;
+        }else if ("locationName".equals(orderBy)) {
+            Join<TicketModel, LocationModel> locationModelJoin = root.join(TicketModel_.locationByLocationId);
+            if (orderType == null) orderType = "Asc";
+            switch (orderType) {
+                case "Asc":
+                case "asc":
+                    criteria.orderBy(builder.asc(locationModelJoin.get(LocationModel_.name)));
+                    break;
+                case "Desc":
+                case "desc":
+                    criteria.orderBy(builder.desc(locationModelJoin.get(LocationModel_.name)));
+                    break;
+            }
+            return true;
+        }
+        return false;
+    }
 }

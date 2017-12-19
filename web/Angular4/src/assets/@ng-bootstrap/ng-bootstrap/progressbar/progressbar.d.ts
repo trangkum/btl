@@ -22,7 +22,7 @@ export declare class NgbProgressbar {
      */
     showValue: boolean;
     /**
-     * Type of progress bar, can be one of "success", "info", "warning" or "danger".
+     * type of progress bar, can be one of "success", "info", "warning" or "danger".
      */
     type: string;
     /**

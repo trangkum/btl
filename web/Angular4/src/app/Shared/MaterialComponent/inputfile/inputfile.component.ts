@@ -6,10 +6,12 @@ import {DataEntity} from "./Data.Entity";
     templateUrl: './inputfile.component.html'
 })
 export class InputfileComponent implements OnInit {
-    Id: string = this.MakeRandomId();
-
+    @Input() Id: string = this.MakeRandomId();
+    @Input() IsMultiFile: boolean = false;
+    @Input() DataEntities: DataEntity[] = [];
     @Input() DataEntity: DataEntity = new DataEntity();
     @Output() onFileChanged: EventEmitter<DataEntity> = new EventEmitter();
+    @Output() onMultiFileChanged: EventEmitter<DataEntity[]> = new EventEmitter();
 
     constructor() {
     }
@@ -42,6 +44,28 @@ export class InputfileComponent implements OnInit {
         this.DataEntity.extension = Arr.length > 1 ? Arr[Arr.length - 1] : Arr[0];
         r.readAsDataURL(f);
         this.onFileChanged.emit(this.DataEntity);
+    }
+
+    LoadMultiFile(files) {
+        if (files.length > 0) {
+            this.DataEntities.length = 0;
+            for (let i = 0; i < files.length; i++) {
+                let f = files[i],
+                    r = new FileReader();
+                let dataEntity = new DataEntity();
+                dataEntity.name = f.name;
+                r.onloadend = (e => { //callback after files finish loading
+                    dataEntity.data = r.result;
+                    dataEntity.data = dataEntity.data.substr(dataEntity.data.indexOf(',') + 1);
+                });
+                dataEntity.length = f.size;
+                let Arr = dataEntity.name.split('.');
+                dataEntity.extension = Arr.length > 1 ? Arr[Arr.length - 1] : Arr[0];
+                r.readAsDataURL(f);
+                this.DataEntities.push(dataEntity);
+            }
+            this.onMultiFileChanged.emit(this.DataEntities);
+        }
     }
 
     MakeRandomId(): string {

@@ -24,17 +24,23 @@ public class ServletFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String path = httpServletRequest.getRequestURL().toString();
         String urlEncode = URLEncoder.encode(path, "UTF-8");
+        String origin = httpServletRequest.getHeader("ORIGIN");
+        if (origin != null) origin = URLEncoder.encode(origin, "UTF-8");
+        String[] urlSplit = httpServletRequest.getRequestURL().toString().split("/");
+        String host = urlSplit[0] + "//" + urlSplit[2];
         if (path.contains("/api/authentication/") || path.contains("/Login.html") || path.contains("/Angular4/")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
         if (httpServletRequest.getMethod().equals("OPTIONS")) {
-            httpServletResponse.sendRedirect("/Login.html?redirect="+ urlEncode);
-            return;
+            if (origin == null || !origin.startsWith("http://localhost:4200")) {
+                httpServletResponse.sendRedirect(host + "/Login.html?redirect=" + urlEncode + "&originUrl=" + origin);
+                return;
+            }
         }
         Cookie[] cookies = httpServletRequest.getCookies();
-        if(cookies == null){
-            httpServletResponse.sendRedirect("/Login.html?redirect="+ urlEncode);
+        if (cookies == null) {
+            httpServletResponse.sendRedirect(host + "/Login.html?redirect=" + urlEncode + "&originUrl=" + origin);
             return;
         }
         String tokenKey = null;
@@ -44,12 +50,12 @@ public class ServletFilter implements Filter {
             }
         }
         if (tokenKey == null || tokenKey.trim().equals("")) {
-            httpServletResponse.sendRedirect("/Login.html?redirect="+ urlEncode);
+            httpServletResponse.sendRedirect(host + "/Login.html?redirect=" + urlEncode + "&originUrl=" + origin);
             return;
         }
         TokenEntity tokenEntity = tokenService.getByTokenKey(tokenKey);
         if (tokenEntity == null) {
-            httpServletResponse.sendRedirect("/Login.html?redirect="+ urlEncode);
+            httpServletResponse.sendRedirect(host + "/Login.html?redirect=" + urlEncode + "&originUrl=" + origin);
             return;
         }
         filterChain.doFilter(servletRequest, servletResponse);

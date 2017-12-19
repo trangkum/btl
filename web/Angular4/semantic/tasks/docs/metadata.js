@@ -49,7 +49,7 @@ function parser(file, callback) {
   try {
 
     var
-      /** @type {string} */
+      /** @orderType {string} */
       text     = String(file.contents.toString('utf8')),
       lines    = text.split('\n'),
       filename = file.path.substring(0, file.path.length - 4),

@@ -3,11 +3,12 @@ import {RouterModule, Routes} from "@angular/router";
 //import {SourceDomainComponent} from "./Component/Registry/SourceDomain/SourceDomain.Component";
 //import {DestinationDomainComponent} from "./Component/Registry/DestinationDomain/DestinationDomain.Component";
 import {HomeComponent} from "./Modules/Home/Home.Component";
-import {MyRequestComponent} from "./Modules/MyRequest/MyRequest.Component";
+import {ViewComponent} from "./Modules/View/View.Component";
 import {CreateRequestComponent} from "./Modules/CreateRequest/CreateRequest.Component";
+import {CommentComponent} from "./Modules/Comment/Comment.Component";
 //[IMPORT MODULE]
 // import {[MODULE]Component} from "./Modules/[MODULE]/[MODULE].Component";
-// import {MyRequestComponent} from "./Modules/shape/shape.Component";
+// import {ViewComponent} from "./Modules/shape/shape.Component";
 // import {[MODULE]Component} from "./Modules/[MODULE]/[MODULE].Component";
 //[END]
 const routes: Routes = [
@@ -26,15 +27,10 @@ const routes: Routes = [
 //     {path: 'files', component: fileComponent},
 //     {path: 'points', component: pointComponent},
 //     {path: 'problems', component: problemComponent},
-//     {path: 'shapes', component: MyRequestComponent},
-    {path: 'All/:urlId', component: MyRequestComponent},
-    {path: 'New/:urlId', component: MyRequestComponent},
-    {path: 'InProgress/:urlId', component: MyRequestComponent},
-    {path: 'Resolved/:urlId', component: MyRequestComponent},
-    {path: 'Feedback/:urlId', component: MyRequestComponent},
-    {path: 'OutOfDate/:urlId', component: MyRequestComponent},
-    {path: 'Closed/:urlId', component: MyRequestComponent},
-    {path: 'CreateRequest', component: CreateRequestComponent},
+//     {path: 'shapes', component: ViewComponent},
+    {path: 'view/:urlId/:urlType', component: ViewComponent},
+    {path: 'createRequest', component: CreateRequestComponent},
+    {path: 'comment/:ticketId', component: CommentComponent},
 
     // {path: 'board', component: BoardComponent},
 // {    path: '[MODULE]',    component: [MODULE]Component},
@@ -42,16 +38,6 @@ const routes: Routes = [
     {
         path: '**',
         redirectTo: 'Home',
-    },
-    {
-        path: 'Fams',
-        redirectTo: 'Fams/PurchaseRequest',
-        pathMatch: 'full'
-    },
-    {
-        path: 'List',
-        redirectTo: 'List/Vendor',
-        pathMatch: 'full'
     },
     {
         path: 'Permission',

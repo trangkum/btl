@@ -1,106 +1,4 @@
-﻿@media (min-width: 992px) {
-    .container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 1200px) {
-    .container {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-}
-
-/*.fixed-top {
-    top: 0px;
-    width: 100%;
-    position: absolute;
-}*/
-.page-info .page-info-content {
-    margin-top: 10px;
-    width: auto;
-}
-
-.page-info .page-info-content .page-info-content-name {
-    padding-top: 10px;
-    font-size: 14px;
-    color: black
-}
-
-.page-header-top {
-    position: relative;
-    height: 60px;
-}
-
-.page-header-top .page-logo {
-    width: auto;
-    height: auto;
-    margin-top: 10px;
-    display: inline-block;
-}
-
-.page-header-top .page-info {
-    margin: 0;
-    padding: 0;
-    float: right;
-    position: relative;
-    display: inline-block;
-}
-
-.page-logo a {
-    font-weight: 600;
-    font-size: 17px;
-    color: #0064B4;
-}
-
-.container-fluid {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.navbar {
-    border-radius: 0 !important;
-    background-color: #0064B4;
-    border-color: #0064B4;
-    max-height: 40px !important;
-}
-
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus {
-    color: #fff;
-    background-color: #2A92D8;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-    color: #fff;
-}
-
-.navbar-inverse .navbar-nav > li > a:hover {
-    background-color: #2A92D8;
-}
-
-.public-header-avatar {
-    display: inline-block;
-    margin: 0 auto;
-    width: 44px;
-    height: 44px;
-    background: #dcdcdc;
-    border: 2px solid #7D7D7D;
-    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .5);
-    border-radius: 50% !important;
-    overflow: hidden;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 40px;
-}
-
-public-header-avatar > img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.dropbtn {
+﻿.dropbtn {
     background-color: #0064B4;
     color: white;
     padding: 13px;
@@ -160,4 +58,11 @@ a.fpt-nav-link.nav-link {
     display: inline-block;
     float: right;
     margin-right: 15px;
+}
+
+.title-button{
+    font-size: 1rem;
+    padding-left: .5rem;
+    margin-top: .2rem;
+    margin-bottom: .2rem;
 }

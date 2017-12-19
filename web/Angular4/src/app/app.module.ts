@@ -46,30 +46,42 @@ import {Dropdown2Component} from "./Shared/MaterialComponent/dropdown2/dropdown2
 import {PortletComponent} from "./Shared/MaterialComponent/Portlet/Portlet.Component";
 import {InputDiscussionComponent} from "./Shared/MaterialComponent/InputDiscussion/InputDiscussion.component";
 import {AuthGuard} from "./Auth.Guard.Service";
-import {BottomToastsManager} from "./Shared/CustomToaster";
 import {NgvasModule} from "./Shared/NgVas/ngvas.module";
-import {MyRequestComponent} from "./Modules/MyRequest/MyRequest.Component";
+import {ViewComponent} from "./Modules/View/View.Component";
 import {TicketService} from "./Modules/Ticket/Ticket.Service";
-import {PanelComponent} from "./Shared/MaterialComponent/panel/Panel.Component";
 import {CreateRequestComponent} from "./Modules/CreateRequest/CreateRequest.Component";
+import {PanelComponent} from "./Shared/MaterialComponent/panel/Panel.Component";
+import {LocationService} from "./Modules/Location/Location.Service";
+import {EmployeeService} from "./Modules/Employee/Employee.Service";
+import {FileService} from "./Modules/File/File.Service";
+import {ViewService} from "./Modules/View/View.Service";
+import {BottomToastsManager} from "./Shared/CustomToaster";
+import {CommentService} from "./Modules/Comment/Comment.Service";
+import {CommentComponent} from "./Modules/Comment/Comment.Component";
+import {TicketThreadService} from "./Modules/TicketThread/TicketThread.Service";
+import {TicketReadService} from "./Modules/TicketRead/TicketRead.Service";
+import {TimeAgoPipe} from "./Shared/TimeAgo.Pipe";
+import {ImageModelComponent} from "./Shared/MaterialComponent/ImageModel/ImageModel.component";
+import {AuthService} from "./Shared/Header/Auth.Service";
 // import {[MODULE]Service} from "./Modules/[MODULE]/[MODULE].Service";
 //[END]
 
 @NgModule({
     imports: [ToastModule.forRoot(), BrowserModule, NgvasModule, FormsModule, HttpModule, Routing, BrowserAnimationsModule, ReactiveFormsModule, NgbModule.forRoot(), ConfirmationPopoverModule.forRoot(),
         InputTextModule, CalendarModule, ButtonModule, DataTableModule, DialogModule, TreeModule, RatingModule, AccordionModule, ContextMenuModule],
-    declarations: [AppComponent, HeaderComponent, BodyComponent, PagingComponent, DropdownComponent, ExcelComponent, TagsinputComponent,
+    declarations: [AppComponent, HeaderComponent, BodyComponent, PagingComponent, TimeAgoPipe, DropdownComponent, ExcelComponent, TagsinputComponent,ImageModelComponent,
         HomeComponent, InputfileComponent, ModalComponent, Dropdown2Component, PortletComponent,
-        MenuPurchaseComponent, TooltipDirective,CreateRequestComponent, InputDiscussionComponent, PanelComponent,
+        MenuPurchaseComponent, TooltipDirective, CreateRequestComponent, InputDiscussionComponent, PanelComponent,
         // LayerAccessControlComponent, RuleComponent,
         //[IMPORT MODULE] [
         //[MODULE]Component,
-        MyRequestComponent
+        ViewComponent, CommentComponent
         // [MODULE]Component,
         //[END],DropdownComponent2
     ],
     providers: [
-        AuthGuard,
+        AuthGuard,AuthService,
+        BottomToastsManager,
         {
             provide: Http,
             useFactory: HttpFactory,
@@ -85,10 +97,9 @@ import {CreateRequestComponent} from "./Modules/CreateRequest/CreateRequest.Comp
         //     deps: [Http, RoleService]
         // },
 
-        BottomToastsManager,
         //[IMPORT MODULE] [
         //[MODULE]Service,
-        TicketService
+        TicketService, LocationService, EmployeeService, FileService, ViewService, CommentService, TicketThreadService, TicketReadService
         //[MODULE]Service,
         //[END]
     ], schemas: [NO_ERRORS_SCHEMA],
@@ -106,4 +117,3 @@ export const HOSTNAME = "http://localhost:8080/";
 // export function AuthFactory(Http: Http, RoleService: RoleService): AuthService {
 //     return new AuthService(Http, RoleService);
 // }
-

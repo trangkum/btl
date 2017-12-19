@@ -12,11 +12,11 @@ import javax.ws.rs.QueryParam;
 
 public class SearchLocationEntity extends FilterEntity {
     @QueryParam("id")
-    private Integer id;
+    public Integer id;
     @QueryParam("name")
-    private String name;
+    public String name;
     @QueryParam("managerEmployeeId")
-    private Integer managerEmployeeId;
+    public Integer managerEmployeeId;
 
     public CriteriaQuery<LocationModel> applyTo(CriteriaBuilder builder, CriteriaQuery<LocationModel> criteria, Root<LocationModel> root) {
         return criteria;

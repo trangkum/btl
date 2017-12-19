@@ -36,7 +36,7 @@ export declare class NgbRadioGroup implements ControlValueAccessor {
 }
 
 /**
- * Marks an input of type "radio" as part of the NgbRadioGroup.
+ * Marks an input of orderType "radio" as part of the NgbRadioGroup.
  */
 export declare class NgbRadio implements OnDestroy {
     /**

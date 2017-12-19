@@ -7,6 +7,7 @@ import Manager.Service.DatabaseService;
 import Module.Employee.EmployeeService;
 import Module.File.FileService;
 import Module.Location.LocationService;
+import Module.View.ViewService;
 import Module.Permission.PermissionService;
 import Module.Role.RoleService;
 import Module.Route.RouteService;
@@ -41,5 +42,6 @@ public class ApplicationBinder extends AbstractBinder {
         bind(new TicketThreadService()).to(TicketThreadService.class);
         bind(new UserService()).to(UserService.class);
         bind(new TokenService()).to(TokenService .class);
+        bind(new ViewService()).to(ViewService.class);
     }
 }

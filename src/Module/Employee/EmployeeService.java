@@ -13,9 +13,12 @@ import org.hibernate.Transaction;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class EmployeeService {
     private static SessionFactory factory;
@@ -141,8 +144,9 @@ public class EmployeeService {
         CriteriaQuery<EmployeeModel> criteria = builder.createQuery(EmployeeModel.class);
         Root<EmployeeModel> EmployeeModels = criteria.from(EmployeeModel.class);
         try {
-            CriteriaQuery criteriaQuery = searchEmployeeEntity.applyTo(builder,criteria,EmployeeModels);
-            List<EmployeeModel> employeeModels = searchEmployeeEntity.skipAndTake(session.createQuery(searchEmployeeEntity.order(builder,criteriaQuery,EmployeeModels))).getResultList();
+            List<Predicate> predicates = searchEmployeeEntity.applyTo(builder,new ArrayList<>(),EmployeeModels);
+            criteria.where(predicates.toArray(new Predicate[]{}));
+            List<EmployeeModel> employeeModels = searchEmployeeEntity.skipAndTake(session.createQuery(searchEmployeeEntity.order(builder,criteria,EmployeeModels))).getResultList();
             return employeeModels.stream()
                     .map(s -> new EmployeeEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {

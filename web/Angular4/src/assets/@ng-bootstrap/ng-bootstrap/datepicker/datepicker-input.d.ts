@@ -52,7 +52,7 @@ export declare class NgbInputDatepicker implements OnChanges, OnDestroy, Control
      */
     maxDate: NgbDateStruct;
     /**
-     * Navigation type: `select` (default with select boxes for month and year), `arrows`
+     * Navigation orderType: `select` (default with select boxes for month and year), `arrows`
      * (without select boxes, only navigation arrows) or `none` (no navigation at all)
      */
     navigation: 'select' | 'arrows' | 'none';

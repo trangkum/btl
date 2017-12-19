@@ -28,8 +28,11 @@ public class FilterEntity<T> {
                 type.getDeclaredField(orderBy);
                 property = orderBy;
             } catch (NoSuchFieldException e) {
-                property = type.getDeclaredFields()[0].getName();
-                e.printStackTrace();
+                if(specOrder(builder,criteria,root)) return criteria;
+                else {
+                    property = type.getDeclaredFields()[0].getName();
+//                    e.printStackTrace();
+                }
             }
             if (orderType == null) orderType = "Asc";
             switch (orderType) {
@@ -54,5 +57,9 @@ public class FilterEntity<T> {
             query.setMaxResults(take);
         }
         return query;
+    }
+
+    public boolean specOrder(CriteriaBuilder builder, CriteriaQuery<T> criteria, Root<T> root){
+        return false;
     }
 }

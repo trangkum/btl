@@ -1,5 +1,5 @@
 import {EmployeeEntity} from "../Employee/Employee.Entity";
-import {GroupEntity} from "../Group/Group.Entity";
+import {LocationEntity} from "../Location/Location.Entity";
 import {TicketAttributeEntity} from "../TicketAttribute/TicketAttribute.Entity";
 import {TicketImageEntity} from "../TicketImage/TicketImage.Entity";
 import {TicketReadEntity} from "../TicketRead/TicketRead.Entity";
@@ -7,17 +7,16 @@ import {TicketRelaterEntity} from "../TicketRelater/TicketRelater.Entity";
 import {TicketThreadEntity} from "../TicketThread/TicketThread.Entity";
 
 export class TicketEntity {
-
     id: number;
     content: string;
     subject: string;
     createEmployeeId: number;
-    status : number;
+    status: number;
     priority: number;
-    deadline : string;
+    deadline: string;
     assignedEmployeeId: number;
     rating: number;
-    groupId: number;
+    locationId: number;
     resolvedTime: string;
     closedTime: string;
     createdTime: string;
@@ -25,7 +24,7 @@ export class TicketEntity {
     deletedTime: string;
     createEmployeeEntity: EmployeeEntity;
     assignedEmployeeEntity: EmployeeEntity;
-    groupEntity: GroupEntity;
+    locationEntity: LocationEntity;
     ticketAttributeEntities: TicketAttributeEntity[];
     ticketImageEntities: TicketImageEntity[];
     ticketReadEntities: TicketReadEntity[];
@@ -34,6 +33,7 @@ export class TicketEntity {
     IsEdit: boolean;
     IsActive: boolean = false;
     IsSelected: boolean = false;
+
     constructor(data: any = null) {
         if (data == null) {
             this.id = null;
@@ -45,13 +45,12 @@ export class TicketEntity {
             this.deadline = null;
             this.assignedEmployeeId = null;
             this.rating = null;
-            this.groupId = null;
+            this.locationId = null;
             this.resolvedTime = null;
             this.closedTime = null;
             this.createdTime = null;
             this.updatedTime = null;
             this.deletedTime = null;
-
             this.createEmployeeEntity = new EmployeeEntity();
             this.assignedEmployeeEntity = new EmployeeEntity();
             this.ticketAttributeEntities = [];
@@ -69,14 +68,16 @@ export class TicketEntity {
             this.deadline = data.deadline;
             this.assignedEmployeeId = data.assignedEmployeeId;
             this.rating = data.rating;
-            this.groupId = data.groupId;
+            this.locationId = data.locationId;
             this.resolvedTime = data.resolvedTime;
             this.closedTime = data.closedTime;
             this.createdTime = data.createdTime;
             this.updatedTime = data.updatedTime;
             this.deletedTime = data.deletedTime;
-            this.createEmployeeEntity = data.createEmployeeEntity == null? new EmployeeEntity() : data.createEmployeeEntity;
-            this.assignedEmployeeEntity = data.assignedEmployeeEntity== null? new EmployeeEntity() : data.assignedEmployeeEntity;;
+            this.createEmployeeEntity = data.createEmployeeEntity == null ? new EmployeeEntity() : data.createEmployeeEntity;
+            this.assignedEmployeeEntity = data.assignedEmployeeEntity == null ? new EmployeeEntity() : data.assignedEmployeeEntity;
+            this.locationEntity = data.locationEntity;
+            ;
             if (data.ticketAttributeEntities != null) {
                 this.ticketAttributeEntities = [];
                 for (let item of data.ticketAttributeEntities) {

@@ -967,7 +967,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
     pointer-events: none !important;
 }
 
-/* Basic Group With Disabled */
+/* Basic Location With Disabled */
 
 .ui.basic.buttons .ui.disabled.button {
     border-color: rgba(34, 36, 38, 0.5);
@@ -1125,7 +1125,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
     text-shadow: none !important;
 }
 
-/* Group */
+/* Location */
 
 .ui.inverted.buttons .button {
     margin: 0px 0px 0px -2px;
@@ -1656,7 +1656,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
     box-shadow: 0px 0px 0px 2px #ffffff inset !important;
 }
 
-/* Basic Group */
+/* Basic Location */
 
 .ui.basic.buttons .button {
     border-left: 1px solid rgba(34, 36, 38, 0.15);
@@ -4632,7 +4632,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
     visibility: hidden;
 }
 
-/* Standard Group */
+/* Standard Location */
 
 .ui.buttons .button {
     -webkit-box-flex: 1;
@@ -12491,7 +12491,7 @@ a.ui.label {
 }
 
 /*-------------------
-       Group
+       Location
 --------------------*/
 
 .ui.labels > .label {
@@ -15988,7 +15988,7 @@ ol.ui.horizontal.list li:before,
     display: table;
 }
 
-/* Compact Group */
+/* Compact Location */
 
 .ui.compact.segments {
     display: -webkit-inline-box;
@@ -16029,7 +16029,7 @@ ol.ui.horizontal.list li:before,
             Groups
 *******************************/
 
-/* Group */
+/* Location */
 
 .ui.segments {
     -webkit-box-orient: vertical;
@@ -16090,7 +16090,7 @@ ol.ui.horizontal.list li:before,
     border-radius: 0.28571429rem;
 }
 
-/* Nested Group */
+/* Nested Location */
 
 .ui.segments > .ui.segments {
     border-top: 1px solid rgba(34, 36, 38, 0.15);
@@ -16105,7 +16105,7 @@ ol.ui.horizontal.list li:before,
     margin-top: 0em;
 }
 
-/* Horizontal Group */
+/* Horizontal Location */
 
 .ui.horizontal.segments {
     display: -webkit-box;
@@ -16125,7 +16125,7 @@ ol.ui.horizontal.list li:before,
     border: 1px solid rgba(34, 36, 38, 0.15);
 }
 
-/* Nested Horizontal Group */
+/* Nested Horizontal Location */
 
 .ui.segments > .horizontal.segments {
     margin: 0em;
@@ -23427,7 +23427,7 @@ Floated Menu / Item
     color: #912D2B;
 }
 
-/* Info */
+/* View */
 
 .ui.info.message {
     background-color: #F8FFFF;
@@ -27437,7 +27437,7 @@ a.ui.card:hover,
 }
 
 /*******************************
-            Group
+            Location
 *******************************/
 
 /* Grouped */
@@ -33538,7 +33538,7 @@ a.ui.nag {
 }
 
 /*--------------
-      Info
+      View
 ---------------*/
 
 .ui.search > .results .result .image + .content {

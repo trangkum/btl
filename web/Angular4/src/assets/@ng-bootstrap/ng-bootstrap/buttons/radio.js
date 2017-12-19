@@ -88,7 +88,7 @@ NgbRadioGroup.ctorParameters = function () {
     return [];
 };
 /**
- * Marks an input of type "radio" as part of the NgbRadioGroup.
+ * Marks an input of orderType "radio" as part of the NgbRadioGroup.
  */
 var NgbRadio = (function () {
     function NgbRadio(_group, _label, _renderer, _element) {
@@ -165,7 +165,7 @@ export {NgbRadio};
 NgbRadio.decorators = [
     {
         type: Directive, args: [{
-        selector: '[ngbButton][type=radio]',
+        selector: '[ngbButton][orderType=radio]',
         host: {
             '[checked]': 'checked',
             '[disabled]': 'disabled',

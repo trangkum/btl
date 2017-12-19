@@ -22,6 +22,7 @@ public class LocationModel {
     private Collection<TicketModel> ticketsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
@@ -112,9 +113,3 @@ public class LocationModel {
     }
 }
 
-@StaticMetamodel(LocationModel.class)
-class LocationModel_ {
-    public static volatile SingularAttribute<LocationModel, Integer> id;
-    public static volatile SingularAttribute<LocationModel, String> name;
-    public static volatile SingularAttribute<LocationModel, Integer> managerEmloyeeId;
-}

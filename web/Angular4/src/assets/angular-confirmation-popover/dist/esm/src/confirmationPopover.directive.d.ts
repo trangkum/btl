@@ -55,12 +55,12 @@ export declare class ConfirmationPopover implements OnDestroy, OnChanges, OnInit
      */
     placement: string;
     /**
-     * The bootstrap button type of the confirm button. It can be any supported bootstrap color type
+     * The bootstrap button orderType of the confirm button. It can be any supported bootstrap color orderType
      * e.g. `default`, `warning`, `danger` etc. Default `success`
      */
     confirmButtonType: string;
     /**
-     * The bootstrap button type of the cancel button. It can be any supported bootstrap color type
+     * The bootstrap button orderType of the cancel button. It can be any supported bootstrap color orderType
      * e.g. `default`, `warning`, `danger` etc. Default `default`
      */
     cancelButtonType: string;

@@ -13,9 +13,9 @@ import java.io.Serializable;
  * and open the template in the editor.
  */
 public class TicketReadEntity implements Serializable {
-    public int ticketId;
-    public int employeeId;
-    public byte status;
+    public Integer ticketId;
+    public Integer employeeId;
+    public Integer status;
     public TicketEntity ticketEntity;
     public EmployeeEntity employeeEntity;
 

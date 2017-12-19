@@ -1,5 +1,6 @@
 package Module.Ticket;
 
+import AppStart.RESTTimestamp;
 import Module.Employee.EmployeeEntity;
 import Module.Employee.EmployeeModel;
 import Module.Location.LocationEntity;
@@ -16,7 +17,7 @@ import Module.TicketAttribute.TicketAttributeEntity;
 import Module.TicketAttribute.TicketattributeModel;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,18 +31,18 @@ public class TicketEntity implements Serializable {
     public int id;
     public String content;
     public String subject;
-    public int createEmployeeId;
-    public int status;
-    public int priority;
-    public Timestamp deadline;
+    public Integer createEmployeeId;
+    public Integer status;
+    public Integer priority;
+    public String deadline;
     public Integer assignedEmployeeId;
     public Byte rating;
-    public int locationId;
-    public Timestamp resolvedTime;
-    public Timestamp closedTime;
-    public Timestamp createdTime;
-    public Timestamp updatedTime;
-    public Timestamp deletedTime;
+    public Integer locationId;
+    public String resolvedTime;
+    public String closedTime;
+    public String createdTime;
+    public String updatedTime;
+    public String deletedTime;
     public EmployeeEntity createEmployeeEntity;
     public EmployeeEntity assignedEmployeeEntity;
     public LocationEntity locationEntity;
@@ -61,18 +62,18 @@ public class TicketEntity implements Serializable {
         this.createEmployeeId = ticketModel.getCreateEmployeeId();
         this.status = ticketModel.getStatus();
         this.priority = ticketModel.getPriority();
-        this.deadline = ticketModel.getDeadline();
+        this.deadline = ticketModel.getDeadline().toString();
         this.assignedEmployeeId = ticketModel.getAssignedEmployeeId();
         this.rating = ticketModel.getRating();
         this.locationId = ticketModel.getLocationId();
-        this.resolvedTime = ticketModel.getResolvedTime();
-        this.closedTime = ticketModel.getClosedTime();
-        this.createdTime = ticketModel.getCreatedTime();
-        this.updatedTime = ticketModel.getUpdatedTime();
-        this.deletedTime = ticketModel.getDeletedTime();
+        this.resolvedTime =  RESTTimestamp.toString(ticketModel.getResolvedTime());
+        this.closedTime =RESTTimestamp.toString(ticketModel.getClosedTime());
+        this.createdTime =  RESTTimestamp.toString(ticketModel.getCreatedTime());
+        this.updatedTime =  RESTTimestamp.toString(ticketModel.getUpdatedTime());
+        this.deletedTime = RESTTimestamp.toString(ticketModel.getDeletedTime());
         for (Object object : objects) {
             if (object instanceof EmployeeModel) {
-                this.assignedEmployeeEntity = new EmployeeEntity((EmployeeModel) object);
+                this.createEmployeeEntity = new EmployeeEntity((EmployeeModel) object);
             } else if (object instanceof LocationModel) {
                 this.locationEntity = new LocationEntity((LocationModel) object);
             } else if (object instanceof Collection) {
@@ -101,20 +102,33 @@ public class TicketEntity implements Serializable {
     public TicketModel toModel() {
         TicketModel ticketModel = new TicketModel();
         ticketModel.setId(id);
-        ticketModel.setContent(content);
-        ticketModel.setSubject(subject);
+        try {
+            ticketModel.setSubject(new String(subject.getBytes(), "UTF-8"));
+            ticketModel.setContent(new String(content.getBytes(), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         ticketModel.setCreateEmployeeId(createEmployeeId);
         ticketModel.setStatus(status);
         ticketModel.setPriority(priority);
-        ticketModel.setDeadline(deadline);
+        ticketModel.setDeadline(RESTTimestamp.Parse(deadline));
         ticketModel.setAssignedEmployeeId(assignedEmployeeId);
         ticketModel.setRating(rating);
         ticketModel.setLocationId(locationId);
-        ticketModel.setResolvedTime(resolvedTime);
-        ticketModel.setClosedTime(closedTime);
-        ticketModel.setCreatedTime(createdTime);
-        ticketModel.setUpdatedTime(updatedTime);
-        ticketModel.setDeletedTime(deletedTime);
+        ticketModel.setResolvedTime(RESTTimestamp.Parse(resolvedTime));
+        ticketModel.setClosedTime(RESTTimestamp.Parse(closedTime));
+        ticketModel.setCreatedTime(RESTTimestamp.Parse(createdTime));
+        ticketModel.setUpdatedTime(RESTTimestamp.Parse(updatedTime));
+        ticketModel.setDeletedTime(RESTTimestamp.Parse(deletedTime));
+        return ticketModel;
+    }
+
+    public TicketModel toModel(List<TicketImageEntity> ticketImageEntities) {
+        TicketModel ticketModel = toModel();
+        if(ticketImageEntities != null){
+            Collection<TicketimageModel> ticketimageModels = ticketImageEntities.parallelStream().map(TicketImageEntity::toModel).collect(Collectors.toList());
+            ticketModel.setTicketimagesById(ticketimageModels);
+        }
         return ticketModel;
     }
 }

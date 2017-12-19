@@ -1,5 +1,6 @@
 package Module.TicketThread;
 
+import AppStart.RESTTimestamp;
 import Module.Employee.EmployeeEntity;
 import Module.Employee.EmployeeModel;
 import Module.Ticket.TicketEntity;
@@ -19,8 +20,8 @@ public class TicketThreadEntity implements Serializable {
     public int employeeId;
     public String content;
     public Byte type;
-    public Timestamp createTime;
-    public Timestamp updateTime;
+    public String createTime;
+    public String updateTime;
     public TicketEntity ticketEntity;
     public EmployeeEntity employeeEntity;
 
@@ -35,8 +36,8 @@ public class TicketThreadEntity implements Serializable {
         this.employeeId = TicketattributeModel.getEmployeeId();
         this.content = TicketattributeModel.getContent();
         this.type = TicketattributeModel.getType();
-        this.createTime = TicketattributeModel.getCreateTime();
-        this.updateTime = TicketattributeModel.getUpdateTime();
+        this.createTime = TicketattributeModel.getCreateTime().toString();
+        this.updateTime = TicketattributeModel.getUpdateTime().toString();
         for (Object object : objects) {
             if (object instanceof TicketModel) {
                 this.ticketEntity = new TicketEntity((TicketModel) object);
@@ -53,8 +54,8 @@ public class TicketThreadEntity implements Serializable {
         ticketthreadModel.setEmployeeId(employeeId);
         ticketthreadModel.setContent(content);
         ticketthreadModel.setType(type);
-        ticketthreadModel.setCreateTime(createTime);
-        ticketthreadModel.setUpdateTime(updateTime);
+        ticketthreadModel.setCreateTime(RESTTimestamp.Parse(createTime));
+        ticketthreadModel.setUpdateTime(RESTTimestamp.Parse(updateTime));
         return ticketthreadModel;
     }
 }

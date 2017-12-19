@@ -1,16 +1,19 @@
 import {FilterEntity} from "../../Shared/Filter.Entity";
 
-export class SearchshapeEntity extends FilterEntity {
-    shapeId: number;
+export class SearchEmployeeEntity extends FilterEntity {
+    employeeId: number;
     problemId: string;
     level: string;
     userId: string;
-
-    constructor(shape: any = null) {
-        super(shape);
-        this.shapeId = shape == null ? null : shape.shapeId;
-        this.problemId = shape == null ? null : shape.problemId;
-        this.level = shape == null ? null : shape.level;
-        this.userId = shape == null ? null : shape.userId;
+    briefName: string;
+    name: string;
+    constructor(employee: any = null) {
+        super(employee);
+        this.employeeId = employee == null ? null : employee.employeeId;
+        this.problemId = employee == null ? null : employee.problemId;
+        this.level = employee == null ? null : employee.level;
+        this.userId = employee == null ? null : employee.userId;
+        this.briefName = employee == null ? null : employee.briefName;
+        this.name = employee == null ? null : employee.name;
     }
 }

@@ -152,7 +152,7 @@ $.fn.state = function(parameters) {
             return !( $module.is(settings.filter.text) );
           },
 
-          // definitions for automatic type detection
+          // definitions for automatic orderType detection
           button: function() {
             return $module.is('.button:not(a, .submit)');
           },

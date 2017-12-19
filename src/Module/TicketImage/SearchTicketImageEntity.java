@@ -7,23 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public class SearchTicketImageEntity extends FilterEntity {
     @QueryParam("ticketId")
     public Integer ticketId;
-    @QueryParam("fielId")
-    public Integer fielId;
+    @QueryParam("fileId")
+    public Integer fileId;
 
-    public CriteriaQuery<TicketimageModel> applyTo(CriteriaBuilder builder, CriteriaQuery<TicketimageModel> criteria, Root<TicketimageModel> root) {
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<TicketimageModel> root) {
         if (ticketId != null) {
-            criteria.where(builder.equal(root.get(TicketimageModel_.ticketId), ticketId));
+            predicates.add(builder.equal(root.get(TicketimageModel_.ticketId), ticketId));
         }
-        if (fielId != null) {
-            criteria.where(builder.equal(root.get(TicketimageModel_.fielId), fielId));
+        if (fileId != null) {
+            predicates.add(builder.equal(root.get(TicketimageModel_.fileId), fileId));
         }
-        return criteria;
+        return predicates;
     }
 
 }

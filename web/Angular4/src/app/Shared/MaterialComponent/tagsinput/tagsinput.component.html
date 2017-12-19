@@ -1,5 +1,4 @@
-﻿<div class="TagsInput container">
-    <span *ngFor="let Tag of DataList">
+﻿<span *ngFor="let Tag of DataList">
         <span [class]="'tag label ' + (Tag.Class == null ? DefaultTagClass : Tag.Class)"
               *ngIf="Tag[PropertySelected] == true">
                        <!--{{Tag[DisplayProperty] == null ? Tag.substr(0,TagLength) : Tag[DisplayProperty].substr(0,TagLength)}}{{(Tag[DisplayProperty] == null ? Tag : Tag[DisplayProperty]).length < DisplayProperty ? "" : "..."}}-->
@@ -7,10 +6,11 @@
            <span (click)="RemoveTag(Tag)" [class]="'remove-tag ' + RemoveTagClass"> x</span>
         </span>
     </span>
+<div style="display: inline-block">
     <span (mousedown)="Click()" (keyup.esc)="Esc()" (keyup.ArrowDown)="Down()" (keyup.ArrowUp)="Up()"
           (keyup.enter)="Enter()" (keypress)="CurrentNumber = -1; IsShow = true;">
         <ng-content select="dropdown-input">
-        </ng-content>
+    </ng-content>
     </span>
     <ul class="dropdown-content list-group" *ngIf="IsShow" (click)="TurnOff($event)" (mousedown)="TurnOn()"
         (mousemove)="Remove()">
@@ -18,3 +18,4 @@
         <li *ngIf="DataList == null" class="list-group-item">Đang tải dữ liệu ...</li>
     </ul>
 </div>
+

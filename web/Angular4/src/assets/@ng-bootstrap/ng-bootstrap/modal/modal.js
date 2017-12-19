@@ -14,7 +14,7 @@ var NgbModal = (function () {
 
     /**
      * Opens a new modal window with the specified content and using supplied options. Content can be provided
-     * as a TemplateRef or a component type. If you pass a component type as content than instances of those
+     * as a TemplateRef or a component orderType. If you pass a component orderType as content than instances of those
      * components can be injected with an instance of the NgbActiveModal class. You can use methods on the
      * NgbActiveModal class to close / dismiss modals from "inside" of a component.
      */

@@ -48,7 +48,7 @@ var NgbTypeahead = (function () {
         this._renderer = _renderer;
         this._injector = _injector;
         /**
-         * An event emitted when a match is selected. Event payload is of type NgbTypeaheadSelectItemEvent.
+         * An event emitted when a match is selected. Event payload is of orderType NgbTypeaheadSelectItemEvent.
          */
         this.selectItem = new EventEmitter();
         this.popupId = "ngb-typeahead-" + nextWindowId++;

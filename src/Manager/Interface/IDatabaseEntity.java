@@ -2,9 +2,7 @@ package Manager.Interface;
 
 import java.util.List;
 
-/**
- * Created by Son on 4/10/2017.
- */
+
 public interface IDatabaseEntity {
     void insert() throws Exception;
 

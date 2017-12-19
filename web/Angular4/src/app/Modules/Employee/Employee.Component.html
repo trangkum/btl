@@ -22,29 +22,29 @@
             <!--<tr>-->
                 <!--<td></td>-->
                 <!--<td>-->
-                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.shapeId" type="number"-->
+                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.shapeId" orderType="number"-->
                            <!--placeholder="Search..." (keydown.enter)="Search()">-->
                 <!--</td>-->
                 <!--<td>-->
-                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.problemId" type="text"-->
+                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.problemId" orderType="text"-->
                            <!--placeholder="Search..." (keydown.enter)="Search()">-->
                 <!--</td>-->
                 <!--<td>-->
-                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.level" type="text"-->
+                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.level" orderType="text"-->
                            <!--placeholder="Search..." (keydown.enter)="Search()">-->
                 <!--</td>-->
                 <!--<td>-->
-                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.userId" type="text"-->
+                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.userId" orderType="text"-->
                            <!--placeholder="Search..." (keydown.enter)="Search()">-->
                 <!--</td>-->
                 <!--<td>-->
-                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.userId" type="text"-->
+                    <!--<input class="form-control" [(ngModel)]="SearchshapeEntity.userId" orderType="text"-->
                            <!--placeholder="Search..." (keydown.enter)="Search()">-->
                 <!--</td>-->
                 <!--<td style="text-align: center">-->
                     <!--<app-modal>-->
                         <!--<OpenDiv>-->
-                            <!--<button type="button" class="btn btn-success btn-circle" *ngIf="mode !== 3">-->
+                            <!--<button orderType="button" class="btn btn-success btn-circle" *ngIf="mode !== 3">-->
                                 <!--<i class="fa fa-plus fa-1x" aria-hidden="true">-->
                                 <!--</i>-->
                             <!--</button>-->
@@ -61,7 +61,7 @@
                                     <!--<label class="control-label">shapeId:</label>-->
                                 <!--</div>-->
                                 <!--<div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">-->
-                                    <!--<input type="text" class="form-control" placeholder="Nhập shapeId"-->
+                                    <!--<input orderType="text" class="form-control" placeholder="Nhập shapeId"-->
                                            <!--name="shapeIdCreate" [(ngModel)]="CreatedshapeEntity.shapeId"-->
                                            <!--required/>-->
                                 <!--</div>-->
@@ -71,7 +71,7 @@
                                     <!--<label class="control-label">problemId:</label>-->
                                 <!--</div>-->
                                 <!--<div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">-->
-                                    <!--<input type="text" class="form-control" placeholder="Nhập problemId"-->
+                                    <!--<input orderType="text" class="form-control" placeholder="Nhập problemId"-->
                                            <!--name="problemIdCreate" [(ngModel)]="CreatedshapeEntity.problemId"-->
                                            <!--required/>-->
                                 <!--</div>-->
@@ -81,7 +81,7 @@
                                     <!--<label class="control-label">level:</label>-->
                                 <!--</div>-->
                                 <!--<div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">-->
-                                    <!--<input type="text" class="form-control" placeholder="Nhập level"-->
+                                    <!--<input orderType="text" class="form-control" placeholder="Nhập level"-->
                                            <!--name="levelCreate" [(ngModel)]="CreatedshapeEntity.level"-->
                                            <!--required/>-->
                                 <!--</div>-->
@@ -91,7 +91,7 @@
                                     <!--<label class="control-label">userId:</label>-->
                                 <!--</div>-->
                                 <!--<div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">-->
-                                    <!--<input type="text" class="form-control" placeholder="Nhập userId"-->
+                                    <!--<input orderType="text" class="form-control" placeholder="Nhập userId"-->
                                            <!--name="userIdCreate" [(ngModel)]="CreatedshapeEntity.userId"-->
                                            <!--required/>-->
                                 <!--</div>-->
@@ -101,7 +101,7 @@
                                     <!--<label class="control-label">userId:</label>-->
                                 <!--</div>-->
                                 <!--<div class="col-lg-4 col-md-4 col-sm-4" style="padding-bottom: 10px;">-->
-                                    <!--<input type="text" class="form-control" placeholder="Nhập code"-->
+                                    <!--<input orderType="text" class="form-control" placeholder="Nhập code"-->
                                            <!--name="userIdCreate" [(ngModel)]="CreatedshapeEntity.code"-->
                                            <!--required/>-->
                                 <!--</div>-->
@@ -112,17 +112,17 @@
                                     <!--class="btn btn-success">-->
                                 <!--<i class="fa fa-check" aria-hidden="true"></i> Lưu-->
                             <!--</button>-->
-                            <!--<button type="button" class="btn btn-danger" data-dismiss="modal">-->
+                            <!--<button orderType="button" class="btn btn-danger" data-dismiss="modal">-->
                                 <!--<span><i class="fa fa-times" aria-hidden="true"></i> Hủy</span>-->
                             <!--</button>-->
                         <!--</modal-footer>-->
                     <!--</app-modal>-->
-                    <!--<button type="button" class="btn btn-success btn-circle"><i class="fa fa-download fa-1x"-->
+                    <!--<button orderType="button" class="btn btn-success btn-circle"><i class="fa fa-download fa-1x"-->
                                                                                 <!--aria-hidden="true"></i></button>-->
                 <!--</td>-->
             <!--</tr>-->
             <!--<tr *ngFor="let shape of (shapeEntities ? shapeEntities : []); let i = index">-->
-                <!--<td>{{PagingModel.Take * PagingModel.Active + i + 1}}</td>-->
+                <!--<td>{{PagingModel.take * PagingModel.Active + i + 1}}</td>-->
                 <!--<td>{{shape?.shapeId}}</td>-->
                 <!--<td>{{shape?.problemId}}</td>-->
                 <!--<td>{{shape?.level}}</td>-->
@@ -148,10 +148,10 @@
                 <!--<td>{{shape?.code}}</td>-->
                 <!--&lt;!&ndash;<td>{{shape?.userId}}</td>&ndash;&gt;-->
                 <!--<td style="text-align: center">-->
-                    <!--<button type="button" class="btn btn-primary btn-circle" (click)="LoadDataToUpdateModal(shape,i)">-->
+                    <!--<button orderType="button" class="btn btn-primary btn-circle" (click)="LoadDataToUpdateModal(shape,i)">-->
                         <!--<i class="fa fa-edit fa-1x" aria-hidden="true"></i>-->
                     <!--</button>-->
-                    <!--<button type="button" class="btn btn-danger btn-circle delete" (click)="LoadDataToDelete(shape)">-->
+                    <!--<button orderType="button" class="btn btn-danger btn-circle delete" (click)="LoadDataToDelete(shape)">-->
                         <!--<i class="fa fa-trash fa-1x" aria-hidden="true"></i>-->
                     <!--</button>-->
                 <!--</td>-->

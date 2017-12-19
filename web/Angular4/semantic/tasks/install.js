@@ -177,7 +177,7 @@ if(manager.name == 'NPM') {
   rootQuestions[0].default = manager.root;
   rootQuestions[1].default = manager.root;
 
-  // insert PM questions after "Install Type" question
+  // insert PM questions after "Install type" question
   Array.prototype.splice.apply(questions.setup, [2, 0].concat(rootQuestions));
 
   // omit cleanup questions for managed install

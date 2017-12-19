@@ -1322,7 +1322,7 @@ $.fn.search.settings = {
         html +=  ''
           + '<div class="message ' + type + '">'
         ;
-        // message type
+        // message orderType
         if(type == 'empty') {
           html += ''
             + '<div class="header">No Results</div class="header">'

@@ -15,8 +15,8 @@ export class BodyComponent {
             console.log(event);
             let splitPath: string[] = (event as any).url.split("/");
             this.splitPath = [];
-            if (splitPath.length > 1) {
-                for (let i = splitPath.length - 1; i > 0; i--) {
+            if (splitPath.length > 2) {
+                for (let i =  2; i<splitPath.length; i++) {
                     this.splitPath.push(splitPath[i]);
                 }
             }

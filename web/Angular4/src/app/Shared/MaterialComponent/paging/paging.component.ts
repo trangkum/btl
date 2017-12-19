@@ -44,7 +44,7 @@ export class PagingComponent implements OnInit {
     }
 
     SetTake(number: number): boolean {
-        this.PagingModel.Take = number;
+        this.PagingModel.take = number;
         this.entry(0);
         this.onChanges.emit(this.PagingModel);
         return false;

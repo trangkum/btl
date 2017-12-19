@@ -17,7 +17,10 @@
     overflow-y: auto;
     background-color: white;
 }
-
+.list-group-item{
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
 .dropdown-content li:hover {
     color: #fff;
     background-color: #2A92D8;

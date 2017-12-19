@@ -36,6 +36,7 @@ public class EmployeeModel {
     private Collection<UserModel> usersById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
@@ -225,12 +226,3 @@ public class EmployeeModel {
     }
 }
 
-@StaticMetamodel(EmployeeModel.class)
-class EmployeeModel_ {
-    public static volatile SingularAttribute<EmployeeModel, Integer> id;
-    public static volatile SingularAttribute<EmployeeModel, String> email;
-    public static volatile SingularAttribute<EmployeeModel, String> name;
-    public static volatile SingularAttribute<EmployeeModel, Integer> teamId;
-    public static volatile SingularAttribute<EmployeeModel, Integer> locationId;
-    public static volatile SingularAttribute<EmployeeModel, String> briefName;
-}

@@ -1,7 +1,10 @@
 package Module.Ticket;
 
+import Module.TicketThread.TicketThreadEntity;
+
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -33,22 +36,30 @@ public class TicketController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{ticketId}")
     public TicketEntity getId(@PathParam("ticketId") int ticketId) {
-        return ticketService.get(ticketId);
+        return ticketService.getFullInfo(ticketId);
+    }
+
+    @POST
+    @Path("{ticketId}/ticketThreads/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public TicketThreadEntity addThread(@CookieParam("auth-tokenKey") Cookie tokenKey, @PathParam("ticketId") Integer ticketId, TicketThreadEntity ticketThreadEntity) {
+        return ticketService.addThread(tokenKey, ticketId, ticketThreadEntity);
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public TicketEntity create(TicketEntity ticketEntity) {
-        return ticketService.create(ticketEntity);
+    public TicketEntity create(@CookieParam("auth-tokenKey") Cookie tokenKey, TicketEntity ticketEntity) {
+        return ticketService.create(tokenKey, ticketEntity);
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{ticketId}")
-    public TicketEntity update(@PathParam("ticketId") int ticketId, TicketEntity ticketEntity) {
-        return ticketService.update(ticketId, ticketEntity);
+    public TicketEntity update(@CookieParam("auth-tokenKey") Cookie tokenKey, @PathParam("ticketId") int ticketId, TicketEntity ticketEntity) {
+        return ticketService.update(tokenKey, ticketId, ticketEntity);
     }
 
     @DELETE

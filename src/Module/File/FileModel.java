@@ -25,6 +25,7 @@ public class FileModel {
     private Collection<TicketimageModel> ticketimagesById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
@@ -116,7 +117,6 @@ public class FileModel {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + Arrays.hashCode(data);
         result = 31 * result + (length != null ? length.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
@@ -135,7 +135,7 @@ public class FileModel {
         this.employeeByEmployeeId = employeeByEmployeeId;
     }
 
-    @OneToMany(mappedBy = "fileByFielId")
+    @OneToMany(mappedBy = "fileByFileId")
     public Collection<TicketimageModel> getTicketimagesById() {
         return ticketimagesById;
     }

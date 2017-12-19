@@ -4,8 +4,10 @@ import Module.FilterEntity;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public class SearchPermissionEntity extends FilterEntity {
     @QueryParam("id")
@@ -15,16 +17,16 @@ public class SearchPermissionEntity extends FilterEntity {
     @QueryParam("routeId")
     public Integer routeId;
 
-    public CriteriaQuery<PermissionModel> applyTo(CriteriaBuilder builder, CriteriaQuery<PermissionModel> criteria, Root<PermissionModel> root) {
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<PermissionModel> root) {
         if (id != null) {
-            criteria.where(builder.equal(root.get(PermissionModel_.id), id));
+            predicates.add(builder.equal(root.get(PermissionModel_.id), id));
         }
         if (roleId != null) {
-            criteria.where(builder.equal(root.get(PermissionModel_.roleId), roleId));
+            predicates.add(builder.equal(root.get(PermissionModel_.roleId), roleId));
         }
         if (routeId != null) {
-            criteria.where(builder.equal(root.get(PermissionModel_.id), routeId));
+            predicates.add(builder.equal(root.get(PermissionModel_.id), routeId));
         }
-        return criteria;
+        return predicates;
     }
 }

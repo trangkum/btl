@@ -1,22 +1,22 @@
 import {URLSearchParams} from "@angular/http"
 
 export class FilterEntity {
-    Skip: number;
-    Take: number;
-    OrderBy: string;
-    Type: string;
+    skip: number;
+    take: number;
+    orderBy: string;
+    orderType: string;
 
     constructor(FilterEntity: any = null) {
         if (FilterEntity == null) {
-            this.Skip = 0;
-            this.Take = 10;
-            this.OrderBy = "Id";
-            this.Type = "None";
+            this.skip = 0;
+            this.take = 10;
+            this.orderBy = "id";
+            this.orderType = "none";
         } else {
-            this.Skip = FilterEntity.Skip;
-            this.Take = FilterEntity.Take;
-            this.OrderBy = FilterEntity.OrderBy;
-            this.Type = FilterEntity.Type;
+            this.skip = FilterEntity.Skip;
+            this.take = FilterEntity.take;
+            this.orderBy = FilterEntity.OrderBy;
+            this.orderType = FilterEntity.Type;
         }
     }
 

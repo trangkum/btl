@@ -1,7 +1,7 @@
 import {NgbDateStruct} from './ngb-date-struct';
 
 /**
- * Abstract type serving as shapeEntityA DI token for the service parsing and formatting dates for the NgbInputDatepicker
+ * Abstract orderType serving as shapeEntityA DI token for the service parsing and formatting dates for the NgbInputDatepicker
  * directive. A default implementation using the ISO 8601 format is provided, but you can provide another implementation
  * to use an alternative format.
  */

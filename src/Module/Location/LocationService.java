@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class LocationService {
     private static SessionFactory factory;
     private static int currentActive;
@@ -35,7 +36,7 @@ public class LocationService {
     }
 
     public static void setFactory(SessionFactory factory) {
-        Module.Location.LocationService.factory = factory;
+        LocationService.factory = factory;
     }
 
 

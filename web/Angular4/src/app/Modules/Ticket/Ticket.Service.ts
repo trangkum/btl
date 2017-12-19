@@ -6,18 +6,19 @@ import {Injectable} from '@angular/core';
 import {TicketEntity} from "./Ticket.Entity";
 import {SearchTicketEntity} from "./Ticket.SearchEntity";
 import {HOSTNAME} from "../../app.module";
+import {TicketThreadEntity} from "../TicketThread/TicketThread.Entity";
 
 @Injectable()
 export class TicketService {
     public url: string;
 
     constructor(private Http: Http) {
-        this.url = HOSTNAME+"api/tickets";
+        this.url = HOSTNAME + "api/tickets";
     }
 
     GetData(url: string, data: any): Observable<any> {
         let http = <HttpService>this.Http;
-        return http.get(url, {params: data}, false)
+        return http.get(HOSTNAME + url, {params: data}, false)
             .map(res => {
                 return res.json();
             });
@@ -54,15 +55,22 @@ export class TicketService {
             });
     }
 
+    AddComment(Id: number, data: TicketThreadEntity): Observable<TicketThreadEntity> {
+        return this.Http.post(`${this.url}/${Id}/ticketThreads`, data)
+            .map(res => {
+                return new TicketThreadEntity(res.json());
+            });
+    }
+
     Update(data: any): Observable<any> {
-        return this.Http.put(`${this.url}/${data.Id}`, data)
+        return this.Http.put(`${this.url}/${data.id}`, data)
             .map(res => {
                 return new TicketEntity(res.json());
             });
     }
 
     Delete(data: any): Observable<any> {
-        return this.Http.delete(`${this.url}/${data.Id}`)
+        return this.Http.delete(`${this.url}/${data.id}`)
             .catch(e => Observable.throw(e));
     }
 

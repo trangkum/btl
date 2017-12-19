@@ -1945,7 +1945,7 @@ $.fn.dropdown = function(parameters) {
                     }
                   }
                   else if(strict) {
-                    module.verbose('Ambiguous dropdown value using strict type check', $choice, value);
+                    module.verbose('Ambiguous dropdown value using strict orderType check', $choice, value);
                     if( optionValue === value || optionText === value) {
                       $selectedItem = $choice;
                       return true;
@@ -3767,7 +3767,7 @@ $.fn.dropdown.settings = {
     dropdown     : '.ui.dropdown',
     hidden       : '.hidden',
     icon         : '> .dropdown.icon',
-    input        : '> input[type="hidden"], > select',
+    input        : '> input[orderType="hidden"], > select',
     item         : '.item',
     label        : '> .label',
     remove       : '> .label > .delete.icon',

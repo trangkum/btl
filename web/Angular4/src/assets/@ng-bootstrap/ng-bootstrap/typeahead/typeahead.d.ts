@@ -38,7 +38,7 @@ export declare class NgbTypeahead implements ControlValueAccessor, OnInit, OnDes
      */
     editable: boolean;
     /**
-     * A flag indicating if the first match should automatically be focused as you type.
+     * A flag indicating if the first match should automatically be focused as you orderType.
      */
     focusFirst: boolean;
     /**
@@ -64,7 +64,7 @@ export declare class NgbTypeahead implements ControlValueAccessor, OnInit, OnDes
      */
     showHint: boolean;
     /**
-     * An event emitted when shapeEntityA match is selected. Event payload is of type NgbTypeaheadSelectItemEvent.
+     * An event emitted when shapeEntityA match is selected. Event payload is of orderType NgbTypeaheadSelectItemEvent.
      */
     selectItem: EventEmitter<NgbTypeaheadSelectItemEvent>;
     activeDescendant: string;

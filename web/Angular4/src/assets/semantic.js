@@ -772,7 +772,7 @@
                             ;
                             return module.is.shorthandRules(firstRule);
                         },
-                        // duck type rule test
+                        // duck orderType rule test
                         shorthandRules: function (rules) {
                             return (typeof rules == 'string' || $.isArray(rules));
                         },
@@ -780,7 +780,7 @@
                             if (!$field || $field.length === 0) {
                                 return true;
                             }
-                            else if ($field.is('input[type="checkbox"]')) {
+                            else if ($field.is('input[orderType="checkbox"]')) {
                                 return !$field.is(':checked');
                             }
                             else {
@@ -972,7 +972,7 @@
                             prompt = prompt.replace('{identifier}', field.identifier);
                             prompt = prompt.replace('{ruleValue}', ancillary);
                             if (!rule.prompt) {
-                                module.verbose('Using default validation prompt for type', prompt, ruleName);
+                                module.verbose('Using default validation prompt for orderType', prompt, ruleName);
                             }
                             return prompt;
                         },
@@ -1799,16 +1799,16 @@
         },
 
         selector: {
-            checkbox: 'input[type="checkbox"], input[type="radio"]',
+            checkbox: 'input[orderType="checkbox"], input[orderType="radio"]',
             clear: '.clear',
             field: 'input, textarea, select',
             group: '.field',
             input: 'input',
             message: '.error.message',
             prompt: '.prompt.label',
-            radio: 'input[type="radio"]',
-            reset: '.reset:not([type="reset"])',
-            submit: '.submit:not([type="submit"])',
+            radio: 'input[orderType="radio"]',
+            reset: '.reset:not([orderType="reset"])',
+            submit: '.submit:not([orderType="submit"])',
             uiCheckbox: '.ui.checkbox',
             uiDropdown: '.ui.dropdown'
         },
@@ -2145,7 +2145,7 @@
                 // verify card types
                 if (requiredTypes) {
                     $.each(requiredTypes, function (index, type) {
-                        // verify each card type
+                        // verify each card orderType
                         validation = cards[type];
                         if (validation) {
                             valid = {
@@ -3677,7 +3677,7 @@
         selector: {
             checkbox: '.ui.checkbox',
             label: 'label, .box',
-            input: 'input[type="checkbox"], input[type="radio"]',
+            input: 'input[orderType="checkbox"], input[orderType="radio"]',
             link: 'a[href]'
         }
 
@@ -4338,7 +4338,7 @@
         // name to distinguish between multiple dimmers in context
         dimmerName: false,
 
-        // whether to add a variation type
+        // whether to add a variation orderType
         variation: false,
 
         // whether to bind close events
@@ -6313,7 +6313,7 @@
                                             }
                                         }
                                         else if (strict) {
-                                            module.verbose('Ambiguous dropdown value using strict type check', $choice, value);
+                                            module.verbose('Ambiguous dropdown value using strict orderType check', $choice, value);
                                             if (optionValue === value || optionText === value) {
                                                 $selectedItem = $choice;
                                                 return true;
@@ -8150,7 +8150,7 @@
             dropdown: '.ui.dropdown',
             hidden: '.hidden',
             icon: '> .dropdown.icon',
-            input: '> input[type="hidden"], > select',
+            input: '> input[orderType="hidden"], > select',
             item: '.item',
             label: '> .label',
             remove: '> .label > .delete.icon',
@@ -10397,7 +10397,7 @@
         domain: false,
         path: '/',
 
-        // type of storage to use
+        // orderType of storage to use
         storageMethod: 'cookie',
 
         // value to store in dismissed localstorage/cookie
@@ -14710,7 +14710,7 @@
                     html += ''
                         + '<div class="message ' + type + '">'
                     ;
-                    // message type
+                    // message orderType
                     if (type == 'empty') {
                         html += ''
                             + '<div class="header">No Results</div class="header">'
@@ -18850,7 +18850,7 @@
                     },
 
                     refresh: function () {
-                        module.verbose('Refreshing display type on next animation');
+                        module.verbose('Refreshing display orderType on next animation');
                         delete module.displayType;
                     },
 
@@ -19794,7 +19794,7 @@
         // whether EXACT animation can occur twice in a row
         allowRepeats: false,
 
-        // Override final display type on visible
+        // Override final display orderType on visible
         displayType: false,
 
         // animation duration
@@ -21165,7 +21165,7 @@
                             return !( $module.is(settings.filter.text) );
                         },
 
-                        // definitions for automatic type detection
+                        // definitions for automatic orderType detection
                         button: function () {
                             return $module.is('.button:not(a, .submit)');
                         },
@@ -22992,7 +22992,7 @@
         // visibility check delay in ms (defaults to animationFrame)
         throttle: false,
 
-        // special visibility type (image, fixed)
+        // special visibility orderType (image, fixed)
         type: false,
 
         // z-index to use with visibility 'fixed'

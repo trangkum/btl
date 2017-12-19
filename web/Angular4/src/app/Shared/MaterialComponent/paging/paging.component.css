@@ -1,5 +1,5 @@
 .list-header {
-    font-size: 30px;
+    font-size: .8rem;
     padding-bottom: 15px;
 }
 
@@ -9,17 +9,7 @@
 
 span.input-group-addon i {
     color: #0064b4;
-    font-size: 14px;
-}
-
-@keyframes NewRow {
-    0% {
-        outline: solid 0.5px #0064b4;
-    }
-
-    100% {
-        outline: solid 0 #0064b4;
-    }
+    font-size: .8rem;
 }
 
 .paging button {
@@ -30,6 +20,7 @@ span.input-group-addon i {
 }
 
 .page-item {
+    font-size: .8rem;
     cursor: default;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -44,5 +35,10 @@ a.dropdown-item:hover{
 }
 
 .dropdown-menu{
-    min-width: 0px;
+    font-size: .8rem;
+    min-width: 0;
+}
+#dropdownMenuLink{
+    border-radius: 0 !important;
+    font-size: .8rem;
 }

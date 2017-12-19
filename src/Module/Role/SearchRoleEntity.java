@@ -4,8 +4,10 @@ import Module.FilterEntity;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public class SearchRoleEntity extends FilterEntity {
     @QueryParam("id")
@@ -15,17 +17,17 @@ public class SearchRoleEntity extends FilterEntity {
     @QueryParam("description")
     public String description;
 
-    public CriteriaQuery<RoleModel> applyTo(CriteriaBuilder builder, CriteriaQuery<RoleModel> criteria, Root<RoleModel> root) {
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<RoleModel> root) {
         if (id != null) {
-            criteria.where(builder.equal(root.get(RoleModel_.id), id));
+            predicates.add(builder.equal(root.get(RoleModel_.id), id));
         }
         if (name != null && !name.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(RoleModel_.name)), "%" + name.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(RoleModel_.name)), "%" + name.toLowerCase() + "%"));
         }
         if (description != null && !description.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(RoleModel_.description)), "%" + description.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(RoleModel_.description)), "%" + description.toLowerCase() + "%"));
         }
-        return criteria;
+        return predicates;
     }
 
 }

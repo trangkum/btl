@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class FileService {
     private static SessionFactory factory;
     private static int currentActive;
@@ -80,6 +81,7 @@ public class FileService {
             Integer.valueOf(String.valueOf(session.save(fileModel)));
             tx.commit();
             FileEntity result = new FileEntity(fileModel);
+            result.data = null;
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

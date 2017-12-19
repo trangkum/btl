@@ -2,6 +2,7 @@ package Module.TicketRead;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -28,13 +29,13 @@ public class TicketReadController {
         return 100;
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{ticketReadId}")
-    public TicketReadEntity getId(@PathParam("ticketReadId") int ticketReadId) {
-        return ticketReadService.get(ticketReadId);
-    }
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("{ticketReadId}")
+//    public TicketReadEntity getId(@PathParam("ticketReadId") int ticketReadId) {
+//        return ticketReadService.get(ticketReadId);
+//    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -47,8 +48,8 @@ public class TicketReadController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{ticketReadId}")
-    public TicketReadEntity update(@PathParam("ticketReadId") int ticketReadId, TicketReadEntity ticketReadEntity) {
-        return ticketReadService.update(ticketReadId, ticketReadEntity);
+    public TicketReadEntity update(@CookieParam("auth-tokenKey") Cookie tokenKey, @PathParam("ticketReadId") int ticketReadId, TicketReadEntity ticketReadEntity) {
+        return ticketReadService.update(tokenKey,ticketReadId, ticketReadEntity);
     }
 
 //    @DELETE

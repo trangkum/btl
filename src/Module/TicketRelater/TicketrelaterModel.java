@@ -78,8 +78,3 @@ public class TicketrelaterModel {
     }
 }
 
-@StaticMetamodel(TicketrelaterModel.class)
-class TicketrelaterModel_ {
-    public static volatile SingularAttribute<TicketrelaterModel, Integer> employeeId;
-    public static volatile SingularAttribute<TicketrelaterModel, Integer> ticketId;
-}

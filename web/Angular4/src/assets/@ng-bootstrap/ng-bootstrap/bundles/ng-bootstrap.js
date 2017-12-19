@@ -432,7 +432,7 @@
                 'December'
             ];
             /**
-             * Type of the service supplying month and weekday names to to NgbDatepicker component.
+             * orderType of the service supplying month and weekday names to to NgbDatepicker component.
              * See the i18n demo for how to extend this class and define a custom provider for i18n.
              */
             var NgbDatepickerI18n = (function () {
@@ -1988,51 +1988,51 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", core_1.TemplateRef)
+                __metadata("design:orderType", core_1.TemplateRef)
             ], NgbDatepicker.prototype, "dayTemplate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbDatepicker.prototype, "displayMonths", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbDatepicker.prototype, "firstDayOfWeek", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Function)
+                __metadata("design:orderType", Function)
             ], NgbDatepicker.prototype, "markDisabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepicker.prototype, "maxDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepicker.prototype, "minDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbDatepicker.prototype, "navigation", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbDatepicker.prototype, "outsideDays", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepicker.prototype, "showWeekdays", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepicker.prototype, "showWeekNumbers", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepicker.prototype, "startDate", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepicker.prototype, "navigate", void 0);
             NgbDatepicker = __decorate([
                 core_1.Component({
@@ -2075,7 +2075,7 @@
             };
             var util_1 = __webpack_require__(1);
             /**
-             * Abstract type serving as a DI token for the service parsing and formatting dates for the NgbInputDatepicker
+             * Abstract orderType serving as a DI token for the service parsing and formatting dates for the NgbInputDatepicker
              * directive. A default implementation using the ISO 8601 format is provided, but you can provide another implementation
              * to use an alternative format.
              */
@@ -2528,42 +2528,42 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTypeaheadWindow.prototype, "id", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTypeaheadWindow.prototype, "focusFirst", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTypeaheadWindow.prototype, "results", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTypeaheadWindow.prototype, "term", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTypeaheadWindow.prototype, "formatter", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", core_1.TemplateRef)
+                __metadata("design:orderType", core_1.TemplateRef)
             ], NgbTypeaheadWindow.prototype, "resultTemplate", void 0);
             __decorate([
                 core_1.Output('select'),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTypeaheadWindow.prototype, "selectEvent", void 0);
             __decorate([
                 core_1.Output('activeChange'),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTypeaheadWindow.prototype, "activeChangeEvent", void 0);
             NgbTypeaheadWindow = __decorate([
                 core_1.Component({
                     selector: 'ngb-typeahead-window',
                     exportAs: 'ngbTypeaheadWindow',
                     host: {'class': 'dropdown-menu', 'style': 'display: block', 'role': 'listbox', '[id]': 'id'},
-                    template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <button type=\"button\" class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </button>\n    </ng-template>\n  "
+                    template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <button orderType=\"button\" class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </button>\n    </ng-template>\n  "
                 })
             ], NgbTypeaheadWindow);
             exports.NgbTypeaheadWindow = NgbTypeaheadWindow;
@@ -2642,27 +2642,27 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPanel.prototype, "disabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPanel.prototype, "id", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPanel.prototype, "title", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPanel.prototype, "type", void 0);
             __decorate([
                 core_1.ContentChild(NgbPanelContent),
-                __metadata("design:type", NgbPanelContent)
+                __metadata("design:orderType", NgbPanelContent)
             ], NgbPanel.prototype, "contentTpl", void 0);
             __decorate([
                 core_1.ContentChild(NgbPanelTitle),
-                __metadata("design:type", NgbPanelTitle)
+                __metadata("design:orderType", NgbPanelTitle)
             ], NgbPanel.prototype, "titleTpl", void 0);
             NgbPanel = __decorate([
                 core_1.Directive({selector: 'ngb-panel'})
@@ -2764,30 +2764,30 @@
             }());
             __decorate([
                 core_1.ContentChildren(NgbPanel),
-                __metadata("design:type", core_1.QueryList)
+                __metadata("design:orderType", core_1.QueryList)
             ], NgbAccordion.prototype, "panels", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbAccordion.prototype, "activeIds", void 0);
             __decorate([
                 core_1.Input('closeOthers'),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbAccordion.prototype, "closeOtherPanels", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbAccordion.prototype, "type", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbAccordion.prototype, "panelChange", void 0);
             NgbAccordion = __decorate([
                 core_1.Component({
                     selector: 'ngb-accordion',
                     exportAs: 'ngbAccordion',
                     host: {'role': 'tablist', '[attr.aria-multiselectable]': '!closeOtherPanels'},
-                    template: "\n  <div class=\"card\">\n    <ng-template ngFor let-panel [ngForOf]=\"panels\">\n      <div role=\"tab\" id=\"{{panel.id}}-header\"\n        [class]=\"'card-header ' + (panel.type ? 'card-'+panel.type: type ? 'card-'+type : '')\" [class.active]=\"isOpen(panel.id)\">\n        <a href (click)=\"!!toggle(panel.id)\" [class.text-muted]=\"panel.disabled\" [attr.tabindex]=\"(panel.disabled ? '-1' : null)\"\n          [attr.aria-expanded]=\"isOpen(panel.id)\" [attr.aria-controls]=\"(isOpen(panel.id) ? panel.id : null)\"\n          [attr.aria-disabled]=\"panel.disabled\">\n          {{panel.title}}<ng-template [ngTemplateOutlet]=\"panel.titleTpl?.templateRef\"></ng-template>\n        </a>\n      </div>\n      <div id=\"{{panel.id}}\" role=\"tabpanel\" [attr.aria-labelledby]=\"panel.id + '-header'\" class=\"card-block\" *ngIf=\"isOpen(panel.id)\">\n        <ng-template [ngTemplateOutlet]=\"panel.contentTpl.templateRef\"></ng-template>\n      </div>\n    </ng-template>\n  </div>\n"
+                    template: "\n  <div class=\"card\">\n    <ng-template ngFor let-panel [ngForOf]=\"panels\">\n      <div role=\"tab\" id=\"{{panel.id}}-header\"\n        [class]=\"'card-header ' + (panel.orderType ? 'card-'+panel.orderType: orderType ? 'card-'+orderType : '')\" [class.active]=\"isOpen(panel.id)\">\n        <a href (click)=\"!!toggle(panel.id)\" [class.text-muted]=\"panel.disabled\" [attr.tabindex]=\"(panel.disabled ? '-1' : null)\"\n          [attr.aria-expanded]=\"isOpen(panel.id)\" [attr.aria-controls]=\"(isOpen(panel.id) ? panel.id : null)\"\n          [attr.aria-disabled]=\"panel.disabled\">\n          {{panel.title}}<ng-template [ngTemplateOutlet]=\"panel.titleTpl?.templateRef\"></ng-template>\n        </a>\n      </div>\n      <div id=\"{{panel.id}}\" role=\"tabpanel\" [attr.aria-labelledby]=\"panel.id + '-header'\" class=\"card-block\" *ngIf=\"isOpen(panel.id)\">\n        <ng-template [ngTemplateOutlet]=\"panel.contentTpl.templateRef\"></ng-template>\n      </div>\n    </ng-template>\n  </div>\n"
                 }),
                 __metadata("design:paramtypes", [accordion_config_1.NgbAccordionConfig])
             ], NgbAccordion);
@@ -2833,21 +2833,21 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbAlert.prototype, "dismissible", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbAlert.prototype, "type", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbAlert.prototype, "close", void 0);
             NgbAlert = __decorate([
                 core_1.Component({
                     selector: 'ngb-alert',
                     changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <div [class]=\"'alert alert-' + type + (dismissible ? ' alert-dismissible' : '')\" role=\"alert\">\n      <button *ngIf=\"dismissible\" type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"closeHandler()\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n      <ng-content></ng-content>\n    </div>\n    "
+                    template: "\n    <div [class]=\"'alert alert-' + orderType + (dismissible ? ' alert-dismissible' : '')\" role=\"alert\">\n      <button *ngIf=\"dismissible\" orderType=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"closeHandler()\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n      <ng-content></ng-content>\n    </div>\n    "
                 }),
                 __metadata("design:paramtypes", [alert_config_1.NgbAlertConfig])
             ], NgbAlert);
@@ -2940,19 +2940,19 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbCheckBox.prototype, "disabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbCheckBox.prototype, "valueChecked", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbCheckBox.prototype, "valueUnChecked", void 0);
             NgbCheckBox = __decorate([
                 core_1.Directive({
-                    selector: '[ngbButton][type=checkbox]',
+                    selector: '[ngbButton][orderType=checkbox]',
                     host: {
                         'autocomplete': 'off',
                         '[checked]': 'checked',
@@ -3068,7 +3068,7 @@
             ], NgbRadioGroup);
             exports.NgbRadioGroup = NgbRadioGroup;
             /**
-             * Marks an input of type "radio" as part of the NgbRadioGroup.
+             * Marks an input of orderType "radio" as part of the NgbRadioGroup.
              */
             var NgbRadio = (function () {
                 function NgbRadio(_group, _label, _renderer, _element) {
@@ -3143,17 +3143,17 @@
             }());
             __decorate([
                 core_1.Input('value'),
-                __metadata("design:type", Object),
+                __metadata("design:orderType", Object),
                 __metadata("design:paramtypes", [Object])
             ], NgbRadio.prototype, "value", null);
             __decorate([
                 core_1.Input('disabled'),
-                __metadata("design:type", Boolean),
+                __metadata("design:orderType", Boolean),
                 __metadata("design:paramtypes", [Boolean])
             ], NgbRadio.prototype, "disabled", null);
             NgbRadio = __decorate([
                 core_1.Directive({
-                    selector: '[ngbButton][type=radio]',
+                    selector: '[ngbButton][orderType=radio]',
                     host: {
                         '[checked]': 'checked',
                         '[disabled]': 'disabled',
@@ -3205,7 +3205,7 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbSlide.prototype, "id", void 0);
             NgbSlide = __decorate([
                 core_1.Directive({selector: 'ng-template[ngbSlide]'}),
@@ -3342,27 +3342,27 @@
             }());
             __decorate([
                 core_1.ContentChildren(NgbSlide),
-                __metadata("design:type", core_1.QueryList)
+                __metadata("design:orderType", core_1.QueryList)
             ], NgbCarousel.prototype, "slides", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbCarousel.prototype, "interval", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbCarousel.prototype, "wrap", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbCarousel.prototype, "keyboard", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbCarousel.prototype, "activeId", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbCarousel.prototype, "slide", void 0);
             NgbCarousel = __decorate([
                 core_1.Component({
@@ -3426,7 +3426,7 @@
             }());
             __decorate([
                 core_1.Input('ngbCollapse'),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbCollapse.prototype, "collapsed", void 0);
             NgbCollapse = __decorate([
                 core_1.Directive({
@@ -3467,23 +3467,23 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbDatepickerDayView.prototype, "currentMonth", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerDayView.prototype, "date", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerDayView.prototype, "disabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerDayView.prototype, "focused", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerDayView.prototype, "selected", void 0);
             NgbDatepickerDayView = __decorate([
                 core_1.Component({
@@ -3721,55 +3721,55 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", core_1.TemplateRef)
+                __metadata("design:orderType", core_1.TemplateRef)
             ], NgbInputDatepicker.prototype, "dayTemplate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbInputDatepicker.prototype, "displayMonths", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbInputDatepicker.prototype, "firstDayOfWeek", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Function)
+                __metadata("design:orderType", Function)
             ], NgbInputDatepicker.prototype, "markDisabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbInputDatepicker.prototype, "minDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbInputDatepicker.prototype, "maxDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbInputDatepicker.prototype, "navigation", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbInputDatepicker.prototype, "outsideDays", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbInputDatepicker.prototype, "placement", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbInputDatepicker.prototype, "showWeekdays", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbInputDatepicker.prototype, "showWeekNumbers", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbInputDatepicker.prototype, "startDate", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbInputDatepicker.prototype, "navigate", void 0);
             NgbInputDatepicker = __decorate([
                 core_1.Directive({
@@ -3831,27 +3831,27 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", core_1.TemplateRef)
+                __metadata("design:orderType", core_1.TemplateRef)
             ], NgbDatepickerMonthView.prototype, "dayTemplate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerMonthView.prototype, "month", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbDatepickerMonthView.prototype, "outsideDays", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerMonthView.prototype, "showWeekdays", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerMonthView.prototype, "showWeekNumbers", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerMonthView.prototype, "select", void 0);
             NgbDatepickerMonthView = __decorate([
                 core_1.Component({
@@ -3934,23 +3934,23 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", ngb_date_1.NgbDate)
+                __metadata("design:orderType", ngb_date_1.NgbDate)
             ], NgbDatepickerNavigationSelect.prototype, "date", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerNavigationSelect.prototype, "disabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", ngb_date_1.NgbDate)
+                __metadata("design:orderType", ngb_date_1.NgbDate)
             ], NgbDatepickerNavigationSelect.prototype, "maxDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", ngb_date_1.NgbDate)
+                __metadata("design:orderType", ngb_date_1.NgbDate)
             ], NgbDatepickerNavigationSelect.prototype, "minDate", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerNavigationSelect.prototype, "select", void 0);
             NgbDatepickerNavigationSelect = __decorate([
                 core_1.Component({
@@ -4012,39 +4012,39 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", ngb_date_1.NgbDate)
+                __metadata("design:orderType", ngb_date_1.NgbDate)
             ], NgbDatepickerNavigation.prototype, "date", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerNavigation.prototype, "disabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", ngb_date_1.NgbDate)
+                __metadata("design:orderType", ngb_date_1.NgbDate)
             ], NgbDatepickerNavigation.prototype, "maxDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", ngb_date_1.NgbDate)
+                __metadata("design:orderType", ngb_date_1.NgbDate)
             ], NgbDatepickerNavigation.prototype, "minDate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbDatepickerNavigation.prototype, "months", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerNavigation.prototype, "showSelect", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDatepickerNavigation.prototype, "showWeekNumbers", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerNavigation.prototype, "navigate", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDatepickerNavigation.prototype, "select", void 0);
             NgbDatepickerNavigation = __decorate([
                 core_1.Component({
@@ -4052,7 +4052,7 @@
                     changeDetection: core_1.ChangeDetectionStrategy.OnPush,
                     host: {'class': 'd-flex justify-content-between', '[class.collapsed]': '!showSelect'},
                     styles: ["\n    :host {\n      height: 2rem;\n      line-height: 1.85rem;\n    }\n    :host.collapsed {\n      margin-bottom: -2rem;        \n    }\n    .ngb-dp-navigation-chevron::before {\n      border-style: solid;\n      border-width: 0.2em 0.2em 0 0;\n      content: '';\n      display: inline-block;\n      height: 0.75em;\n      transform: rotate(-135deg);\n      -webkit-transform: rotate(-135deg);\n      -ms-transform: rotate(-135deg);\n      width: 0.75em;\n      margin: 0 0 0 0.5rem;\n    }    \n    .ngb-dp-navigation-chevron.right:before {\n      -webkit-transform: rotate(45deg);\n      -ms-transform: rotate(45deg);\n      transform: rotate(45deg);\n      margin: 0 0.5rem 0 0;\n    }\n    .btn-link {\n      cursor: pointer;\n      outline: 0;\n    }\n    .btn-link[disabled] {\n      cursor: not-allowed;\n      opacity: .65;\n    }    \n  "],
-                    template: "\n    <button type=\"button\" class=\"btn-link\" (click)=\"!!doNavigate(navigation.PREV)\" [disabled]=\"prevDisabled()\" tabindex=\"-1\">\n      <span class=\"ngb-dp-navigation-chevron\"></span>    \n    </button>\n    \n    <ngb-datepicker-navigation-select *ngIf=\"showSelect\" class=\"d-block\" [style.width.rem]=\"months * 9\"\n      [date]=\"date\"\n      [minDate]=\"minDate\"\n      [maxDate]=\"maxDate\"\n      [disabled] = \"disabled\"\n      (select)=\"selectDate($event)\">\n    </ngb-datepicker-navigation-select>\n    \n    <button type=\"button\" class=\"btn-link\" (click)=\"!!doNavigate(navigation.NEXT)\" [disabled]=\"nextDisabled()\" tabindex=\"-1\">\n      <span class=\"ngb-dp-navigation-chevron right\"></span>\n    </button>\n  "
+                    template: "\n    <button orderType=\"button\" class=\"btn-link\" (click)=\"!!doNavigate(navigation.PREV)\" [disabled]=\"prevDisabled()\" tabindex=\"-1\">\n      <span class=\"ngb-dp-navigation-chevron\"></span>    \n    </button>\n    \n    <ngb-datepicker-navigation-select *ngIf=\"showSelect\" class=\"d-block\" [style.width.rem]=\"months * 9\"\n      [date]=\"date\"\n      [minDate]=\"minDate\"\n      [maxDate]=\"maxDate\"\n      [disabled] = \"disabled\"\n      (select)=\"selectDate($event)\">\n    </ngb-datepicker-navigation-select>\n    \n    <button orderType=\"button\" class=\"btn-link\" (click)=\"!!doNavigate(navigation.NEXT)\" [disabled]=\"nextDisabled()\" tabindex=\"-1\">\n      <span class=\"ngb-dp-navigation-chevron right\"></span>\n    </button>\n  "
                 }),
                 __metadata("design:paramtypes", [datepicker_i18n_1.NgbDatepickerI18n, ngb_calendar_1.NgbCalendar])
             ], NgbDatepickerNavigation);
@@ -4334,19 +4334,19 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDropdown.prototype, "up", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbDropdown.prototype, "autoClose", void 0);
             __decorate([
                 core_1.Input('open'),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDropdown.prototype, "_open", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbDropdown.prototype, "openChange", void 0);
             NgbDropdown = __decorate([
                 core_1.Directive({
@@ -4729,23 +4729,23 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbModalWindow.prototype, "backdrop", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbModalWindow.prototype, "keyboard", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbModalWindow.prototype, "size", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbModalWindow.prototype, "windowClass", void 0);
             __decorate([
                 core_1.Output('dismiss'),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbModalWindow.prototype, "dismissEvent", void 0);
             NgbModalWindow = __decorate([
                 core_1.Component({
@@ -4797,7 +4797,7 @@
 
                 /**
                  * Opens a new modal window with the specified content and using supplied options. Content can be provided
-                 * as a TemplateRef or a component type. If you pass a component type as content than instances of those
+                 * as a TemplateRef or a component orderType. If you pass a component orderType as content than instances of those
                  * components can be injected with an instance of the NgbActiveModal class. You can use methods on the
                  * NgbActiveModal class to close / dismiss modals from "inside" of a component.
                  */
@@ -4976,47 +4976,47 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbPagination.prototype, "disabled", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbPagination.prototype, "boundaryLinks", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbPagination.prototype, "directionLinks", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbPagination.prototype, "ellipses", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbPagination.prototype, "rotate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbPagination.prototype, "collectionSize", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbPagination.prototype, "maxSize", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPagination.prototype, "page", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbPagination.prototype, "pageSize", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPagination.prototype, "pageChange", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPagination.prototype, "size", void 0);
             NgbPagination = __decorate([
                 core_1.Component({
@@ -5062,15 +5062,15 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopoverWindow.prototype, "placement", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopoverWindow.prototype, "title", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopoverWindow.prototype, "id", void 0);
             NgbPopoverWindow = __decorate([
                 core_1.Component({
@@ -5171,31 +5171,31 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPopover.prototype, "ngbPopover", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopover.prototype, "popoverTitle", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopover.prototype, "placement", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopover.prototype, "triggers", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbPopover.prototype, "container", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPopover.prototype, "shown", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbPopover.prototype, "hidden", void 0);
             NgbPopover = __decorate([
                 core_1.Directive({selector: '[ngbPopover]', exportAs: 'ngbPopover'}),
@@ -5252,33 +5252,33 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbProgressbar.prototype, "max", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbProgressbar.prototype, "animated", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbProgressbar.prototype, "striped", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbProgressbar.prototype, "showValue", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbProgressbar.prototype, "type", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbProgressbar.prototype, "value", void 0);
             NgbProgressbar = __decorate([
                 core_1.Component({
                     selector: 'ngb-progressbar',
                     changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-                    template: "\n    <div class=\"progress\">\n      <div class=\"progress-bar{{type ? ' bg-' + type : ''}}{{animated ? ' progress-bar-animated' : ''}}{{striped ?\n    ' progress-bar-striped' : ''}}\" role=\"progressbar\" [style.width.%]=\"getPercentValue()\"\n    [attr.aria-valuenow]=\"getValue()\" aria-valuemin=\"0\" [attr.aria-valuemax]=\"max\">\n        <span *ngIf=\"showValue\">{{getPercentValue()}}%</span><ng-content></ng-content>\n      </div>\n    </div>\n  "
+                    template: "\n    <div class=\"progress\">\n      <div class=\"progress-bar{{orderType ? ' bg-' + orderType : ''}}{{animated ? ' progress-bar-animated' : ''}}{{striped ?\n    ' progress-bar-striped' : ''}}\" role=\"progressbar\" [style.width.%]=\"getPercentValue()\"\n    [attr.aria-valuenow]=\"getValue()\" aria-valuemin=\"0\" [attr.aria-valuemax]=\"max\">\n        <span *ngIf=\"showValue\">{{getPercentValue()}}%</span><ng-content></ng-content>\n      </div>\n    </div>\n  "
                 }),
                 __metadata("design:paramtypes", [progressbar_config_1.NgbProgressbarConfig])
             ], NgbProgressbar);
@@ -5453,35 +5453,35 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbRating.prototype, "max", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbRating.prototype, "rate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbRating.prototype, "readonly", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbRating.prototype, "resettable", void 0);
             __decorate([
                 core_1.Input(), core_1.ContentChild(core_1.TemplateRef),
-                __metadata("design:type", core_1.TemplateRef)
+                __metadata("design:orderType", core_1.TemplateRef)
             ], NgbRating.prototype, "starTemplate", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbRating.prototype, "hover", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbRating.prototype, "leave", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbRating.prototype, "rateChange", void 0);
             NgbRating = __decorate([
                 core_1.Component({
@@ -5577,23 +5577,23 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTab.prototype, "id", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTab.prototype, "title", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTab.prototype, "disabled", void 0);
             __decorate([
                 core_1.ContentChild(NgbTabContent),
-                __metadata("design:type", NgbTabContent)
+                __metadata("design:orderType", NgbTabContent)
             ], NgbTab.prototype, "contentTpl", void 0);
             __decorate([
                 core_1.ContentChild(NgbTabTitle),
-                __metadata("design:type", NgbTabTitle)
+                __metadata("design:orderType", NgbTabTitle)
             ], NgbTab.prototype, "titleTpl", void 0);
             NgbTab = __decorate([
                 core_1.Directive({selector: 'ngb-tab'})
@@ -5651,33 +5651,33 @@
             }());
             __decorate([
                 core_1.ContentChildren(NgbTab),
-                __metadata("design:type", core_1.QueryList)
+                __metadata("design:orderType", core_1.QueryList)
             ], NgbTabset.prototype, "tabs", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTabset.prototype, "activeId", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTabset.prototype, "destroyOnHide", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTabset.prototype, "justify", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTabset.prototype, "type", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTabset.prototype, "tabChange", void 0);
             NgbTabset = __decorate([
                 core_1.Component({
                     selector: 'ngb-tabset',
                     exportAs: 'ngbTabset',
-                    template: "\n    <ul [class]=\"'nav nav-' + type + ' justify-content-' + justify\" role=\"tablist\">\n      <li class=\"nav-item\" *ngFor=\"let tab of tabs\">\n        <a [id]=\"tab.id\" class=\"nav-link\" [class.active]=\"tab.id === activeId\" [class.disabled]=\"tab.disabled\"\n          href (click)=\"!!select(tab.id)\" role=\"tab\" [attr.tabindex]=\"(tab.disabled ? '-1': undefined)\"\n          [attr.aria-controls]=\"(!destroyOnHide || tab.id === activeId ? tab.id + '-panel' : null)\"\n          [attr.aria-expanded]=\"tab.id === activeId\" [attr.aria-disabled]=\"tab.disabled\">\n          {{tab.title}}<ng-template [ngTemplateOutlet]=\"tab.titleTpl?.templateRef\"></ng-template>\n        </a>\n      </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-template ngFor let-tab [ngForOf]=\"tabs\">\n        <div\n          class=\"tab-pane {{tab.id === activeId ? 'active' : null}}\"\n          *ngIf=\"!destroyOnHide || tab.id === activeId\"\n          role=\"tabpanel\"\n          [attr.aria-labelledby]=\"tab.id\" id=\"{{tab.id}}-panel\"\n          [attr.aria-expanded]=\"tab.id === activeId\">\n          <ng-template [ngTemplateOutlet]=\"tab.contentTpl.templateRef\"></ng-template>\n        </div>\n      </ng-template>\n    </div>\n  "
+                    template: "\n    <ul [class]=\"'nav nav-' + orderType + ' justify-content-' + justify\" role=\"tablist\">\n      <li class=\"nav-item\" *ngFor=\"let tab of tabs\">\n        <a [id]=\"tab.id\" class=\"nav-link\" [class.active]=\"tab.id === activeId\" [class.disabled]=\"tab.disabled\"\n          href (click)=\"!!select(tab.id)\" role=\"tab\" [attr.tabindex]=\"(tab.disabled ? '-1': undefined)\"\n          [attr.aria-controls]=\"(!destroyOnHide || tab.id === activeId ? tab.id + '-panel' : null)\"\n          [attr.aria-expanded]=\"tab.id === activeId\" [attr.aria-disabled]=\"tab.disabled\">\n          {{tab.title}}<ng-template [ngTemplateOutlet]=\"tab.titleTpl?.templateRef\"></ng-template>\n        </a>\n      </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-template ngFor let-tab [ngForOf]=\"tabs\">\n        <div\n          class=\"tab-pane {{tab.id === activeId ? 'active' : null}}\"\n          *ngIf=\"!destroyOnHide || tab.id === activeId\"\n          role=\"tabpanel\"\n          [attr.aria-labelledby]=\"tab.id\" id=\"{{tab.id}}-panel\"\n          [attr.aria-expanded]=\"tab.id === activeId\">\n          <ng-template [ngTemplateOutlet]=\"tab.contentTpl.templateRef\"></ng-template>\n        </div>\n      </ng-template>\n    </div>\n  "
                 }),
                 __metadata("design:paramtypes", [tabset_config_1.NgbTabsetConfig])
             ], NgbTabset);
@@ -5830,41 +5830,41 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTimepicker.prototype, "meridian", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTimepicker.prototype, "spinners", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTimepicker.prototype, "seconds", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbTimepicker.prototype, "hourStep", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbTimepicker.prototype, "minuteStep", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Number)
+                __metadata("design:orderType", Number)
             ], NgbTimepicker.prototype, "secondStep", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTimepicker.prototype, "readonlyInputs", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTimepicker.prototype, "size", void 0);
             NgbTimepicker = __decorate([
                 core_1.Component({
                     selector: 'ngb-timepicker',
                     styles: ["\n    .ngb-tp {\n      display: flex;\n      align-items: center;\n    }\n\n    .ngb-tp-hour, .ngb-tp-minute, .ngb-tp-second, .ngb-tp-meridian {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      justify-content: space-around;\n    }\n\n    .ngb-tp-spacer {\n      width: 1em;\n      text-align: center;\n    }\n\n    .chevron::before {\n      border-style: solid;\n      border-width: 0.29em 0.29em 0 0;\n      content: '';\n      display: inline-block;\n      height: 0.69em;\n      left: 0.05em;\n      position: relative;\n      top: 0.15em;\n      transform: rotate(-45deg);\n      -webkit-transform: rotate(-45deg);\n      -ms-transform: rotate(-45deg);\n      vertical-align: middle;\n      width: 0.71em;\n    }\n\n    .chevron.bottom:before {\n      top: -.3em;\n      -webkit-transform: rotate(135deg);\n      -ms-transform: rotate(135deg);\n      transform: rotate(135deg);\n    }\n\n    .btn-link {\n      outline: 0;\n    }\n\n    .btn-link.disabled {\n      cursor: not-allowed;\n      opacity: .65;\n    }\n\n    input {\n      text-align: center;\n      display: inline-block;\n      width: auto;\n    }\n  "],
-                    template: "\n    <fieldset [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n      <div class=\"ngb-tp\">\n        <div class=\"ngb-tp-hour\">\n          <button *ngIf=\"spinners\" type=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeHour(hourStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron\"></span>\n            <span class=\"sr-only\">Increment hours</span>\n          </button>\n          <input type=\"text\" class=\"form-control\" [ngClass]=\"setFormControlSize()\" maxlength=\"2\" size=\"2\" placeholder=\"HH\"\n            [value]=\"formatHour(model?.hour)\" (change)=\"updateHour($event.target.value)\"\n            [readonly]=\"readonlyInputs\" [disabled]=\"disabled\" aria-label=\"Hours\">\n          <button *ngIf=\"spinners\" type=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeHour(-hourStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron bottom\"></span>\n            <span class=\"sr-only\">Decrement hours</span>\n          </button>\n        </div>\n        <div class=\"ngb-tp-spacer\">:</div>\n        <div class=\"ngb-tp-minute\">\n          <button *ngIf=\"spinners\" type=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeMinute(minuteStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron\"></span>\n            <span class=\"sr-only\">Increment minutes</span>\n          </button>\n          <input type=\"text\" class=\"form-control\" [ngClass]=\"setFormControlSize()\" maxlength=\"2\" size=\"2\" placeholder=\"MM\"\n            [value]=\"formatMinSec(model?.minute)\" (change)=\"updateMinute($event.target.value)\"\n            [readonly]=\"readonlyInputs\" [disabled]=\"disabled\" aria-label=\"Minutes\">\n          <button *ngIf=\"spinners\" type=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeMinute(-minuteStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron bottom\"></span>\n            <span class=\"sr-only\">Decrement minutes</span>\n          </button>\n        </div>\n        <div *ngIf=\"seconds\" class=\"ngb-tp-spacer\">:</div>\n        <div *ngIf=\"seconds\" class=\"ngb-tp-second\">\n          <button *ngIf=\"spinners\" type=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeSecond(secondStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron\"></span>\n            <span class=\"sr-only\">Increment seconds</span>\n          </button>\n          <input type=\"text\" class=\"form-control\" [ngClass]=\"setFormControlSize()\" maxlength=\"2\" size=\"2\" placeholder=\"SS\"\n            [value]=\"formatMinSec(model?.second)\" (change)=\"updateSecond($event.target.value)\"\n            [readonly]=\"readonlyInputs\" [disabled]=\"disabled\" aria-label=\"Seconds\">\n          <button *ngIf=\"spinners\" type=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeSecond(-secondStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron bottom\"></span>\n            <span class=\"sr-only\">Decrement seconds</span>\n          </button>\n        </div>\n        <div *ngIf=\"meridian\" class=\"ngb-tp-spacer\"></div>\n        <div *ngIf=\"meridian\" class=\"ngb-tp-meridian\">\n          <button type=\"button\" class=\"btn btn-outline-primary\" [ngClass]=\"setButtonSize()\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\"\n            (click)=\"toggleMeridian()\">{{model?.hour >= 12 ? 'PM' : 'AM'}}</button>\n        </div>\n      </div>\n    </fieldset>\n  ",
+                    template: "\n    <fieldset [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n      <div class=\"ngb-tp\">\n        <div class=\"ngb-tp-hour\">\n          <button *ngIf=\"spinners\" orderType=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeHour(hourStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron\"></span>\n            <span class=\"sr-only\">Increment hours</span>\n          </button>\n          <input orderType=\"text\" class=\"form-control\" [ngClass]=\"setFormControlSize()\" maxlength=\"2\" size=\"2\" placeholder=\"HH\"\n            [value]=\"formatHour(model?.hour)\" (change)=\"updateHour($event.target.value)\"\n            [readonly]=\"readonlyInputs\" [disabled]=\"disabled\" aria-label=\"Hours\">\n          <button *ngIf=\"spinners\" orderType=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeHour(-hourStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron bottom\"></span>\n            <span class=\"sr-only\">Decrement hours</span>\n          </button>\n        </div>\n        <div class=\"ngb-tp-spacer\">:</div>\n        <div class=\"ngb-tp-minute\">\n          <button *ngIf=\"spinners\" orderType=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeMinute(minuteStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron\"></span>\n            <span class=\"sr-only\">Increment minutes</span>\n          </button>\n          <input orderType=\"text\" class=\"form-control\" [ngClass]=\"setFormControlSize()\" maxlength=\"2\" size=\"2\" placeholder=\"MM\"\n            [value]=\"formatMinSec(model?.minute)\" (change)=\"updateMinute($event.target.value)\"\n            [readonly]=\"readonlyInputs\" [disabled]=\"disabled\" aria-label=\"Minutes\">\n          <button *ngIf=\"spinners\" orderType=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeMinute(-minuteStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron bottom\"></span>\n            <span class=\"sr-only\">Decrement minutes</span>\n          </button>\n        </div>\n        <div *ngIf=\"seconds\" class=\"ngb-tp-spacer\">:</div>\n        <div *ngIf=\"seconds\" class=\"ngb-tp-second\">\n          <button *ngIf=\"spinners\" orderType=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeSecond(secondStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron\"></span>\n            <span class=\"sr-only\">Increment seconds</span>\n          </button>\n          <input orderType=\"text\" class=\"form-control\" [ngClass]=\"setFormControlSize()\" maxlength=\"2\" size=\"2\" placeholder=\"SS\"\n            [value]=\"formatMinSec(model?.second)\" (change)=\"updateSecond($event.target.value)\"\n            [readonly]=\"readonlyInputs\" [disabled]=\"disabled\" aria-label=\"Seconds\">\n          <button *ngIf=\"spinners\" orderType=\"button\" class=\"btn-link\" [ngClass]=\"setButtonSize()\" (click)=\"changeSecond(-secondStep)\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\">\n            <span class=\"chevron bottom\"></span>\n            <span class=\"sr-only\">Decrement seconds</span>\n          </button>\n        </div>\n        <div *ngIf=\"meridian\" class=\"ngb-tp-spacer\"></div>\n        <div *ngIf=\"meridian\" class=\"ngb-tp-meridian\">\n          <button orderType=\"button\" class=\"btn btn-outline-primary\" [ngClass]=\"setButtonSize()\"\n            [disabled]=\"disabled\" [class.disabled]=\"disabled\"\n            (click)=\"toggleMeridian()\">{{model?.hour >= 12 ? 'PM' : 'AM'}}</button>\n        </div>\n      </div>\n    </fieldset>\n  ",
                     providers: [NGB_TIMEPICKER_VALUE_ACCESSOR]
                 }),
                 __metadata("design:paramtypes", [timepicker_config_1.NgbTimepickerConfig])
@@ -5904,11 +5904,11 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTooltipWindow.prototype, "placement", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTooltipWindow.prototype, "id", void 0);
             NgbTooltipWindow = __decorate([
                 core_1.Component({
@@ -6024,27 +6024,27 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTooltip.prototype, "placement", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTooltip.prototype, "triggers", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbTooltip.prototype, "container", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTooltip.prototype, "shown", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTooltip.prototype, "hidden", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object),
+                __metadata("design:orderType", Object),
                 __metadata("design:paramtypes", [Object])
             ], NgbTooltip.prototype, "ngbTooltip", null);
             NgbTooltip = __decorate([
@@ -6100,15 +6100,15 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbHighlight.prototype, "highlightClass", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbHighlight.prototype, "result", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", String)
+                __metadata("design:orderType", String)
             ], NgbHighlight.prototype, "term", void 0);
             NgbHighlight = __decorate([
                 core_1.Component({
@@ -6177,7 +6177,7 @@
                     this._renderer = _renderer;
                     this._injector = _injector;
                     /**
-                     * An event emitted when a match is selected. Event payload is of type NgbTypeaheadSelectItemEvent.
+                     * An event emitted when a match is selected. Event payload is of orderType NgbTypeaheadSelectItemEvent.
                      */
                     this.selectItem = new core_1.EventEmitter();
                     this.popupId = "ngb-typeahead-" + nextWindowId++;
@@ -6364,35 +6364,35 @@
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTypeahead.prototype, "editable", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTypeahead.prototype, "focusFirst", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Function)
+                __metadata("design:orderType", Function)
             ], NgbTypeahead.prototype, "inputFormatter", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Function)
+                __metadata("design:orderType", Function)
             ], NgbTypeahead.prototype, "ngbTypeahead", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Function)
+                __metadata("design:orderType", Function)
             ], NgbTypeahead.prototype, "resultFormatter", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", core_1.TemplateRef)
+                __metadata("design:orderType", core_1.TemplateRef)
             ], NgbTypeahead.prototype, "resultTemplate", void 0);
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", Boolean)
+                __metadata("design:orderType", Boolean)
             ], NgbTypeahead.prototype, "showHint", void 0);
             __decorate([
                 core_1.Output(),
-                __metadata("design:type", Object)
+                __metadata("design:orderType", Object)
             ], NgbTypeahead.prototype, "selectItem", void 0);
             NgbTypeahead = __decorate([
                 core_1.Directive({
@@ -6734,7 +6734,7 @@
             }
 
             /**
-             * The civil calendar is one type of Hijri calendars used in islamic countries.
+             * The civil calendar is one orderType of Hijri calendars used in islamic countries.
              * Uses a fixed cycle of alternating 29- and 30-day months,
              * with a leap day added to the last month of 11 out of every 30 years.
              * http://cldr.unicode.org/development/development-process/design-proposals/islamic-calendar-types

@@ -1250,7 +1250,7 @@ $.fn.visibility.settings = {
   // visibility check delay in ms (defaults to animationFrame)
   throttle               : false,
 
-  // special visibility type (image, fixed)
+  // special visibility orderType (image, fixed)
   type                   : false,
 
   // z-index to use with visibility 'fixed'

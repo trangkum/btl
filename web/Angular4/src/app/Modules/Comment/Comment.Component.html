@@ -1,0 +1,222 @@
+<div class="main-content">
+    <div class="header-content">
+        <div class="row action-content">
+            <div class="col-md-4">
+                <div class="title-header-content">
+                    <i class="fa fa-globe" aria-hidden="true"></i> {{ticketEntity.subject}}
+                </div>
+            </div>
+            <div class="col-md-8 group-action-content group-action-request-content">
+                <button class="btn btn-sm btn-success" [disabled]="!ticketEntity.IsEdit" (click)="saveChange()"><i
+                        class="fa fa-save" aria-hidden="true"></i> Lưu thay đổi
+                </button>
+                <!--<button class="btn btn-sm"><i class="fa fa-users" aria-hidden="true"></i> Thay đổi bộ phận-->
+                <!--IT-->
+                <!--</button>-->
+                <!--<button class="btn btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Thay đổi mức độ ưu-->
+                <!--tiên-->
+                <!--</button>-->
+                <!--<button class="btn btn-sm "><i class="fa fa-calendar" aria-hidden="true"></i> Thay đổi-->
+                <!--deadline-->
+                <!--</button>-->
+                <!--<button class="btn btn-sm "><i class="fa fa-user" aria-hidden="true"></i> Thay đổi người-->
+                <!--liên quan-->
+                <!--</button>-->
+                <!--<button class="btn btn-sm "><i class="fa fa-hand-o-right" aria-hidden="true"></i> Assign-->
+                <!--</button>-->
+                <!--<button class="btn btn-sm dropdown-toggle"><i class="fa fa-exchange" aria-hidden="true"-->
+                <!--style="color: #0ea432"></i> Thay đổi trạng-->
+                <!--thái-->
+                <!--</button>-->
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        <div class="row request-info">
+            <div class="col-md-6">
+                <div class="row info">
+                    <div class="col-md-6 request-label">Ngày tạo:</div>
+                    <div class="col-md-6">{{ticketEntity.createdTime | date: 'dd-MM-yyyy'}}</div>
+                </div>
+                <div class="row info">
+                    <div class="col-md-6 request-label">Người yêu cầu:</div>
+                    <div class="col-md-6">{{ticketEntity.createEmployeeEntity?.name}}</div>
+                </div>
+                <div class="row info">
+                    <div class="col-md-6 request-label">Mức độ ưu tiên:</div>
+                    <div class="col-md-6 input-group-sm">
+                        <select [ngModel]="ticketEntity.priority"
+                                (ngModelChange)="ticketEntity.priority = $event; ticketEntity.IsEdit = true"
+                                class="form-control row-number">
+                            <option *ngFor="let Priority of PriorityList" [ngValue]="Priority.type">{{Priority.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row info">
+                    <div class="col-md-6 request-label">Bộ phận IT:</div>
+                    <div class="col-md-6 input-group-sm">
+                        <select [ngModel]="ticketEntity.locationId"
+                                (ngModelChange)="ticketEntity.locationId = $event; ticketEntity.IsEdit = true"
+                                class="form-control row-number">
+                            <option *ngFor="let Location of LocationList" [ngValue]="Location.id">{{Location.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row info">
+                    <div class="col-md-6 request-label">Ngày hết hạn:</div>
+                    <div class="col-md-6 input-group-sm">
+                        <input class="form-control" placeholder="Ngày hết hạn..." ngbDatepicker
+                               #dt="ngbDatepicker"
+                               (click)="fixNgbDate(dt)"
+                               [ngModel]="deadline"
+                               (ngModelChange)="deadline = $event; ticketEntity.IsEdit = true">
+                        <!--{{ticketEntity.deadline | date: 'dd-MM-yyyy'}}-->
+                    </div>
+                </div>
+                <div class="row info">
+                    <div class="col-md-6 request-label">Người thực hiện:</div>
+                    <div class="col-md-6 input-group-sm">
+                        <dropdown [DataList]="assignedEmployeeSearchList"
+                                  (onEnter)="ChooseAssignedEmployeeSearch($event)"
+                                  [ChangeWhenUpDown]="true" (onFirstClick)="GetAssignedEmployeeSearchList()">
+                            <dropdown-input>
+                                <span class="input-group-sm search-input">
+                                     <input type="text" class="form-control" placeholder="Nhập..."
+                                            (ngModelChange)="ticketEntity.assignedEmployeeEntity.name = $event;GetAssignedEmployeeSearchList()"
+                                            [ngModel]="ticketEntity.assignedEmployeeEntity.name"
+                                     />
+                                </span>
+                            </dropdown-input>
+                            <dropdown-content>
+                                <li *ngFor="let Item of assignedEmployeeSearchList"
+                                    (click)="Item.IsSelected = true;ChooseAssignedEmployeeSearch(Item); "
+                                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                                    (mouseenter)="Item.IsActive = true" (mouseleave)="Item.IsActive =false">
+                                    {{Item.name}}
+                                </li>
+                            </dropdown-content>
+                        </dropdown>
+                    </div>
+                </div>
+                <div class="row info">
+                    <div class="col-md-6 request-label">Trạng thái:</div>
+                    <div class="col-md-6 input-group-sm">
+                        <select [ngModel]="ticketEntity.status"
+                                (ngModelChange)="ticketEntity.status = $event;ticketEntity.IsEdit = true"
+                                class="form-control">
+                            <option *ngFor="let ticketStatus of TicketStatusList" [ngValue]="ticketStatus.type">
+                                {{ticketStatus.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row info">
+                    <div class="col-md-6 request-label">Người liên quan:</div>
+                    <div class="col-md-6 input-group-sm">
+                        <TagsInput [DataList]="CCList" [DisplayProperty]="'briefName'" (onFirstClick)="searchCC()" (onTagRemove)="ticketEntity.IsEdit = true"
+                                   class="form-control">
+                            <dropdown-input>
+                                <input type="text" style="max-width: 9rem;" placeholder="Người liên quan"
+                                       [(ngModel)]="CCName" [ngModelOptions]="{standalone: true}"
+                                       (keyup)="searchCC(CCName)"/>
+                            </dropdown-input>
+                            <dropdown-content>
+                                <li *ngFor="let Item of CCList"
+                                    (click)="Item.IsSelected = Item['IsSelected'] == null ? true : !Item.IsSelected;ticketEntity.IsEdit = true"
+                                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                                    (mouseenter)="Item.IsActive = true" (mouseleave)="Item.IsActive =false">
+                                    {{Item.briefName}}
+                                </li>
+                            </dropdown-content>
+                        </TagsInput>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="discussion-content">
+    <div class="header-content">
+        <div class="row action-content">
+            <div class="col-md-4">
+                <div class="title-header-content">
+                    <i class="fa fa-user" aria-hidden="true"></i> Nội dung
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-content body-discussion">
+        <div class="post-content ticket-content">
+            <img src="https://i.pinimg.com/564x/30/fc/c1/30fcc124e9498067ae199958139b1bda.jpg"
+                 class="img-post-content"/>
+            <div class="info-post-content">
+                <div>
+                    <span class="username-post-content">
+                        {{ticketEntity.createEmployeeEntity?.name}}
+                    </span>
+                    <span class="content-post-content" [innerHTML]="ticketEntity.content">
+                                </span>
+                </div>
+                <div>
+                    <a class="reply-btn-post-content"  (click)="goToReply()" href="/">
+                        Trả lời
+                    </a>
+                    <span class="time-post-content">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> {{ticketEntity.createdTime|TimeAgo}}
+                    </span>
+                </div>
+                <image-model *ngFor="let image of ticketEntity.ticketImageEntities" [width]="'4.5rem'" [height]="'4.5rem'"
+                             style="display: inline-block; margin-top: 1rem;margin-right: .5rem;"
+                             [base64Content]="image.fileEntity.data"></image-model>
+                             <!--<image-model *ngFor="let image of ticketEntity.ticketImageEntities" [base64Content]="image.fileEntity.data"></image-model>-->
+                <!--<img src="https://i.pinimg.com/564x/30/fc/c1/30fcc124e9498067ae199958139b1bda.jpg"-->
+                <!--class=""/>-->
+            </div>
+        </div>
+        <div class="post-content" *ngFor="let ticketThread of ticketEntity.ticketThreadEntities">
+            <img src="https://i.pinimg.com/564x/30/fc/c1/30fcc124e9498067ae199958139b1bda.jpg"
+                 class="img-post-content"/>
+            <div class="info-post-content">
+                <div>
+                                <span class="username-post-content">
+                                    {{ticketThread.employeeEntity?.name}}
+                                </span>
+                    <span class="content-post-content" [innerHTML]="ticketThread.content">
+                                </span>
+                </div>
+                <div>
+                    <a class="reply-btn-post-content" (click)="goToReply()" href="/">
+                        Trả lời
+                    </a>
+                    <span class="time-post-content">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> {{ticketThread.createTime|TimeAgo}}
+                                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="input-discussion">
+        <div class="title-input-discussion">Bình luận</div>
+        <InputDiscussion [DataList]="employeeList" [Placement]="'down'" style="height: 5rem"
+                         [DistantPopUp]="5" [InputClass]="'form-control input-content'"
+                         [DisableWhenEnter]="false" [Id]="inputDiscussionComponent.Id"
+                         [DisplayProperty]="'briefName'" name="inputdiscussion"
+                         (onSearchWhoAt)="searchEmployeeList($event)" [AutoReplaceWhenClick]="true">
+            <dropdown-content>
+                <li *ngFor="let Item of employeeList" (click)="Item.IsSelected = true"
+                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                    (mouseenter)="Item.IsActive = true;" (mouseleave)="Item.IsActive = false">
+                    {{Item.briefName}}
+                </li>
+            </dropdown-content>
+        </InputDiscussion>
+        <button class="btn btn-sm btn-info send-btn-input-discussion" (click)="sendComment()">
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+            Gửi bình luận
+        </button>
+    </div>
+</div>

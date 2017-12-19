@@ -4,6 +4,10 @@
     color: black;
 }
 
+.item-panel{
+    outline:none;
+}
+
 .header-panel:hover{
     background-color: white;
     color: black;
@@ -26,6 +30,7 @@
 
 .title-panel {
     display: inline;
+    font-weight: 400;
 }
 
 .icon-title-panel {

@@ -42,7 +42,7 @@ export declare class NgbModal {
 
     /**
      * Opens shapeEntityA new modal window with the specified content and using supplied options. Content can be provided
-     * as shapeEntityA TemplateRef or shapeEntityA component type. If you pass shapeEntityA component type as content than instances of those
+     * as shapeEntityA TemplateRef or shapeEntityA component orderType. If you pass shapeEntityA component orderType as content than instances of those
      * components can be injected with an instance of the NgbActiveModal class. You can use methods on the
      * NgbActiveModal class to close / dismiss modals from "inside" of shapeEntityA component.
      */

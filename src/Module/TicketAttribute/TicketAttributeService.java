@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class TicketAttributeService {
     private static SessionFactory factory;
     private static int currentActive;
@@ -77,7 +78,7 @@ public class TicketAttributeService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             TicketattributeModel ticketattributeModel = ticketAttributeEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
+            session.save(ticketattributeModel);
             tx.commit();
             TicketAttributeEntity result = new TicketAttributeEntity(ticketattributeModel);
             return result;

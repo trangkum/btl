@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import java.util.List;
 
+
 public class DatabaseService  implements IDatabaseService {
 
     public boolean create(String url, String name, String password, String dbName, int type) {

@@ -15,50 +15,86 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="pair-input-create-request col-md-12">
-                        <div class="label-input-create-request">Tên công việc <span class="red-start"></span></div>
-                        <input type="text" placeholder="Tên công việc" class="form-control">
+                        <div class="label-input-create-request">Tên công việc <span class="red-star"></span></div>
+                        <input type="text" placeholder="Tên công việc" class="form-control"
+                               [(ngModel)]="ticketEntity.subject">
                     </div>
                 </div>
                 <div class="row">
                     <div class="pair-input-create-request col-md-6">
                         <div class="label-input-create-request">Mức độ ưu tiên</div>
-                        <input type="text" class="form-control">
+                        <select [(ngModel)]="ticketEntity.priority"
+                                class="form-control row-number">
+                            <option *ngFor="let Priority of PriorityList" [ngValue]="Priority.type">{{Priority.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="pair-input-create-request col-md-6">
-                        <div class="label-input-create-request">Ngày hết hạn <span class="red-start"></span></div>
-                        <input type="text" class="form-control">
+                        <div class="label-input-create-request">Ngày hết hạn <span class="red-star"></span></div>
+                        <input class="form-control" placeholder="Ngày hết hạn..." ngbDatepicker
+                               #dt="ngbDatepicker"
+                               (click)="fixNgbDate(dt)"
+                               [(ngModel)]="deadline">
                     </div>
                 </div>
                 <div class="row">
                     <div class="pair-input-create-request col-md-6">
-                        <div class="label-input-create-request">Bộ phận IT <span class="red-start"></span></div>
-                        <input type="text" class="form-control">
+                        <div class="label-input-create-request">Bộ phận IT <span class="red-star"></span></div>
+                        <select [(ngModel)]="ticketEntity.locationId"
+                                class="form-control row-number">
+                            <option *ngFor="let Location of LocationList" [ngValue]="Location.id">{{Location.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="pair-input-create-request col-md-6">
                         <div class="label-input-create-request">Người liên quan</div>
-                        <input type="text" class="form-control">
+                        <TagsInput [DataList]="CCList" [DisplayProperty]="'briefName'" (onFirstClick)="searchCC()"
+                                   class="form-control">
+                            <dropdown-input>
+                                <input type="text" style="max-width: 9rem;" placeholder="Người liên quan"
+                                       [(ngModel)]="CCName" [ngModelOptions]="{standalone: true}"
+                                       (keyup)="searchCC(CCName)"/>
+                            </dropdown-input>
+                            <dropdown-content>
+                                <li *ngFor="let Item of CCList"
+                                    (click)="Item.IsSelected = Item['IsSelected'] == null ? true : !Item.IsSelected;"
+                                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                                    (mouseenter)="Item.IsActive = true" (mouseleave)="Item.IsActive =false">
+                                    {{Item.briefName}}
+                                </li>
+                            </dropdown-content>
+                        </TagsInput>
                     </div>
                 </div>
                 <div class="row">
                     <div class="pair-input-create-request col-md-12">
-                        <div class="label-input-create-request">Nội dung <span class="red-start"></span></div>
-                        <textarea class="content-input-discussion form-control" rows="6"></textarea>
+                        <div class="label-input-create-request">Nội dung <span class="red-star"></span></div>
+                        <InputDiscussion [DataList]="employeeList" [Placement]="'down'" style="height: 5rem"
+                                         [DistantPopUp]="5" [InputClass]="'form-control input-content'"
+                                         [DisableWhenEnter]="false" [Id]="inputDiscussionComponent.Id"
+                                         [DisplayProperty]="'briefName'"
+                                         (onSearchWhoAt)="searchEmployeeList($event)" [AutoReplaceWhenClick]="true">
+                            <dropdown-content>
+                                <li *ngFor="let Item of employeeList" (click)="Item.IsSelected = true"
+                                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                                    (mouseenter)="Item.IsActive = true;" (mouseleave)="Item.IsActive = false">
+                                    {{Item.briefName}}
+                                </li>
+                            </dropdown-content>
+                        </InputDiscussion>
                     </div>
                 </div>
                 <div class="row">
                     <div class="file-input-create-request col-md-12">
                         <div class="row">
-                            <div class="col-md-8">
-                                <input *ngIf="file.name == null" type="text" class="form-control file-title-input-create-request"
-                                       value="Choose files to upload" disabled>
-                                <input *ngIf="file.name != null" type="text" class="form-control file-title-input-create-request"
-                                      [ngModel]="file.name" disabled>
+                            <div class="col-md-8" (click)="InputfileComponent.OpenFile()">
+                                <span *ngIf="files.length == 0" class="form-control file-title-input-create-request">Chọn Files gửi lên</span>
+                                <span *ngIf="files.length ==  1" class="form-control file-title-input-create-request">{{files[0].name}}</span>
+                                <span *ngIf="files.length > 1" class="form-control file-title-input-create-request">{{files.length}} Files được chọn</span>
                             </div>
                             <div class="col-md-1">
-                                <InputDiscussion>
-                                </InputDiscussion>
-                                <inputfile [DataEntity]="file" (onFileChanged)="showName()">
-                                    <button class="btn btn-primary">Choose Files</button>
+                                <inputfile [Id]="InputfileComponent.Id" [DataEntities]="files" [IsMultiFile]="true">
+                                    <button class="btn btn-primary">Chọn Files</button>
                                 </inputfile>
                             </div>
                         </div>
@@ -66,7 +102,7 @@
                 </div>
                 <div class="row">
                     <div class="action-create-request col-md-12">
-                        <button class="btn btn-sm btn-info">
+                        <button class="btn btn-sm btn-info" (click)="create()">
                             <i class="fa fa-send" aria-hidden="true"></i>
                             Gửi yêu cầu
                         </button>

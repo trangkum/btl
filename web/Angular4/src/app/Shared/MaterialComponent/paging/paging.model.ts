@@ -2,16 +2,16 @@ export class PagingModel {
     NumberButton: number;
     Active: number;
     TotalPage: number;
-    Take: number;
+    take: number;
     base: number;
     buttons: number[];
 
-    constructor(NumberButton: number, Take: number, callback?: Function) {
+    constructor(NumberButton: number, take: number) {
         if (NumberButton % 2 == 0 || NumberButton < 3) throw new Error("the NumberButton must be odd and greater than 2");
         this.buttons = Array(NumberButton - 2).fill(1).map((x, i) => {
             return i + 1;
         });
-        this.Take = Take;
+        this.take = take;
         this.TotalPage = 0;
         this.NumberButton = NumberButton;
         this.Active = 0;

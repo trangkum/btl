@@ -78,7 +78,7 @@ public class TicketThreadService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             TicketthreadModel ticketattributeModel = ticketThreadEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
+            session.save(ticketattributeModel);
             tx.commit();
             TicketThreadEntity result = new TicketThreadEntity(ticketattributeModel);
             return result;

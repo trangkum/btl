@@ -1,5 +1,6 @@
 package Module.User;
 
+import AppStart.RESTTimestamp;
 import Module.Subcribe.SubcribeEntity;
 import Module.Subcribe.SubcribeModel;
 
@@ -18,7 +19,7 @@ public class TokenEntity implements Serializable {
     public int id;
     public Integer userId;
     public String tokenKey;
-    public Timestamp expriedTime;
+    public String expriedTime;
     public UserEntity userEntity;
     public List<SubcribeEntity> subcribeEntities;
 
@@ -29,7 +30,7 @@ public class TokenEntity implements Serializable {
         this.userId = TokenModel.getUserId();
         this.id = TokenModel.getId();
         this.tokenKey = TokenModel.getTokenKey();
-        this.expriedTime = TokenModel.getExpriedTime();
+        this.expriedTime = TokenModel.getExpriedTime().toString();
         for (Object object : objects) {
             if (object instanceof UserModel) {
                 this.userEntity = new UserEntity((UserModel) object);
@@ -48,7 +49,7 @@ public class TokenEntity implements Serializable {
     public TokenModel toModel() {
         TokenModel TokenModel = new TokenModel();
         TokenModel.setId(id);
-        TokenModel.setExpriedTime(expriedTime);
+        TokenModel.setExpriedTime(RESTTimestamp.Parse(expriedTime));
         TokenModel.setTokenKey(tokenKey);
         TokenModel.setUserId(userId);
 //        if (shapeEntityA != null) UserModel.setShapeByShapeId(shapeEntityA.toModel());

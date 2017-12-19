@@ -13,8 +13,8 @@
 //
 // @Component({
 //     selector: 'App-shape',
-//     templateUrl: './CreateRequest.Component.html',
-//     styleUrls: ['./CreateRequest.Component.css'],
+//     templateUrl: './Comment.Component.html',
+//     styleUrls: ['./Comment.Component.css'],
 //     providers: [ShapeService, BottomToastsManager]
 // })
 // export class MyRequestComponent {
@@ -56,8 +56,8 @@
 //     }
 //
 //     Search() {
-//         this.SearchshapeEntity.Skip = this.PagingModel.Take * this.PagingModel.Active;
-//         this.SearchshapeEntity.Take = this.PagingModel.Take;
+//         this.SearchshapeEntity.skip = this.PagingModel.take * this.PagingModel.Active;
+//         this.SearchshapeEntity.take = this.PagingModel.take;
 //         this.shapeService.Get(this.SearchshapeEntity).subscribe(p => {
 //             this.shapeEntities = p;
 //             this.shapeEntities.forEach(h => {
@@ -77,7 +77,7 @@
 //
 //     Count() {
 //         this.shapeService.Count(this.SearchshapeEntity).subscribe(data => {
-//             this.PagingModel.TotalPage = Math.ceil(data / this.PagingModel.Take);
+//             this.PagingModel.TotalPage = Math.ceil(data / this.PagingModel.take);
 //         });
 //     }
 //

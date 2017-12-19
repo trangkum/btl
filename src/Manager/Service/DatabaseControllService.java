@@ -26,6 +26,7 @@ import Module.User.UserModel;
 import org.hibernate.cfg.Configuration;
 
 
+
 public class DatabaseControllService implements IDatabaseControllService {
     public boolean setActive(int id) {
         if (id >= 0 && id < DatabaseEntity.getDatabaseModels().size()) {

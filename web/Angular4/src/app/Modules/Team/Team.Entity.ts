@@ -1,14 +1,14 @@
 import {EmployeeEntity} from "../Employee/Employee.Entity";
-import {GroupEntity} from "../Group/Group.Entity";
+import {LocationEntity} from "../Location/Location.Entity";
 
 export class TeamEntity {
 
     id: number;
     name: string;
-    groupId: number;
+    locationId: number;
     leaderEmployeeId : number;
     employeeEntities: EmployeeEntity[];
-    groupEntity: GroupEntity;
+    locationEntity: LocationEntity;
     leaderEmployeeEntity: EmployeeEntity;
 
     IsEdit: boolean;
@@ -18,15 +18,15 @@ export class TeamEntity {
         if (data == null) {
             this.id = null;
             this.name = null;
-            this.groupId = null;
+            this.locationId = null;
             this.leaderEmployeeId = null;
             this.leaderEmployeeEntity = new EmployeeEntity();
-            this.groupEntity = new GroupEntity();
+            this.locationEntity = new LocationEntity();
             this.employeeEntities = [];
         } else {
             this.id = data.id;
             this.name = data.name;
-            this.groupId = data.groupId;
+            this.locationId = data.locationId;
             this.leaderEmployeeId = data.leaderEmployeeId;
             if (data.employeeEntities != null) {
                 this.employeeEntities = [];
@@ -35,7 +35,7 @@ export class TeamEntity {
                 }
             } else this.employeeEntities = [];
 
-            if (this.groupEntity == null) this.groupEntity = new GroupEntity();
+            if (this.locationEntity == null) this.locationEntity = new LocationEntity();
             if (this.leaderEmployeeEntity == null) this.leaderEmployeeEntity = new EmployeeEntity();
             if (this.employeeEntities == null) this.employeeEntities = [];
         }

@@ -1,5 +1,6 @@
 package Module.File;
 
+import AppStart.RESTTimestamp;
 import Module.Employee.EmployeeEntity;
 import Module.Employee.EmployeeModel;
 import Module.TicketImage.TicketImageEntity;
@@ -7,7 +8,6 @@ import Module.TicketImage.TicketimageModel;
 import org.infinispan.commons.util.Base64;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +23,7 @@ public class FileEntity implements Serializable {
     public Integer length;
     public String name;
     public Integer employeeId;
-    public Timestamp createTime;
+    public String createTime;
     public String extension;
     public EmployeeEntity employeeEntity;
     public List<TicketImageEntity> ticketImageEntities;
@@ -31,7 +31,7 @@ public class FileEntity implements Serializable {
     public FileEntity() {
     }
 
-    public FileEntity(int id, byte[] data, Integer length, String name, Integer employeeId, Timestamp createTime, String extension) {
+    public FileEntity(int id, byte[] data, Integer length, String name, Integer employeeId, String createTime, String extension) {
         this.id = id;
         if (data != null) this.data = Base64.encodeBytes(data);
         this.length = length;
@@ -47,7 +47,7 @@ public class FileEntity implements Serializable {
         this.length = FileModel.getLength();
         this.name = FileModel.getName();
         this.employeeId = FileModel.getEmployeeId();
-        this.createTime = FileModel.getCreateTime();
+        this.createTime = RESTTimestamp.toString(FileModel.getCreateTime());
         this.extension = FileModel.getExtension();
         for (Object object : objects) {
             if (object instanceof EmployeeModel) {
@@ -70,7 +70,7 @@ public class FileEntity implements Serializable {
         if (data != null) FileModel.setData(Base64.decode(data));
         FileModel.setLength(length);
         FileModel.setEmployeeId(employeeId);
-        FileModel.setCreateTime(createTime);
+        FileModel.setCreateTime(RESTTimestamp.Parse(createTime));
         FileModel.setExtension(extension);
         return FileModel;
     }

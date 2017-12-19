@@ -1,0 +1,151 @@
+<div class="main-content">
+    <div class="content">
+        <div class="header-content">
+            <div class="row action-content">
+                <div class="col-md-6">
+                    <div class="title-header-content">
+                        {{title}}
+                    </div>
+                </div>
+                <div class="col-md-6 group-action-content">
+                    <button class="btn btn-sm btn-info" (click)="resetSearch()">Reset bộ lọc</button>
+                    <button class="btn btn-sm btn-info" (click)="search()">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+        <div class="body-content table-responsive">
+            <table class="main-table">
+                <thead>
+                <tr>
+                    <th style="min-width: 5rem;"><span>STT</span></th>
+                    <th (click)="setOrderBy('subject')" class="subject-sm"><span> Tên công việc </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th (click)="setOrderBy('priority')"><span> Độ ưu tiên </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th (click)="setOrderBy('createEmployeeName')"><span> Người yêu cầu </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th (click)="setOrderBy('assignedEmployeeName')"><span> Người thực hiện </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th *ngIf="urlId =='IT'" (click)="setOrderBy('locationName')"><span> Bộ phận IT </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i></th>
+                    <th (click)="setOrderBy('deadline')"><span> Ngày hết hạn </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i>
+                    </th>
+                    <th (click)="setOrderBy('status')"><span> Trạng thái </span><i
+                            class="fa fa-long-arrow-down sort-icon" aria-hidden="true"></i></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="input-group-sm search-input">
+                        <input class="form-control" placeholder="Tìm kiếm" type="text"
+                               [(ngModel)]="searchTicketEntity.subject" (keydown.enter)="search()">
+                    </td>
+                    <td class="input-group-sm search-input">
+                        <select [(ngModel)]="searchTicketEntity.priority"
+                                (ngModelChange)="search();"
+                                class="form-control">
+                            <option *ngFor="let priority of PriorityList" [ngValue]="priority.type">{{priority.name}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <dropdown [DataList]="createEmployeeSearchList" (onEnter)="ChooseCreateEmployeeSearch($event)"
+                                  [ClassContent]="'fix-dropdown-content'"
+                                  [ChangeWhenUpDown]="false" (onFirstClick)="GetCreateEmployeeSearchList()">
+                            <dropdown-input>
+                               <span class="input-group-sm search-input">
+                                <input type="text" class="form-control" placeholder="Nhập..."
+                                       (ngModelChange)="searchCreateEmployee.name = $event;GetCreateEmployeeSearchList()"
+                                       [ngModel]="searchCreateEmployee.name"
+                                       (keyup.enter)="EnterCreateEmployee($event)"/>
+                                                          </span>
+                            </dropdown-input>
+                            <dropdown-content>
+                                <li *ngFor="let Item of createEmployeeSearchList"
+                                    (click)="Item.IsSelected = true;ChooseCreateEmployeeSearch(Item); "
+                                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                                    (mouseenter)="Item.IsActive = true" (mouseleave)="Item.IsActive =false">
+                                    {{Item.name}}
+                                </li>
+                            </dropdown-content>
+                        </dropdown>
+                    </td>
+                    <td>
+                        <dropdown [DataList]="assignedEmployeeSearchList" [ClassContent]="'fix-dropdown-content'"
+                                  (onEnter)="ChooseAssignedEmployeeSearch($event)"
+                                  [ChangeWhenUpDown]="false" (onFirstClick)="GetAssignedEmployeeSearchList()">
+                            <dropdown-input>
+                                <span class="input-group-sm search-input">
+                                     <input type="text" class="form-control" placeholder="Nhập..."
+                                            (ngModelChange)="searchAssignedEmployee.name = $event;GetAssignedEmployeeSearchList()"
+                                            [ngModel]="searchAssignedEmployee.name"
+                                            (keyup.enter)="EnterAssignedEmployee($event)"/>
+                                </span>
+                            </dropdown-input>
+                            <dropdown-content>
+                                <li *ngFor="let Item of assignedEmployeeSearchList"
+                                    (click)="Item.IsSelected = true;ChooseAssignedEmployeeSearch(Item); "
+                                    [ngClass]="{'list-group-item':true,'li-selected' : Item.IsSelected, 'li-active' :  Item.IsActive}"
+                                    (mouseenter)="Item.IsActive = true" (mouseleave)="Item.IsActive =false">
+                                    {{Item.name}}
+                                </li>
+                            </dropdown-content>
+                        </dropdown>
+                    </td>
+                    <td class="input-group-sm search-input" *ngIf="urlId == 'IT'">
+                        <select [(ngModel)]="searchTicketEntity.locationId"
+                                (ngModelChange)="search();"
+                                class="form-control">
+                            <option *ngFor="let location of LocationList" [ngValue]="location.id">
+                                {{location.name}}
+                            </option>
+                        </select>
+                    </td>
+                    <td class="input-group-sm search-input">
+                        <input class="form-control" placeholder="Ngày hết hạn..." ngbDatepicker
+                               #dt="ngbDatepicker" (keydown.enter)="search()"
+                               (click)="fixNgbDate(dt)"
+                               [ngModel]="deadline" (ngModelChange)="setDeadline($event)">
+                    </td>
+                    <td class="input-group-sm search-input">
+                        <select [(ngModel)]="searchTicketEntity.status" [disabled]="urlType != 'All'"
+                                (ngModelChange)="search();"
+                                class="form-control">
+                            <option *ngFor="let ticketStatus of TicketStatusList" [ngValue]="ticketStatus.type">
+                                {{ticketStatus.name}}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ticket of ticketEntities; let i = index">
+                    <td>
+                        {{PagingModel.take * PagingModel.Active + i + 1}}
+                        <span (click)="toggleRead(ticket)" style="float: right"
+                              [ngClass]="{'mark-read': ticket.ticketReadEntities[0]?.status == 1, 'mark-unread': ticket.ticketReadEntities[0]?.status == 0}">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </span>
+                    </td>
+                    <td [routerLink]="['/comment/' + ticket.id]">{{ticket.subject}}</td>
+                    <td> {{PriorityList[ticket.priority]?.name}}</td>
+                    <!--<td>{{ticket.createEmployeeEntity?.name}} ({{ticket.createEmployeeEntity?.briefName}})</td>-->
+                    <td>{{ticket.createEmployeeEntity?.name}}</td>
+                    <td>{{ticket.assignedEmployeeEntity?.name}}</td>
+                    <!--<td>{{ticket.assignedEmployeeEntity?.name}} ({{ticket.assignedEmployeeEntity?.briefName}})</td>-->
+                    <td *ngIf="urlId == 'IT'">{{ticket.locationEntity?.name}}</td>
+                    <td>{{ticket.deadline | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{TicketStatusList[ticket.status]?.name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-paging [PagingModel]="PagingModel" [dot]="true" (onChanges)="search()"
+                    style="float: right!important;"></app-paging>
+        <div style="height: 2rem"></div>
+    </div>
+</div>

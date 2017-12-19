@@ -70,7 +70,7 @@ export {NgbCheckBox};
 NgbCheckBox.decorators = [
     {
         type: Directive, args: [{
-        selector: '[ngbButton][type=checkbox]',
+        selector: '[ngbButton][orderType=checkbox]',
         host: {
             'autocomplete': 'off',
             '[checked]': 'checked',

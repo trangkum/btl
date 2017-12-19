@@ -13,9 +13,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 @IdClass(TicketimageModelPK.class)
 public class TicketimageModel {
     private Integer ticketId;
-    private Integer fielId;
+    private Integer fileId;
     private TicketModel ticketByTicketId;
-    private FileModel fileByFielId;
+    private FileModel fileByFileId;
 
     @Id
     @Column(name = "ticketId", nullable = false)
@@ -28,13 +28,13 @@ public class TicketimageModel {
     }
 
     @Id
-    @Column(name = "fielId", nullable = false)
-    public Integer getFielId() {
-        return fielId;
+    @Column(name = "fileId", nullable = false)
+    public Integer getFileId() {
+        return fileId;
     }
 
-    public void setFielId(Integer fielId) {
-        this.fielId = fielId;
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class TicketimageModel {
         TicketimageModel that = (TicketimageModel) o;
 
         if (ticketId != null ? !ticketId.equals(that.ticketId) : that.ticketId != null) return false;
-        if (fielId != null ? !fielId.equals(that.fielId) : that.fielId != null) return false;
+        if (fileId != null ? !fileId.equals(that.fileId) : that.fileId != null) return false;
 
         return true;
     }
@@ -53,11 +53,11 @@ public class TicketimageModel {
     @Override
     public int hashCode() {
         int result = ticketId != null ? ticketId.hashCode() : 0;
-        result = 31 * result + (fielId != null ? fielId.hashCode() : 0);
+        result = 31 * result + (fileId != null ? fileId.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticketId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public TicketModel getTicketByTicketId() {
         return ticketByTicketId;
@@ -67,19 +67,19 @@ public class TicketimageModel {
         this.ticketByTicketId = ticketByTicketId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "fielId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public FileModel getFileByFielId() {
-        return fileByFielId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fileId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public FileModel getFileByFileId() {
+        return fileByFileId;
     }
 
-    public void setFileByFielId(FileModel fileByFielId) {
-        this.fileByFielId = fileByFielId;
+    public void setFileByFileId(FileModel fileByFileId) {
+        this.fileByFileId = fileByFileId;
     }
 }
 
 @StaticMetamodel(TicketimageModel.class)
 class TicketimageModel_ {
     public static volatile SingularAttribute<TicketimageModel, Integer> ticketId;
-    public static volatile SingularAttribute<TicketimageModel, Integer> fielId;
+    public static volatile SingularAttribute<TicketimageModel, Integer> fileId;
 }

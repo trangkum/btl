@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public class SearchRouteEntity extends FilterEntity {
     @QueryParam("id")
@@ -20,19 +22,19 @@ public class SearchRouteEntity extends FilterEntity {
     @QueryParam("route")
     public String route;
 
-    public CriteriaQuery<RouteModel> applyTo(CriteriaBuilder builder, CriteriaQuery<RouteModel> criteria, Root<RouteModel> root) {
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<RouteModel> root) {
         if (id != null) {
-            criteria.where(builder.equal(root.get(RouteModel_.id), id));
+            predicates.add(builder.equal(root.get(RouteModel_.id), id));
         }
         if (name != null && !name.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(RouteModel_.name)), "%" + name.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(RouteModel_.name)), "%" + name.toLowerCase() + "%"));
         }
         if (method != null && !method.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(RouteModel_.method)), "%" + method.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(RouteModel_.method)), "%" + method.toLowerCase() + "%"));
         }
         if (route != null && !route.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(RouteModel_.route)), "%" + route.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(RouteModel_.route)), "%" + route.toLowerCase() + "%"));
         }
-        return criteria;
+        return predicates;
     }
 }

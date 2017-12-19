@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class RouteService {
     private static SessionFactory factory;
     private static int currentActive;
@@ -60,8 +61,7 @@ public class RouteService {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<RouteModel> criteria = builder.createQuery(RouteModel.class);
         Root<RouteModel> RouteModels = criteria.from(RouteModel.class);
-        criteria.where(builder.equal(builder.lower(RouteModels.get(RouteModel_.method)), method.toLowerCase()));
-        criteria.where(builder.equal(builder.lower(RouteModels.get(RouteModel_.route)), route.toLowerCase()));
+        criteria.where(builder.equal(builder.lower(RouteModels.get(RouteModel_.method)), method.toLowerCase()), builder.equal(builder.lower(RouteModels.get(RouteModel_.route)), route.toLowerCase()));
         try {
             RouteModel routeModel = session.createQuery(criteria).getSingleResult();
             return new RouteEntity(routeModel);

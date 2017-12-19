@@ -21,6 +21,7 @@ public class TeamModel {
     private EmployeeModel employeeByLeaderEmployeeId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;

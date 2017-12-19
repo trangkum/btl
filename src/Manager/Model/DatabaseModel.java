@@ -2,6 +2,7 @@ package Manager.Model;
 
 import org.json.simple.JSONObject;
 
+
 public class DatabaseModel {
     public int id;
     public int typeDB;

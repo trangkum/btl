@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class TicketImageEntity implements Serializable {
     public int ticketId;
-    public int fielId;
+    public int fileId;
     public TicketEntity ticketEntity;
     public FileEntity fileEntity;
 
@@ -23,7 +23,7 @@ public class TicketImageEntity implements Serializable {
 
     public TicketImageEntity(TicketimageModel TicketattributeModel, Object... objects) {
         this.ticketId = TicketattributeModel.getTicketId();
-        this.fielId = TicketattributeModel.getFielId();
+        this.fileId = TicketattributeModel.getFileId();
         for (Object object : objects) {
             if (object instanceof TicketModel) {
                 this.ticketEntity = new TicketEntity((TicketModel) object);
@@ -35,7 +35,7 @@ public class TicketImageEntity implements Serializable {
 
     public TicketimageModel toModel() {
         TicketimageModel TicketimageModel = new TicketimageModel();
-        TicketimageModel.setFielId(fielId);
+        TicketimageModel.setFileId(fileId);
         TicketimageModel.setTicketId(ticketId);
         return TicketimageModel;
     }

@@ -18,7 +18,7 @@ export class TagsinputComponent extends DropdownComponent{
     static IsBlock: boolean = false;
     @Input() DataList: Array<any> = [];
     @Output() onEnter: EventEmitter<any> = new EventEmitter();
-    @Output() ChangeTag: EventEmitter<any> = new EventEmitter();
+    @Output() onTagRemove: EventEmitter<any> = new EventEmitter();
     @Input() ChangeWhenUpDown: boolean = false;
     @Input() IsLoopOption: boolean = false;
     CurrentNumber: number = -1;
@@ -33,7 +33,7 @@ export class TagsinputComponent extends DropdownComponent{
     RemoveTag(Tag: any) {
         //let indexOf = this.DataList.indexOf(Tag);
         //this.DataList.splice(indexOf, 1);
-        //this.ChangeTag.emit(Tag);
+        this.onTagRemove.emit(Tag);
         Tag.IsSelected = false;
     }
 

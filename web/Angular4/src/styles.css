@@ -213,10 +213,6 @@ table tbody tr td {
 }
 
 
-.row {
-    margin: 5px;
-}
-
 /*TITLE*/
 .caption {
     text-transform: uppercase;
@@ -241,9 +237,6 @@ title {
     border: none;
 }
 
-btn-success {
-    background-color: #4CAF50;
-}
 
 .btn-collapse {
     position: relative;
@@ -901,7 +894,9 @@ ui-treenode-content ui-treenode-selectable {
     background-color: #2A92D8;
     cursor: pointer;
 }
-
+.list-group-item{
+    padding: .5rem .3rem;
+}
 .li-selected {
     color: #fff;
     background-color: #0064b4 !important;
@@ -1002,10 +997,6 @@ body {
     font-size: 12px;
 }
 
-.form-control {
-    font-size: 12px;
-}
-
 .top-place {
     bottom: 100%;
     top: auto;
@@ -1098,7 +1089,7 @@ body {
 }
 body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: normal;
     line-height: 1.5;
     background-color: #e9ebee;
@@ -1114,7 +1105,7 @@ body {
 }
 
 .group-action-request-content button i {
-    color: coral;
+    color: #0064B4;
 }
 
 .main-content {
@@ -1171,6 +1162,7 @@ th:hover {
 .main-table {
     width: 100%;
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 th:active {
@@ -1183,10 +1175,7 @@ tr {
 }
 
 td {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem;
 }
 
 .search-input {
@@ -1255,6 +1244,7 @@ tbody tr:hover {
 }
 
 .post-content {
+    margin-left: 3.5rem;
     margin-bottom: 1.4rem;
 }
 
@@ -1321,7 +1311,7 @@ tbody tr:hover {
     padding-left: .5rem;
 }
 
-.file-title-input-create-request:disabled {
+.file-title-input-create-request {
     background: white;
     color: #0064B4;
     cursor: default;
@@ -1332,7 +1322,7 @@ tbody tr:hover {
     margin-top: 1.5rem;
     padding-top: 1rem;
 }
-.red-start:after{
+.red-star:after{
     content: '*';
     color: red;
 }
@@ -1348,4 +1338,29 @@ tbody tr:hover {
 
 .item-map {
     margin-left: 5px;
+}
+
+.mark-unread{
+    color: black;
+}
+
+
+.mark-read{
+    color: rgba(0,0,0,.4);
+}
+
+ .SearchWho {
+    background-color: #fff;
+    color: #2A92D8 !important;
+    cursor: default;
+    display: inline;
+}
+
+
+.AtWho {
+    background-color: #fff;
+    color: #2A92D8 !important;
+    cursor: default;
+    display: inline;
+    text-decoration: underline;
 }

@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class RoleService {
     private static SessionFactory factory;
     private static int currentActive;

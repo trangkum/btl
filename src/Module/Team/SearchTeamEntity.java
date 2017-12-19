@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public class SearchTeamEntity extends FilterEntity{
     @QueryParam("id")public Integer id;
@@ -16,20 +18,20 @@ public class SearchTeamEntity extends FilterEntity{
     @QueryParam("locationId") public Integer locationId;
     @QueryParam("leaderEmployeeId")public Integer leaderEmployeeId;
 
-    public CriteriaQuery<TeamModel> applyTo(CriteriaBuilder builder, CriteriaQuery<TeamModel> criteria, Root<TeamModel> root){
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<TeamModel> root){
         if (id != null) {
-            criteria.where(builder.equal(root.get(TeamModel_.id), id));
+            predicates.add(builder.equal(root.get(TeamModel_.id), id));
         }
         if (name != null && !name.isEmpty()) {
-            criteria.where(builder.like(builder.lower(root.get(TeamModel_.name)), "%" + name.toLowerCase() + "%"));
+            predicates.add(builder.like(builder.lower(root.get(TeamModel_.name)), "%" + name.toLowerCase() + "%"));
         }
         if (locationId != null) {
-            criteria.where(builder.equal(root.get(TeamModel_.locationId), locationId));
+            predicates.add(builder.equal(root.get(TeamModel_.locationId), locationId));
         }
         if (leaderEmployeeId != null) {
-            criteria.where(builder.equal(root.get(TeamModel_.leaderEmployeeId), leaderEmployeeId));
+            predicates.add(builder.equal(root.get(TeamModel_.leaderEmployeeId), leaderEmployeeId));
         }
-        return criteria;
+        return predicates;
     }
 
 }

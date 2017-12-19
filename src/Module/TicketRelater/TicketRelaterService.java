@@ -78,11 +78,11 @@ public class TicketRelaterService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             TicketrelaterModel ticketattributeModel = ticketRelaterEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
+            session.save(ticketattributeModel);
             tx.commit();
             TicketRelaterEntity result = new TicketRelaterEntity(ticketattributeModel);
             return result;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         }

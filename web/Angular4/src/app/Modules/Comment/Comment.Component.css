@@ -1,0 +1,15 @@
+* >>> .input-content{
+    min-height: 10rem;
+}
+
+.info{
+    margin-bottom: 1rem;
+}
+
+.ticket-content{
+    margin-left: 0 !important;
+}
+
+.send-btn-input-discussion{
+    margin-top: .3rem;
+}

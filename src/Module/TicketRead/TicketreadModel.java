@@ -15,7 +15,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public class TicketreadModel {
     private Integer ticketId;
     private Integer employeeId;
-    private Byte status;
+    private Integer status;
     private TicketModel ticketByTicketId;
     private EmployeeModel employeeByEmployeeId;
 
@@ -41,11 +41,11 @@ public class TicketreadModel {
 
     @Basic
     @Column(name = "status", nullable = false)
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -96,5 +96,5 @@ public class TicketreadModel {
 class TicketreadModel_ {
     public static volatile SingularAttribute<TicketreadModel, Integer> ticketId;
     public static volatile SingularAttribute<TicketreadModel, Integer> employeeId;
-    public static volatile SingularAttribute<TicketreadModel, Byte> status;
+    public static volatile SingularAttribute<TicketreadModel, Integer> status;
 }

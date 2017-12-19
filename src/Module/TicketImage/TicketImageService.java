@@ -77,10 +77,10 @@ public class TicketImageService {
         Transaction tx = null;
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
-            TicketimageModel ticketattributeModel = ticketImageEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
+            TicketimageModel ticketimageModel = ticketImageEntity.toModel();
+            session.save(ticketimageModel);
             tx.commit();
-            TicketImageEntity result = new TicketImageEntity(ticketattributeModel);
+            TicketImageEntity result = new TicketImageEntity(ticketimageModel);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

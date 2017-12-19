@@ -35,7 +35,7 @@
         <li class="dropup">
             <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{PagingModel.Take}}
+                {{PagingModel.take}}
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left: auto;">
                 <a class="dropdown-item" href="#" *ngFor="let s of SetOfPage" (click)="SetTake(s)">{{s}}</a>

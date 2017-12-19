@@ -42,6 +42,7 @@ public class TicketModel {
     private Collection<TicketthreadModel> ticketthreadsById;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
@@ -315,21 +316,3 @@ public class TicketModel {
     }
 }
 
-@StaticMetamodel(TicketModel.class)
-class TicketModel_ {
-    public static volatile SingularAttribute<TicketModel, Integer> id;
-    public static volatile SingularAttribute<TicketModel, String> content;
-    public static volatile SingularAttribute<TicketModel, String> subject;
-    public static volatile SingularAttribute<TicketModel, Integer> createEmployeeId;
-    public static volatile SingularAttribute<TicketModel, Integer> status;
-    public static volatile SingularAttribute<TicketModel, Integer> priority;
-    public static volatile SingularAttribute<TicketModel, Timestamp> deadline;
-    public static volatile SingularAttribute<TicketModel, Integer> assignedEmployeeId;
-    public static volatile SingularAttribute<TicketModel, Byte> rating;
-    public static volatile SingularAttribute<TicketModel, Integer> locationId;
-    public static volatile SingularAttribute<TicketModel, Timestamp> resolvedTime;
-    public static volatile SingularAttribute<TicketModel, Timestamp> closedTime;
-    public static volatile SingularAttribute<TicketModel, Timestamp> createdTime;
-    public static volatile SingularAttribute<TicketModel, Timestamp> updatedTime;
-    public static volatile SingularAttribute<TicketModel, Timestamp> deletedTime;
-}

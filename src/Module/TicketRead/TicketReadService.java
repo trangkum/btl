@@ -5,6 +5,10 @@ import Manager.Interface.IDatabaseControllService;
 import Manager.Interface.IDatabaseService;
 import Manager.Service.DatabaseControllService;
 import Manager.Service.DatabaseService;
+import Module.User.TokenEntity;
+import Module.User.TokenService;
+import Module.User.UserEntity;
+import Module.User.UserService;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +17,11 @@ import org.hibernate.Transaction;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.Cookie;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +29,8 @@ import java.util.stream.Collectors;
 public class TicketReadService {
     private static SessionFactory factory;
     private static int currentActive;
-
+    TokenService tokenService = new TokenService();
+    UserService userService = new UserService();
     public TicketReadService(SessionFactory factory) {
         this.factory = factory;
     }
@@ -40,12 +49,13 @@ public class TicketReadService {
     }
 
 
-    public TicketReadEntity get(int id) {
+    public TicketReadEntity get(Integer ticketId,Integer employeeId) {
         Session session = factory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TicketreadModel> criteria = builder.createQuery(TicketreadModel.class);
         Root<TicketreadModel> TicketReadModels = criteria.from(TicketreadModel.class);
-        criteria.where(builder.equal(TicketReadModels.get("id"), id));
+        criteria.where(builder.equal(TicketReadModels.get(TicketreadModel_.ticketId), ticketId),
+                builder.equal(TicketReadModels.get(TicketreadModel_.employeeId), employeeId));
         try {
             TicketreadModel ticketattributeModel = session.createQuery(criteria).getSingleResult();
             return new TicketReadEntity(ticketattributeModel);
@@ -78,11 +88,11 @@ public class TicketReadService {
         try (Session session = factory.openSession()) {
             tx = session.beginTransaction();
             TicketreadModel ticketattributeModel = ticketReadEntity.toModel();
-            Integer.valueOf(String.valueOf(session.save(ticketattributeModel)));
+            session.save(ticketattributeModel);
             tx.commit();
             TicketReadEntity result = new TicketReadEntity(ticketattributeModel);
             return result;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         }
@@ -105,19 +115,22 @@ public class TicketReadService {
 //        return null;
 //    }
 
-    public TicketReadEntity update(int ticketReadId, TicketReadEntity ticketReadEntity) {
+    public TicketReadEntity update(Cookie tokenKey, int ticketReadId, TicketReadEntity ticketReadEntity) {
         Transaction tx = null;
+        TokenEntity tokenEntity = tokenService.getByTokenKey(tokenKey.getValue());
+        UserEntity userEntity = userService.get(tokenEntity.userId);
         try (Session session = factory.openSession()) {
+            ticketReadEntity.employeeId = userEntity.employeeId;
             tx = session.beginTransaction();
             session.update(ticketReadEntity.toModel());
             tx.commit();
-            TicketReadEntity result = get(ticketReadId);
+            TicketReadEntity result = get(ticketReadId,ticketReadEntity.employeeId);
             return result;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
+            throw new BadRequestException("Thao tác không hợp lệ!");
         }
-        return null;
     }
 
 //    public boolean delete(int id) {
@@ -142,7 +155,9 @@ public class TicketReadService {
         CriteriaQuery<TicketreadModel> criteria = builder.createQuery(TicketreadModel.class);
         Root<TicketreadModel> TicketReadModels = criteria.from(TicketreadModel.class);
         try {
-            List<TicketreadModel> ticketReadList = session.createQuery(criteria).getResultList();
+            List<Predicate> predicates = searchTicketReadEntity.applyTo(builder,new ArrayList<>(),TicketReadModels);
+            criteria.where(predicates.toArray(new Predicate[]{}));
+            List<TicketreadModel> ticketReadList = searchTicketReadEntity.skipAndTake(session.createQuery(searchTicketReadEntity.order(builder,criteria,TicketReadModels))).getResultList();
             return ticketReadList.stream()
                     .map(s -> new TicketReadEntity(s)).collect(Collectors.toList());
         } catch (NoResultException e) {

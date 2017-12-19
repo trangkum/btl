@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.QueryParam;
+import java.util.List;
 
 public class SearchUserEntity extends FilterEntity {
     @QueryParam("userName")
@@ -18,16 +20,16 @@ public class SearchUserEntity extends FilterEntity {
     private Integer employeeId;
 
 
-    public CriteriaQuery<UserModel> applyTo(CriteriaBuilder builder, CriteriaQuery<UserModel> criteria, Root<UserModel> root) {
+    public List<Predicate> applyTo(CriteriaBuilder builder, List<Predicate> predicates, Root<UserModel> root) {
 //        if (employeeId != null) {
-//            criteria.where(builder.equal(root.get(UserModel_.employeeId), employeeId));
+//            predicates.add(builder.equal(root.get(UserModel_.employeeId), employeeId));
 //        }
 //        if (userName != null && !userName.isEmpty()) {
-//            criteria.where(builder.like(builder.lower(root.get(UserModel_.userName)), "%" + userName.toLowerCase() + "%"));
+//            predicates.add(builder.like(builder.lower(root.get(UserModel_.userName)), "%" + userName.toLowerCase() + "%"));
 //        }
 //        if (passWord != null && !passWord.isEmpty()) {
-//            criteria.where(builder.like(builder.lower(root.get(UserModel_.passWord)), "%" + passWord.toLowerCase() + "%"));
+//            predicates.add(builder.like(builder.lower(root.get(UserModel_.passWord)), "%" + passWord.toLowerCase() + "%"));
 //        }
-        return criteria;
+        return predicates;
     }
 }

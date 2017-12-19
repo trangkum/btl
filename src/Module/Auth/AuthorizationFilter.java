@@ -62,41 +62,41 @@ public class AuthorizationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String path = requestContext.getUriInfo().getPath();
         if (path.startsWith("authentication/")) return;
-        if (requestContext.getRequest().getMethod().equals("OPTIONS")) {
-            requestContext.abortWith(Response.status(Response.Status.OK).build());
-            return;
-        }
+//        if (requestContext.getRequest().getMethod().equals("OPTIONS")) {
+//            requestContext.abortWith(Response.status(Response.Status.OK).build());
+//            return;
+//        }
         Cookie cookieTokenKey = requestContext.getCookies().get("auth-tokenKey");
         // Then check is the service key exists and is valid.
         if (cookieTokenKey == null) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
             return;
         }
         String tokenKey = cookieTokenKey.getValue();
         if (tokenKey == null || tokenKey.trim().equals("")) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
             return;
         }
         TokenEntity tokenEntity = tokenService.getByTokenKey(tokenKey);
         if (tokenEntity == null) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
             return;
         }
         UserEntity userEntity = userService.get(tokenEntity.userId);
         if (userEntity == null) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
             return;
         }
         EmployeeEntity employeeEntity = employeeService.get(userEntity.employeeId);
         if (employeeEntity == null) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
             return;
         }
         String link = parseLink(path);
         String method = requestContext.getRequest().getMethod();
         RouteEntity routeEntity = routeService.get(method, link);
         if (routeEntity == null) {
-            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
             return;
         }
         SearchRoleEntity searchRoleEntity = new SearchRoleEntity();
@@ -135,7 +135,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
             return roleEntity.id == 3 * employeeEntity.locationId;
         });
         if (check) return;
-        requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+        requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("Không có quyền truy cập").build());
         return;
 //        employeeEntity.groupEntity
 

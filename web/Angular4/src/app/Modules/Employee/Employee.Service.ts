@@ -4,26 +4,26 @@ import {Http} from '@angular/http';
 import {HttpService} from "../../Shared/HttpService";
 import {Injectable} from '@angular/core';
 import {EmployeeEntity} from "./Employee.Entity";
-import {SearchshapeEntity} from "./Employee.SearchEntity";
+import {SearchEmployeeEntity} from "./Employee.SearchEntity";
 import {HOSTNAME} from "../../app.module";
 
 @Injectable()
-export class ShapeService {
+export class EmployeeService {
     public url: string;
 
     constructor(private Http: Http) {
-        this.url = HOSTNAME+"api/shapes";
+        this.url = HOSTNAME + "api/employees";
     }
 
     GetData(url: string, data: any): Observable<any> {
         let http = <HttpService>this.Http;
-        return http.get(url, {params: data}, false)
+        return http.get(HOSTNAME +url, {params: data}, false)
             .map(res => {
                 return res.json();
             });
     }
 
-    Get(Search?: SearchshapeEntity): Observable<any> {
+    Get(Search?: SearchEmployeeEntity): Observable<any> {
         return this.Http.get(this.url, {params: Search === undefined ? null : Search.ToParams()})
             .map(res => {
                 return res.json().map((item: any) => {
@@ -32,8 +32,8 @@ export class ShapeService {
             });
     }
 
-    Count(Search?: SearchshapeEntity): Observable<number> {
-        Search = Search === undefined ? new SearchshapeEntity() : Search;
+    Count(Search?: SearchEmployeeEntity): Observable<number> {
+        Search = Search === undefined ? new SearchEmployeeEntity() : Search;
         return this.Http.get(this.url + "/Count", {params: Search.ToParams()})
             .map(res => {
                 return res.json();
@@ -66,49 +66,49 @@ export class ShapeService {
             .catch(e => Observable.throw(e));
     }
 
-//		Getproblem(shapeId: string) {
-//			return this.Http.get(`${this.url}/${shapeId}/problem`)
+//		Getproblem(employeeId: string) {
+//			return this.Http.get(`${this.url}/${employeeId}/problem`)
 //				.map(res => {
 //					return new problemEntity(res.json());
 //				});
 //		}
-//		Addproblem(shapeId: string, problemId: string) {
-//			return this.Http.post(`${this.url}/${shapeId}/problem/${problemId}`, {});
+//		Addproblem(employeeId: string, problemId: string) {
+//			return this.Http.post(`${this.url}/${employeeId}/problem/${problemId}`, {});
 //		}
-//		Updateproblem(shapeId: string, problemId: string) {
-//			return this.Http.put(`${this.url}/${shapeId}/problem/${problemId}`, {});
+//		Updateproblem(employeeId: string, problemId: string) {
+//			return this.Http.put(`${this.url}/${employeeId}/problem/${problemId}`, {});
 //		}
-//		Deleteproblem(shapeId: string, problemId: string) {
-//			return this.Http.delete(`${this.url}/${shapeId}/problem/${problemId}`);
+//		Deleteproblem(employeeId: string, problemId: string) {
+//			return this.Http.delete(`${this.url}/${employeeId}/problem/${problemId}`);
 //		}
-//		Getuser(shapeId: string) {
-//			return this.Http.get(`${this.url}/${shapeId}/user`)
+//		Getuser(employeeId: string) {
+//			return this.Http.get(`${this.url}/${employeeId}/user`)
 //				.map(res => {
 //					return new userEntity(res.json());
 //				});
 //		}
-//		Adduser(shapeId: string, userId: string) {
-//			return this.Http.post(`${this.url}/${shapeId}/user/${userId}`, {});
+//		Adduser(employeeId: string, userId: string) {
+//			return this.Http.post(`${this.url}/${employeeId}/user/${userId}`, {});
 //		}
-//		Updateuser(shapeId: string, userId: string) {
-//			return this.Http.put(`${this.url}/${shapeId}/user/${userId}`, {});
+//		Updateuser(employeeId: string, userId: string) {
+//			return this.Http.put(`${this.url}/${employeeId}/user/${userId}`, {});
 //		}
-//		Deleteuser(shapeId: string, userId: string) {
-//			return this.Http.delete(`${this.url}/${shapeId}/user/${userId}`);
+//		Deleteuser(employeeId: string, userId: string) {
+//			return this.Http.delete(`${this.url}/${employeeId}/user/${userId}`);
 //		}
-//		Getedge(shapeId: string) {
-//			return this.Http.get(`${this.url}/${shapeId}/edges`)
+//		Getedge(employeeId: string) {
+//			return this.Http.get(`${this.url}/${employeeId}/edges`)
 //				.map(res => {
 //					return res.json().map(e => new edgeEntity(e));
 //				});
 //		}
-//		Addedge(shapeId: string, edgeId: string) {
-//			return this.Http.post(`${this.url}/${shapeId}/edges/${edgeId}`, {});
+//		Addedge(employeeId: string, edgeId: string) {
+//			return this.Http.post(`${this.url}/${employeeId}/edges/${edgeId}`, {});
 //		}
-//		Updateedge(shapeId: string, edgeId: string) {
-//			return this.Http.put(`${this.url}/${shapeId}/edges/${edgeId}`, {});
+//		Updateedge(employeeId: string, edgeId: string) {
+//			return this.Http.put(`${this.url}/${employeeId}/edges/${edgeId}`, {});
 //		}
-//		Deleteedge(shapeId: string, edgeId: string) {
-//			return this.Http.delete(`${this.url}/${shapeId}/edges/${edgeId}`);
+//		Deleteedge(employeeId: string, edgeId: string) {
+//			return this.Http.delete(`${this.url}/${employeeId}/edges/${edgeId}`);
 //		}
 }

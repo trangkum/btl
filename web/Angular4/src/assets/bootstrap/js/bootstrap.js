@@ -208,7 +208,7 @@ if (typeof jQuery === 'undefined') {
                         var valueType = value && isElement(value) ? 'element' : toType(value);
 
                         if (!new RegExp(expectedTypes).test(valueType)) {
-                            throw new Error(componentName.toUpperCase() + ': ' + ('Option "' + property + '" provided type "' + valueType + '" ') + ('but expected type "' + expectedTypes + '".'));
+                            throw new Error(componentName.toUpperCase() + ': ' + ('Option "' + property + '" provided orderType "' + valueType + '" ') + ('but expected orderType "' + expectedTypes + '".'));
                         }
                     }
                 }

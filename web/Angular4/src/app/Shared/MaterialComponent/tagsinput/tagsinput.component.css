@@ -1,6 +1,5 @@
 ﻿.TagsInput {
     background-color: #fff;
-    /*border: 1px solid #ccc;*/
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     display: inline-block;
     /*padding: 4px 6px;*/
@@ -15,7 +14,10 @@
     border-radius: 0.25rem;
 }
 
-
+* >>> dropdown-input input{
+    outline: none;
+    border: 0;
+}
 .tag {
     margin-right: 2px;
     color: white;
@@ -51,16 +53,17 @@
 
 .dropdown-content {
     position: absolute;
-    width: 90%;
-    left: 1.1rem;
+    /*width: 90%;*/
+    /*left: 1.1rem;*/
     z-index: 999;
     list-style: none;
     white-space: normal;
     box-shadow: 2px 2px 5px #888888;
     cursor: pointer;
-    max-height: 150px;
+    max-height: 10rem;
     overflow-y: auto;
     background-color: white;
+    border-radius: .25rem;
 }
 
 .dropdown-content li:hover {

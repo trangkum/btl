@@ -75,7 +75,7 @@ export declare class NgbTabset implements AfterContentChecked {
      */
     justify: 'start' | 'center' | 'end';
     /**
-     * Type of navigation to be used for tabs. Can be one of 'tabs' or 'pills'.
+     * type of navigation to be used for tabs. Can be one of 'tabs' or 'pills'.
      */
     type: 'tabs' | 'pills';
     /**

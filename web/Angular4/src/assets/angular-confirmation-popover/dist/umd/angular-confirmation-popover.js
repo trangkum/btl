@@ -608,79 +608,79 @@ var ConfirmationPopover = (function () {
     };
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "title", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "message", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "confirmText", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "cancelText", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "placement", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "confirmButtonType", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "cancelButtonType", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "focusButton", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Boolean)
+        __metadata("design:orderType", Boolean)
     ], ConfirmationPopover.prototype, "hideConfirmButton", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Boolean)
+        __metadata("design:orderType", Boolean)
     ], ConfirmationPopover.prototype, "hideCancelButton", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Boolean)
+        __metadata("design:orderType", Boolean)
     ], ConfirmationPopover.prototype, "isDisabled", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Boolean)
+        __metadata("design:orderType", Boolean)
     ], ConfirmationPopover.prototype, "isOpen", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", core_1.TemplateRef)
+        __metadata("design:orderType", core_1.TemplateRef)
     ], ConfirmationPopover.prototype, "customTemplate", void 0);
     __decorate([
         core_1.Output(),
-        __metadata("design:type", core_1.EventEmitter)
+        __metadata("design:orderType", core_1.EventEmitter)
     ], ConfirmationPopover.prototype, "isOpenChange", void 0);
     __decorate([
         core_1.Output(),
-        __metadata("design:type", core_1.EventEmitter)
+        __metadata("design:orderType", core_1.EventEmitter)
     ], ConfirmationPopover.prototype, "confirm", void 0);
     __decorate([
         core_1.Output(),
-        __metadata("design:type", core_1.EventEmitter)
+        __metadata("design:orderType", core_1.EventEmitter)
     ], ConfirmationPopover.prototype, "cancel", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", String)
+        __metadata("design:orderType", String)
     ], ConfirmationPopover.prototype, "popoverClass", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Boolean)
+        __metadata("design:orderType", Boolean)
     ], ConfirmationPopover.prototype, "appendToBody", void 0);
     __decorate([
         core_1.HostListener('click'),
-        __metadata("design:type", Function),
+        __metadata("design:orderType", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], ConfirmationPopover.prototype, "togglePopover", null);
@@ -738,7 +738,7 @@ var Focus = (function () {
     };
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Boolean)
+        __metadata("design:orderType", Boolean)
     ], Focus.prototype, "mwlFocus", void 0);
     Focus = __decorate([
         core_1.Directive({
